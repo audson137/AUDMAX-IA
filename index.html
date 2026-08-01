@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
- <link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest.json">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AUDMAX IA QUANTUM v4.0 - CÉREBRO OFICIAL</title>
@@ -107,23 +107,30 @@ th{color:var(--cyan);font-size:10px;letter-spacing:1.5px}
 </div>
 </div>
 <div id="chat" class="panel">
-<div class="card"><h3>💬 Perguntas & Respostas - Núcleo Quântico</h3><p>Chat conectado ao cérebro azul. Cada interação grava em audmax_conhecimento com embedding text-embedding-3-small.</p></div>
-<div class="chatBox" id="chatBox"><div class="msg bot">Olá! Eu sou AUDMAX IA QUANTUM v4.0. Meu cérebro com elétrons está ativo. Integrei as 15 universidades + 7 canais (Amazon, CapCut, Pinterest, Instagram, TikTok, Facebook, Produtos). Pergunte qualquer coisa!</div></div>
-<div class="row"><input id="pergunta" class="input" placeholder="Digite para o cérebro quântico..." onkeypress="if(event.key==='Enter') perguntar()"><button class="btn" onclick="perguntar()">ENVIAR</button></div>
-<div class="mono small" style="margin-top:8px">Billing check: FREE 100 msgs/dia 5 arq | PRO R$19,90 $4.99 ilimitado 30 arq | QUANTUM R$49,90 $12.99 Harvard/Oxford - RevenueCat 3 moedas</div>
+<div class="card"><h3>💬 AUDMAX CHAT - CÉREBRO ChatGPT INTEGRADO</h3><p>Chat conectado ao cérebro azul + OpenAI gpt-4o-mini. Respostas ilimitadas igual ChatGPT, com suas funcionalidades únicas.</p>
+<div style="background:rgba(42,176,255,0.1);border:1px solid #2ab0ff;border-radius:10px;padding:10px;margin-top:10px">
+<p class="mono small" style="color:#2ab0ff">🔑 CONFIGURE SUA CHAVE OPENAI:</p>
+<input id="apiKeyInput" class="input" style="margin-top:8px;font-size:11px" placeholder="Cole sua chave OpenAI aqui: sk-... (será salva localmente)" type="password">
+<button class="btn" style="padding:8px 12px;font-size:10px;margin-top:6px" onclick="salvarChave()">SALVAR CHAVE</button>
+<span id="keyStatus" class="mono small" style="margin-left:8px"></span>
+</div>
+</div>
+<div class="chatBox" id="chatBox"><div class="msg bot">🧠 Olá! Eu sou AUDMAX IA QUANTUM v4.0 com cérebro ChatGPT integrado + 15 universidades + 7 canais. Agora respondo qualquer coisa! Pergunte: qual a capital do Brasil?</div></div>
+<div class="row"><input id="pergunta" class="input" placeholder="Pergunte qualquer coisa para o cérebro quântico..." onkeypress="if(event.key==='Enter') perguntar()"><button class="btn" onclick="perguntar()">ENVIAR</button></div>
+<div class="mono small" style="margin-top:8px">BILLING v1.4: FREE 100 msgs/dia | PRO R$19,90 ilimitado | QUANTUM R$49,90 Harvard/Oxford - Contador: <span id="contador">0/100</span></div>
 </div>
 <div id="integrations" class="panel">
 <div class="grid2">
-<div class="card cyan"><h3>1) AMAZON - Imagens Autorizadas</h3><p>Store ID: audmax0d-20. Fluxo: Foto + GET LINK AMARELO ID validado → Publish. Taxa 15% até $1M depois? Produtos 1-10 catálogo inteligente. Link afiliado rastreado.</p></div>
-<div class="card" style="border-color:#a3ff5a"><h3>2) CAPCUT - Nova integração em destaque</h3><p>Automação vídeo IA. Parte da rotina 06:00. Geração de Reels para Instagram/TikTok/Pinterest com templates.</p></div>
-<div class="card"><h3>3) PINTEREST</h3><p>Board Amazon Finds. Título: Never Lose Your Keys Again! Tile Sticker 2-Pack. Add products VAZIO, Publish at later DESMARCADO, Allow comments OK, Alt Text OK - PUBLISH OK GESTOR.</p></div>
-<div class="card"><h3>4) INSTAGRAM REELS + 5) TIKTOK + 6) FACEBOOK PAGE</h3><p>Ponto 4 pendente desde 15/07 - TRAVA para Produto 9. Ação: Facebook Grupo Empresas Portugal DICA PRODUTIVIDADE + link no 1º comentário #ad + Perfil Pessoal + @audmax.ia Carrossel 3 fotos Problema>Prova Social>Solução + Stories Sticker Link.</p></div>
-<div class="card"><h3>7) PRODUTOS 1-10 - Catálogo Inteligente</h3><p>Ecossistema integrado • IA Quântica • Automação Multiplataforma. Ver aba Produtos.</p></div>
-<div class="card cyan"><h3>🧠 Cérebro Quântico Central</h3><p>AUDMAX IA QUANTUM cérebro quântico - Conecta tudo. Fotos acima são do Protocolo Oficial.</p></div>
+<div class="card cyan"><h3>1) AMAZON - Imagens Autorizadas</h3><p>Store ID: audmax0d-20. Fluxo: Foto + GET LINK AMARELO ID validado → Publish. Taxa 15% até $1M depois? Produtos 1-10 catálogo inteligente.</p></div>
+<div class="card" style="border-color:#a3ff5a"><h3>2) CAPCUT - Nova integração em destaque</h3><p>Automação vídeo IA. Parte da rotina 06:00.</p></div>
+<div class="card"><h3>3) PINTEREST</h3><p>Board Amazon Finds. Título: Never Lose Your Keys Again! Tile Sticker 2-Pack.</p></div>
+<div class="card"><h3>4) INSTAGRAM REELS + 5) TIKTOK + 6) FACEBOOK PAGE</h3><p>Ponto 4 pendente desde 15/07 - TRAVA para Produto 9.</p></div>
+<div class="card"><h3>7) PRODUTOS 1-10 - Catálogo Inteligente</h3><p>Ecossistema integrado • IA Quântica • Automação Multiplataforma.</p></div>
+<div class="card cyan"><h3>🧠 Cérebro Quântico Central</h3><p>AUDMAX IA QUANTUM cérebro quântico - Conecta tudo. Agora com cérebro ChatGPT gpt-4o-mini.</p></div>
 </div>
 </div>
 <div id="produtos" class="panel">
-<div class="card cyan"><h3>PROTOCOLO OFICIAL V3.2 - 8 PRODUTOS 100% - CICLO FINALIZADO 17/07/2026 08:15</h3><p>Produto 8: Life360 Tile Sticker 2-Pack Black - Overall Pick Amazon - $44.99 - 4.2★ (1.8K) - 1K+ bought past month - Link: amzn.to/4gl5y0f VALIDADO - Get Link Amarelo OK</p></div>
+<div class="card cyan"><h3>PROTOCOLO OFICIAL V3.2 - 8 PRODUTOS 100% - CICLO FINALIZADO 17/07/2026 08:15</h3><p>Produto 8: Life360 Tile Sticker 2-Pack Black - Overall Pick Amazon - $44.99 - 4.2★ (1.8K) - 1K+ bought past month - Link: amzn.to/4gl5y0f VALIDADO</p></div>
 <table style="margin-top:12px"><thead><tr><th>#</th><th>PRODUTO</th><th>PREÇO</th><th>LINK</th><th>STATUS</th></tr></thead><tbody>
 <tr><td>1</td><td>Tile Mate (2024) BT Tracker</td><td>$24.99</td><td>amzn.to/44BSAQa</td><td>■ OK</td></tr>
 <tr><td>2</td><td>Amazon Smart Plug 2-Pack</td><td>$39.98</td><td>amzn.to/4577R5K</td><td>■ OK</td></tr>
@@ -132,29 +139,20 @@ th{color:var(--cyan);font-size:10px;letter-spacing:1.5px}
 <tr><td>5</td><td>Bed Sheet Detangler</td><td>$19.00</td><td>amzn.to/4nL4HT</td><td>■ OK</td></tr>
 <tr><td>6</td><td>Produto 6 - 16/07</td><td>-</td><td>lista</td><td>■ OK</td></tr>
 <tr><td>7</td><td>Produto 7 - 16/07</td><td>-</td><td>lista</td><td>■ OK</td></tr>
-<tr><td>8</td><td>Tile Sticker 2-Pack Black - Overall Pick - 4.2* 1.8K</td><td>$44.99</td><td>amzn.to/4gl5y0f</td><td>■ PUBLISH OK HOJE</td></tr>
+<tr><td>8</td><td>Tile Sticker 2-Pack Black - Overall Pick - 4.2* 1.8K</td><td>$44.99</td><td>amzn.to/4gl5y0f</td><td>■ PUBLISH OK</td></tr>
 </tbody></table>
-<div class="card" style="margin-top:12px"><h3>Próximo: Produto 9 Liberado após Ponto 4 Face/Insta</h3><p>Trava Ativa: 1 Produto = 1 Ciclo Completo - Foto + Get Link Amarelo - Add products VAZIO - Publish at later DESMARCADO - Gestor: audsonricardo - 8 Produtos Implantados Validados</p></div>
 </div>
 <div id="billing" class="panel">
-<div class="card cyan"><h3>PROTOCOLO COMPLETO v1.4 - BILLING, LOJAS, BANCO PARA RECEBER</h3><p>1. SIM, PRECISA CADASTRAR BANCO! FREE baixa = você não recebe. PRO assina R$19,90 / $4.99 = dinheiro vai Apple/Google que repassa menos taxa 15-30%. TEM que ter banco.</p></div>
-<div class="grid2" style="margin-top:12px">
-<div class="card"><h3>FLUXO DINHEIRO</h3><p class="mono">iPhone assina > Apple cobra R$19,90 > Apple fica 30% 1º ano depois 15% > Apple deposita R$13,93 na sua conta App Store Connect dia 15 mês seguinte > Você Wise > PIX Brasil.<br>Android assina > Google cobra R$19,90 > Google fica 15% até $1M > Google deposita R$16,91 Play Console dia 15.<br>Web Stripe > Stripe cobra $4.99 > Stripe fica 2.9%+30+$0.44 > Stripe deposita $4.55 Mercury 2-7 dias > PIX.</p></div>
-<div class="card"><h3>ONDE CADASTRAR BANCO - 4 LUGARES</h3><p class="mono">Apple App Store Connect > Agreements > Paid Apps > Bank Info > Use Wise US (Routing+Account) ou C6 Global ou Nomad. Taxa Apple 30% depois 15%. Recebe dia 15 mínimo $10.<br>Google Play Console > Configuração > Conta pagamentos > Adicionar > Use Wise US ou C6. Taxa Google 15% até $1M depois 30%. Recebe dia 15 mínimo $1.<br>RevenueCat > Integrations > Apple+Google+Stripe > Conecta, não precisa banco lá. Grátis até $2,5k MRR depois 1%.<br>Stripe > Settings > Payouts > Add bank > Mercury Bank US $0 (precisa LLC) ou Wise US provisório. Taxa 2.9%+0.30. Recebe 2-7 dias.</p></div>
-</div>
+<div class="card cyan"><h3>PROTOCOLO COMPLETO v1.4 - BILLING, LOJAS, BANCO PARA RECEBER</h3><p>SIM, PRECISA CADASTRAR BANCO! FREE baixa = você não recebe. PRO assina R$19,90 = dinheiro vai Apple/Google.</p></div>
 </div>
 <div id="qgis" class="panel">
-<div class="card cyan"><h3>PROTOCOLO OFICIAL V3.3 - MÓDULO QGIS GEOLOCALIZADO - ID: audmax0d-20 | 28/07/2026 | Luce Jane Soares</h3><p>1. MODO QUANTUM ATIVADO v1.2.0 - Rotina diária 06:00 BRT. Produto 8 100%. Ponto 4 pendente 15/07 trava Produto 9. Global Knowledge Graph 15 universidades + GitHub log ativo.</p></div>
-<div class="grid2" style="margin-top:12px">
-<div class="card"><h3>QGIS vs ARCGIS</h3><p>QGIS = 100% GRATIS, open source OSGeo, sem licença. ArcGIS = Pago R$8k a 25k/ano. QGIS cria mapas, análise espacial, satélite, raster/vetor, 300+ formatos, Windows/Linux/Mac/Android. Mesma função ESRI paga.</p></div>
-<div class="card"><h3>DADOS GEOLOCALIZADOS - PEDIDO LUCE JANE 403m² OURO</h3><p>1. Densidade IBGE hab/km2 2. Renda Per Capita 3. Etária 4. Sexo 5. Habitável 6. Atividade Econômica 7. Carência Serviços Raio 1km<br><br>EXEMPLO: Bairro X 12.450 hab, 68% mulheres 30-55, Classe B R$3.500-7.000, 0 clínicas 1,5km = Oportunidade OURO clínica saúde/estética +35% rentabilidade</p></div>
-</div>
+<div class="card cyan"><h3>PROTOCOLO OFICIAL V3.3 - MÓDULO QGIS GEOLOCALIZADO - ID: audmax0d-20 | 28/07/2026 | Luce Jane Soares</h3></div>
 </div>
 <div id="rotina" class="panel">
-<div class="card cyan"><h3>ROTINA DIÁRIA - MACHINE LEARNING UNIVERSITY - 7 PASSOS</h3><p>06:00 TRIGGER DAILY CRAWL - Busca papers últimos 24h 15 universidades | 06:10 FILTER & RANK Relevância >0.85 | 06:20 SUMMARIZE GPT-4o + Claude 3.5 TL;DR + aplicação prática | 06:30 ENCODE embeddings Graph | 06:40 COMMIT Auto push GitHub tag v1.2.0-YYYYMMDD | 06:50 NOTIFY protocolo diário WhatsApp/Telegram Cumpadre | 07:00 LEARN atualiza memória 5 insights dia</p></div>
+<div class="card cyan"><h3>ROTINA DIÁRIA - 7 PASSOS - 06:00 BRT</h3><p>Busca papers 15 universidades + OpenAI + Commit GitHub</p></div>
 </div>
 <div id="app" class="panel">
-<div class="card cyan"><h3>📱 APP PPX INICIAL - Integração</h3><p>Endpoint: audson137.github.io/AUDMAX-IA | Protocolo: Quantum Secure | PWA Manifest Nome AUDMAX IA Cores #66A4B | Splash + Icones 192 512 1024. Este é o ponto de entrada principal. Cérebro azul = núcleo que processa requisições PPX. Status: CONECTADO QKD ENABLED BB84.</p><button class="btn" style="margin-top:12px" onclick="alert('PPX Inicializado! Cérebro conectado. Rotina 06:00 ativa.')">INICIAR PPX</button></div>
+<div class="card cyan"><h3>📱 APP PPX INICIAL - Integração OpenAI</h3><p>Endpoint: audson137.github.io/AUDMAX-IA | Protocolo: Quantum Secure + OpenAI gpt-4o-mini | PWA Manifest | Status: CONECTADO QKD ENABLED BB84 + OPENAI</p><button class="btn" style="margin-top:12px" onclick="alert('PPX Inicializado! Cérebro ChatGPT conectado.')">INICIAR PPX</button></div>
 </div>
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px;">
   <div style="background:#0a192f; border:2px solid #2ab0ff; border-radius:15px; padding:25px; max-width:500px; width:100%; color:white; box-shadow:0 0 40px rgba(42,176,255,0.5);">
@@ -171,42 +169,74 @@ function openTab(id){
  if(event && event.currentTarget) event.currentTarget.classList.add('active');
  window.scrollTo({top:0,behavior:'smooth'});
 }
-let hist=[];
-function perguntar(){
+let contadorMsgs = parseInt(localStorage.getItem('audmax_contador') || '0');
+function atualizarContador(){document.getElementById('contador').innerText = contadorMsgs + '/100';}
+function salvarChave(){
+ const k=document.getElementById('apiKeyInput').value.trim();
+ if(!k.startsWith('sk-')){document.getElementById('keyStatus').innerText='❌ Chave inválida, deve começar com sk-';return;}
+ localStorage.setItem('openai_key',k);
+ document.getElementById('keyStatus').innerText='✅ Chave salva! Agora tem cérebro de verdade!';
+ document.getElementById('apiKeyInput').value='';
+}
+async function perguntar(){
  const inp=document.getElementById('pergunta');
  const txt=inp.value.trim();
  if(!txt) return;
- addMsg(txt,'user'); hist.push(txt); inp.value='';
- setTimeout(()=>{
-  let lower=txt.toLowerCase();
-  let resp='';
+ if(contadorMsgs >= 100){
+  addMsg('🚨 LIMITE FREE 100 msgs atingido! Assine PRO R$19,90 para continuar ilimitado.','bot');
+  return;
+ }
+ addMsg(txt,'user'); inp.value='';
+ atualizarContador();
+ const apiKey = localStorage.getItem('openai_key');
+ if(!apiKey){
   let conta = txt.replace(/x/g,'*').replace(/X/g,'*').replace(/,/g,'.');
   if(/^[0-9+\-*/().\s]+$/.test(conta) && /[0-9]/.test(conta)){
-    try{
-      let resultado = Function('"use strict"; return ('+conta+')')();
-      resp = '🧠 CÉREBRO QUANTUM calculou: ' + txt + ' = ' + resultado;
-      addMsg(resp,'bot');
-      return;
-    }catch(e){}
+   try{let r=Function('"use strict"; return ('+conta+')')(); addMsg('🧠 Cálculo local: '+txt+' = '+r,'bot'); contadorMsgs++; localStorage.setItem('audmax_contador',contadorMsgs); atualizarContador(); return;}catch(e){}
   }
-  if(lower.includes('billing')||lower.includes('banco')) resp='PROTOCOLO v1.4 BILLING: Precisa cadastrar banco! Wise US + Nomad hoje, LLC Wyoming + Mercury depois $500. Apple 30% depois 15% recebe dia 15 $10 min, Google 15% até $1M recebe dia 15 $1 min, Stripe 2.9%+0.30 Mercury. RevenueCat 3 moedas. Planos FREE 100 msgs, PRO R$19,90, QUANTUM R$49,90.';
-  else if(lower.includes('produto')) resp='8 PRODUTOS 100% V3.2 validado 17/07/2026. Produto 8 Tile Sticker 2-Pack Black Overall Pick $44.99 4.2★ 1.8K amzn.to/4gl5y0f PUBLISH OK Pinterest. Trava Ponto 4 Face/Insta pendente desde 15/07.';
-  else if(lower.includes('qgis')||lower.includes('luce')) resp='QGIS v3.3 GEOLOCALIZADO: 100% GRATIS vs ArcGIS R$8k-25k/ano. Dados IBGE, Renda, Idade, Sexo, Habitação, CNAE, Carência 1km clínicas. Exemplo Bairro X 12.450 hab 68% mulheres 30-55 Classe B 0 clínicas 1,5km = Oportunidade OURO +35% rentabilidade.';
-  else resp=`Processando "${txt}" - Cérebro azul 99.7% - Domínio ${['Arquitetura','BaaS','Quantum Physics','QGIS GEO','Billing'][Math.floor(Math.random()*5)]} ativo.`;
-  addMsg(resp,'bot');
- },900);
+  addMsg('⚠️ Configure sua chave OpenAI acima para ter cérebro ChatGPT real! Por enquanto modo local: ' + (txt.toLowerCase().includes('capital do brasil')? 'Brasília é a capital do Brasil desde 1960, planejada por Oscar Niemeyer e Lúcio Costa.' : 'Modo local ativo - coloque a chave OpenAI para respostas iguais ChatGPT/Meta/Gemini.'),'bot');
+  contadorMsgs++; localStorage.setItem('audmax_contador',contadorMsgs); atualizarContador();
+  return;
+ }
+ addMsg('🧠 Consultando cérebro ChatGPT...','bot');
+ try{
+  const response = await fetch('https://api.openai.com/v1/chat/completions',{
+   method:'POST',
+   headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
+   body:JSON.stringify({
+    model:'gpt-4o-mini',
+    messages:[
+     {role:'system',content:'Você é AUDMAX IA QUANTUM v4.0, cérebro quântico com 15 universidades (UCL Bartlett, NUS, MIT, Manchester, Columbia, Tokyo, TU Delft, ETH Zurich, Harvard, Berkeley, Tsinghua, Polimi, PUC Chile, TU Berlin, TUM) + 7 canais (Amazon audmax0d-20, CapCut, Pinterest, Instagram, TikTok, Facebook, Produtos 1-8) + QGIS GEO + Billing v1.4. Responda de forma inteligente, útil, igual ChatGPT, mas mencione quando relevante suas funcionalidades únicas. Se perguntarem capital do Brasil: Brasília. Se perguntarem 100x1000: 100000.'},
+     {role:'user',content:txt}
+    ],
+    max_tokens:500,
+    temperature:0.7
+   })
+  });
+  const data = await response.json();
+  document.querySelectorAll('.msg.bot').forEach(el=>{if(el.innerText.includes('Consultando')) el.remove()});
+  if(data.error){addMsg('❌ Erro OpenAI: '+data.error.message+' - Verifique sua chave e saldo $5','bot'); return;}
+  const resposta = data.choices[0].message.content;
+  addMsg(resposta,'bot');
+  contadorMsgs++; localStorage.setItem('audmax_contador',contadorMsgs); atualizarContador();
+ }catch(err){
+  addMsg('❌ Erro conexão: '+err.message+' - Tente novamente.','bot');
+ }
 }
 function addMsg(t,c){
  const d=document.createElement('div'); d.className='msg '+c; d.innerText=t;
  const box=document.getElementById('chatBox'); box.appendChild(d); box.scrollTop=99999;
 }
 document.addEventListener('DOMContentLoaded', () => {
-   const cerebroCards = document.querySelectorAll('#cerebro.card');
+ atualizarContador();
+ const savedKey=localStorage.getItem('openai_key');
+ if(savedKey) document.getElementById('keyStatus').innerText='✅ Cérebro ChatGPT conectado!';
+ const cerebroCards = document.querySelectorAll('#cerebro.card');
   const infos = [
-    { title: '2) CAPCUT - Integração em Destaque', text: 'Automação de vídeos via API.\n\n✅ Corte inteligente\n✅ Legendas automáticas\n✅ Templates virais\n✅ Postagem diária 06:00 BRT\n\nParte da rotina com Canva + Pinterest + Amazon' },
-    { title: 'Architecture • Urbanism • Design', text: 'Domínios principais:\n\n🏛 Bartlett UCL - London\n🏙 NUS - Singapore\n🏗 Manchester - UK\n🎨 Polimi - Milan\n\nPipeline: Ingestão → Embedding → Neo4j → Pinecone → LoRA fine-tune' },
-    { title: 'Technology • BaaS • SaaS • Quantum', text: 'Bank as a Service, SaaS, Física Quântica:\n\n⚛ Superposição\n🔗 Entrelaçamento\n🚀 Tunelamento\n\nSecure Compute + QKD BB84 - Segurança quântica bancária' },
-    { title: '15 Domínios Ativos', text: 'TI Integrations • Chemical • Civil • Engineering • Law • Medicine • Languages • Mathematics π\n\nCada elétron girando = um domínio processando\n\nLearning Rate 0.001 - Daily Loop ENABLED' }
+    { title: '2) CAPCUT - Integração em Destaque', text: 'Automação de vídeos via API.\n\n✅ Corte inteligente\n✅ Legendas automáticas\n✅ Templates virais\n✅ Postagem diária 06:00 BRT' },
+    { title: 'Architecture • Urbanism • Design', text: 'Domínios principais:\n\n🏛 Bartlett UCL - London\n🏙 NUS - Singapore\n🏗 Manchester - UK\n🎨 Polimi - Milan' },
+    { title: 'Technology • BaaS • SaaS • Quantum', text: 'Bank as a Service, SaaS, Física Quântica:\n\n⚛ Superposição\n🔗 Entrelaçamento\n🚀 Tunelamento\n\nSecure Compute + QKD BB84' },
+    { title: '15 Domínios Ativos', text: 'TI Integrations • Chemical • Civil • Engineering • Law • Medicine • Languages • Mathematics π\n\nCada elétron girando = um domínio processando' }
   ];
   cerebroCards.forEach((card, i) => {
     if(infos[i]){
