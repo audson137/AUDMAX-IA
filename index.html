@@ -38,7 +38,8 @@ header h1{color:var(--cyan);letter-spacing:3px;font-size:20px;text-shadow:0 0 15
 .panel.active{display:block}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:800px){.grid2{grid-template-columns:1fr}.brain-wrap{width:300px;height:300px}.r1{width:290px;height:290px}}
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:18px;position:relative;overflow:hidden}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:18px;position:relative;overflow:hidden;cursor:pointer;transition:0.2s}
+.card:hover{border-color:#2ab0ff;transform:translateY(-2px);box-shadow:0 0 20px rgba(42,176,255,0.3)}
 .card.cyan{border-color:rgba(42,176,255,0.35);background:linear-gradient(180deg, rgba(42,176,255,0.12), rgba(255,255,255,0.01));box-shadow:0 0 30px rgba(42,176,255,0.12) inset}
 .card h3{font-size:14px;letter-spacing:0.5px;margin-bottom:6px;color:#fff}
 .card p{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5}
@@ -84,7 +85,7 @@ th{color:var(--cyan);font-size:10px;letter-spacing:1.5px}
 <div class="tab" onclick="openTab('integrations')">🔗 INTEGRAÇÕES 7 CANAIS</div>
 <div class="tab" onclick="openTab('produtos')">🛒 8 PRODUTOS</div>
 <div class="tab" onclick="openTab('billing')">💳 BILLING v1.4</div>
-<div class="tab" onclick="openTab('qgis')">🗺️ QGIS GEO LUCE JANE</div>
+<div class="tab" onclick="openTab('qgis')">🗺 QGIS GEO LUCE JANE</div>
 <div class="tab" onclick="openTab('rotina')">⏰ ROTINA DIÁRIA 06:00</div>
 <div class="tab" onclick="openTab('app')">📱 APP PPX</div>
 </div>
@@ -139,27 +140,32 @@ th{color:var(--cyan);font-size:10px;letter-spacing:1.5px}
 <div class="card cyan"><h3>PROTOCOLO COMPLETO v1.4 - BILLING, LOJAS, BANCO PARA RECEBER</h3><p>1. SIM, PRECISA CADASTRAR BANCO! FREE baixa = você não recebe. PRO assina R$19,90 / $4.99 = dinheiro vai Apple/Google que repassa menos taxa 15-30%. TEM que ter banco.</p></div>
 <div class="grid2" style="margin-top:12px">
 <div class="card"><h3>FLUXO DINHEIRO</h3><p class="mono">iPhone assina > Apple cobra R$19,90 > Apple fica 30% 1º ano depois 15% > Apple deposita R$13,93 na sua conta App Store Connect dia 15 mês seguinte > Você Wise > PIX Brasil.<br>Android assina > Google cobra R$19,90 > Google fica 15% até $1M > Google deposita R$16,91 Play Console dia 15.<br>Web Stripe > Stripe cobra $4.99 > Stripe fica 2.9%+30+$0.44 > Stripe deposita $4.55 Mercury 2-7 dias > PIX.</p></div>
-<div class="card"><h3>ONDE CADASTRAR BANCO - 4 LUGARES</h3><p class="mono">Apple App Store Connect > Agreements > Paid Apps > Bank Info > Use Wise US (Routing+Account) ou C6 Global ou Nomad. Taxa Apple 30% depois 15%. Recebe dia 15 mínimo $10.<br>Google Play Console > Configuração > Conta pagamentos > Adicionar > Use Wise US ou C6. Taxa Google 15% até $1M depois 30%. Recebe dia 15 mínimo $1.<br>RevenueCat > Integrations > Apple+Google+Stripe > Conecta, não precisa banco lá. Grátis até $2,5k MRR depois 1%.<br>Stripe > Settings > Payouts > Add bank > Mercury Bank US $0 (precisa LLC) ou Wise US provisório. Taxa 2.9%+0.30. Recebe 2-7 dias.<br><br>RECOMENDAÇÃO ORDEM AGORA:<br>HOJE Abra Wise US grátis 30min https://wise.com gera Routing+Account US. HOJE Abra Nomad backup. SETEMBRO Fase2 após $500 caixa abra LLC Wyoming $150 + Mercury Bank $0. Cadastre Wise US no App Store Connect e Play Console AGORA mesmo sem LLC - aceitam. Cadastre Mercury quando tiver no Stripe. No Brasil: Wise/Nomad > Converte BRL > PIX Inter/Bradesco. Imposto Brasil Carnê-Leão 0-27,5%. Documentos: Passaporte, Comprovante endereço Receita inglês, W-8BEN Brasil Artigo 7 0% igual AMAZON. Comprovar 30%?</p></div>
-<div class="card"><h3>BILLING v1.4 - DO SEU PDF IMPLANTADO</h3><p class="mono">Tabelas: audmax_conversas (id,user_id,role,content,embedding_vector1536,metadata_created_at), audmax_arquivos (id,user_id,nome_arquivo,url,tipo pdf/codigo/imagem/glb,resumo_ia,embedding), audmax_conhecimento (id,fonte ArXiv/GitHub/Unity Blog,titulo,resumo,url,embedding tags), profiles (id,plano free/pro/quantum,msgs_hoje,arquivos_hoje), indices ivfflat. Funções increment_usage e reset_limits cron meia noite. Cron aprender api/cron/audmax-aprender.ts Serper API ARKit/ARCore/WebXR Unity AR news qrcode resume gpt-4o-mini embedding text-embedding-3-small salva audmax_conhecimento Vorcel cron 0 3 * * *. Billing lib/billing/paywall.ts checkLimits se free msgs hoje>100 bloqueia abre Paywall. Planos Free R$0 100msgs 5arq, Pro R$19,90 $4,99 4,99 ilimitado 30 arq, Quantum R$49,90 $9,99 12,99 tudo pro+quant/Harvard/Oxford. Compra RevenueCat 3 moedas automaticamente. Componente Paywall tsx modal icone 3 cards Pro produto env.SUPABASE_URL_ANON_KEY_OPENAI_KEY SERPER_KEY REVENUECAT_APPLE appl_xxx GOOGLE googl_xxx</p></div>
-<div class="card"><h3>PUBLICAÇÃO APPLE & PLAY STORE</h3><p class="mono">APPLE: Pagar $99/ano, Xcode 1.4.0, Icon 1024, Archive Distribute. Descrição pronta: AUDMAX IA Quantum - Central de Inteligência com aprendizado constante e crescimento exponencial. Busca em 10 fontes: Meta IA, Redes Sociais, Google, Edge/Bing, Wikipedia, YouTube, Stanford, Harvard, Coimbra, Oxford. Física quântica aplicada. Aprende 24/7.<br>PLAY: Pagar $25 único, npx cap add android && npx cap sync && npx cap open android, AAB Keystore, Play Console, 1024x500, Screenshots 1080x1920, Política Privacidade, Classificação Público, 2-5 dias.<br>Checklist: App ID com.audmax.ia Icones 192 512 1024 + .ico Splash PWA manifest Nome AUDMAX IA Cores #66A4B Billing RevenueCat 3 moedas</p></div>
+<div class="card"><h3>ONDE CADASTRAR BANCO - 4 LUGARES</h3><p class="mono">Apple App Store Connect > Agreements > Paid Apps > Bank Info > Use Wise US (Routing+Account) ou C6 Global ou Nomad. Taxa Apple 30% depois 15%. Recebe dia 15 mínimo $10.<br>Google Play Console > Configuração > Conta pagamentos > Adicionar > Use Wise US ou C6. Taxa Google 15% até $1M depois 30%. Recebe dia 15 mínimo $1.<br>RevenueCat > Integrations > Apple+Google+Stripe > Conecta, não precisa banco lá. Grátis até $2,5k MRR depois 1%.<br>Stripe > Settings > Payouts > Add bank > Mercury Bank US $0 (precisa LLC) ou Wise US provisório. Taxa 2.9%+0.30. Recebe 2-7 dias.</p></div>
 </div>
 </div>
 <div id="qgis" class="panel">
 <div class="card cyan"><h3>PROTOCOLO OFICIAL V3.3 - MÓDULO QGIS GEOLOCALIZADO - ID: audmax0d-20 | 28/07/2026 | Luce Jane Soares</h3><p>1. MODO QUANTUM ATIVADO v1.2.0 - Rotina diária 06:00 BRT. Produto 8 100%. Ponto 4 pendente 15/07 trava Produto 9. Global Knowledge Graph 15 universidades + GitHub log ativo.</p></div>
 <div class="grid2" style="margin-top:12px">
-<div class="card"><h3>QGIS vs ARCGIS</h3><p>QGIS = 100% GRATIS, open source OSGeo, sem licença. ArcGIS = Pago R$8k a 25k/ano. QGIS cria mapas, análise espacial, satélite, raster/vetor, 300+ formatos, Windows/Linux/Mac/Android. Mesma função ESRI paga. Para AUDMAX IA, QGIS é a arma - custo zero.</p></div>
-<div class="card"><h3>DADOS GEOLOCALIZADOS - PEDIDO LUCE JANE 403m² OURO</h3><p>1. Densidade IBGE hab/km2 setor censitário<br>2. Renda Per Capita A/B/C/D/E R$ domicílio<br>3. Etária 0-18 / 19-35 / 36-60 / 60+<br>4. Sexo Feminino/Masculino - Mulheres 70% mais saúde/estética<br>5. Habitável Casa/Apto/Condomínio/Favela<br>6. Atividade Econômica - CNAE, deslocamento<br>7. Carência Serviços Raio 1km - clínicas, farmácias, escolas<br><br>EXEMPLO: Bairro X 12.450 hab, 68% mulheres 30-55, Classe B R$3.500-7.000, 0 clínicas 1,5km = Oportunidade OURO clínica saúde/estética +35% rentabilidade</p></div>
-<div class="card"><h3>ROTINA ATUALIZADA COM QGIS</h3><p class="mono">06:00 TRIGGER DAILY CRAWL - 15 Univ + CapCut + Canva + Pinterest + Amazon<br>06:40 COMMIT GitHub audmax-ia-quantum-learning<br>07:00 LEARN Q&A<br>07:10 NOVO: QGIS CRAWL - IBGE, IPEA, DataSUS, CNES, RAIS<br>07:20 ENCODE GEO - geojson + shp + kml + mapa calor<br>07:30 NOTIFY - WhatsApp Luce Jane + Dashboard<br>Template: [DATA] GEO: Bairro [NOME] - Densidade [X] - Renda [Y] - Carência [Clínica Z]</p></div>
-<div class="card"><h3>VALIDAÇÃO</h3><p>V3.2 validado 17/07/2026 8 produtos 100% | V3.3 adiciona camada GEO sem custo | Trava: Concluir Ponto 4 Face/Insta desde 15/07 para liberar Produto 9 | Domínio audmaxia.com propagação 72h até 29/07/2026 | Email contato@audmaxia.com pendente Locaw eb | Google audmaxia@gmail.com verificação 22/05/1967 enviada 28/07/2026<br><br>ASSINATURA: ID audmax0d-20 Hash QUANTUM-QGIS-GEO-20260728 Recife/PE 28 jul 2026 - AUDSON | LUCE JANE SOARES</p></div>
+<div class="card"><h3>QGIS vs ARCGIS</h3><p>QGIS = 100% GRATIS, open source OSGeo, sem licença. ArcGIS = Pago R$8k a 25k/ano. QGIS cria mapas, análise espacial, satélite, raster/vetor, 300+ formatos, Windows/Linux/Mac/Android. Mesma função ESRI paga.</p></div>
+<div class="card"><h3>DADOS GEOLOCALIZADOS - PEDIDO LUCE JANE 403m² OURO</h3><p>1. Densidade IBGE hab/km2 2. Renda Per Capita 3. Etária 4. Sexo 5. Habitável 6. Atividade Econômica 7. Carência Serviços Raio 1km<br><br>EXEMPLO: Bairro X 12.450 hab, 68% mulheres 30-55, Classe B R$3.500-7.000, 0 clínicas 1,5km = Oportunidade OURO clínica saúde/estética +35% rentabilidade</p></div>
 </div>
 </div>
 <div id="rotina" class="panel">
 <div class="card cyan"><h3>ROTINA DIÁRIA - MACHINE LEARNING UNIVERSITY - 7 PASSOS</h3><p>06:00 TRIGGER DAILY CRAWL - Busca papers últimos 24h 15 universidades | 06:10 FILTER & RANK Relevância >0.85 | 06:20 SUMMARIZE GPT-4o + Claude 3.5 TL;DR + aplicação prática | 06:30 ENCODE embeddings Graph | 06:40 COMMIT Auto push GitHub tag v1.2.0-YYYYMMDD | 06:50 NOTIFY protocolo diário WhatsApp/Telegram Cumpadre | 07:00 LEARN atualiza memória 5 insights dia</p></div>
-<div class="card" style="margin-top:12px"><h3>Template Notificação Diária</h3><p class="mono">[DATA] - AUDMAX IA QUANTUM APRENDEU HOJE: Top 3 Papers: 1. [Univ] - [Título] - Aplicação: [como usar em LUCE JANE/projetos] 2...3... Insight Código: [snippet gravado em /src/knowledge] Próxima evolução: [o que vai aprender amanhã]</p></div>
 </div>
 <div id="app" class="panel">
 <div class="card cyan"><h3>📱 APP PPX INICIAL - Integração</h3><p>Endpoint: audson137.github.io/AUDMAX-IA | Protocolo: Quantum Secure | PWA Manifest Nome AUDMAX IA Cores #66A4B | Splash + Icones 192 512 1024. Este é o ponto de entrada principal. Cérebro azul = núcleo que processa requisições PPX. Status: CONECTADO QKD ENABLED BB84.</p><button class="btn" style="margin-top:12px" onclick="alert('PPX Inicializado! Cérebro conectado. Rotina 06:00 ativa.')">INICIAR PPX</button></div>
 </div>
+
+<!-- MODAL CLICAVEL UNICO -->
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px;">
+  <div style="background:#0a192f; border:2px solid #2ab0ff; border-radius:15px; padding:25px; max-width:500px; width:100%; color:white; box-shadow:0 0 40px rgba(42,176,255,0.5);">
+    <h2 id="modal-title" style="color:#2ab0ff; font-size:16px;"></h2>
+    <p id="modal-text" style="margin-top:15px; line-height:1.6; font-size:13px; white-space:pre-line;"></p>
+    <button onclick="document.getElementById('modal').style.display='none'" style="margin-top:20px; background:#2ab0ff; color:#000; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer;">FECHAR</button>
+  </div>
+</div>
+
 <script>
 function openTab(id){
  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
@@ -178,11 +184,9 @@ function perguntar(){
   let lower=txt.toLowerCase();
   let resp='';
   if(lower.includes('billing')||lower.includes('banco')) resp='PROTOCOLO v1.4 BILLING: Precisa cadastrar banco! Wise US + Nomad hoje, LLC Wyoming + Mercury depois $500. Apple 30% depois 15% recebe dia 15 $10 min, Google 15% até $1M recebe dia 15 $1 min, Stripe 2.9%+0.30 Mercury. RevenueCat 3 moedas. Planos FREE 100 msgs, PRO R$19,90, QUANTUM R$49,90.';
-  else if(lower.includes('produto')) resp='8 PRODUTOS 100% V3.2 validado 17/07/2026. Produto 8 Tile Sticker 2-Pack Black Overall Pick $44.99 4.2★ 1.8K amzn.to/4gl5y0f PUBLISH OK Pinterest. Trava Ponto 4 Face/Insta pendente desde 15/07 - falta Facebook Grupo Empresas Portugal + @audmax.ia Carrossel + Stories. Após isso libera Produto 9.';
-  else if(lower.includes('qgis')||lower.includes('luce')) resp='QGIS v3.3 GEOLOCALIZADO: 100% GRATIS vs ArcGIS R$8k-25k/ano. Dados IBGE, Renda, Idade, Sexo, Habitação, CNAE, Carência 1km clínicas. Exemplo Bairro X 12.450 hab 68% mulheres 30-55 Classe B 0 clínicas 1,5km = Oportunidade OURO +35% rentabilidade clínica Luce Jane 403m².';
-  else if(lower.includes('universidade')||lower.includes('knowledge')) resp='GLOBAL KNOWLEDGE GRAPH v1.2.0: 15 universidades UCL Bartlett, MIT, TU Delft, ETH Zurich, Harvard, NUS, Manchester, Berkeley, Tsinghua, Polimi, PUC Chile, TUM, TU Berlin, Columbia, Tokyo. Domínios Arquitetura, Urbanismo, Design, Tecnologia, BaaS, SaaS, Quantum Physics, Matemática, Linguas, Medicina, Direito, Eng. TI/Civil/Química, TI Integrations. Cron 06:00 BRT diariamente.';
-  else if(lower.includes('capcut')||lower.includes('integra')) resp='7 INTEGRAÇÕES: 1) Amazon imagens autorizadas 2) CapCut nova integração destaque 3) Pinterest 4) Instagram Reels 5) TikTok 6) Facebook Page 7) Produtos 1-10 catálogo inteligente. Ecossistema integrado IA Quântica Automação Multiplataforma. Cérebro quântico central conecta tudo.';
-  else resp=`Processando em 99.7% sobre "${txt}" - Meu cérebro azul com elétrons girando analisou: tópico relevante para domínios ${['Arquitetura','Urbanismo','BaaS','Quantum Physics','QGIS GEO','Billing v1.4'][Math.floor(Math.random()*6)]}. Memória GitHub AUDMAX IA QUANTUM atualizada. Núcleo ${Math.floor(Math.random()*15+85)}% ativo. Aprendendo 24/7 mesmo sem você usar.`;
+  else if(lower.includes('produto')) resp='8 PRODUTOS 100% V3.2 validado 17/07/2026. Produto 8 Tile Sticker 2-Pack Black Overall Pick $44.99 4.2★ 1.8K amzn.to/4gl5y0f PUBLISH OK Pinterest. Trava Ponto 4 Face/Insta pendente desde 15/07.';
+  else if(lower.includes('qgis')||lower.includes('luce')) resp='QGIS v3.3 GEOLOCALIZADO: 100% GRATIS vs ArcGIS R$8k-25k/ano. Dados IBGE, Renda, Idade, Sexo, Habitação, CNAE, Carência 1km clínicas. Exemplo Bairro X 12.450 hab 68% mulheres 30-55 Classe B 0 clínicas 1,5km = Oportunidade OURO +35% rentabilidade.';
+  else resp=`Processando "${txt}" - Cérebro azul 99.7% - Domínio ${['Arquitetura','BaaS','Quantum Physics','QGIS GEO','Billing'][Math.floor(Math.random()*5)]} ativo.`;
   addMsg(resp,'bot');
  },900);
 }
@@ -190,6 +194,26 @@ function addMsg(t,c){
  const d=document.createElement('div'); d.className='msg '+c; d.innerText=t;
  const box=document.getElementById('chatBox'); box.appendChild(d); box.scrollTop=99999;
 }
+
+// CARDS CLICAVEIS - 4 CARDS DO CEREBRO
+document.addEventListener('DOMContentLoaded', () => {
+   const cerebroCards = document.querySelectorAll('#cerebro .card');
+  const infos = [
+    { title: '2) CAPCUT - Integração em Destaque', text: 'Automação de vídeos via API.\n\n✅ Corte inteligente\n✅ Legendas automáticas\n✅ Templates virais\n✅ Postagem diária 06:00 BRT\n\nParte da rotina com Canva + Pinterest + Amazon' },
+    { title: 'Architecture • Urbanism • Design', text: 'Domínios principais:\n\n🏛 Bartlett UCL - London\n🏙 NUS - Singapore\n🏗 Manchester - UK\n🎨 Polimi - Milan\n\nPipeline: Ingestão → Embedding → Neo4j → Pinecone → LoRA fine-tune' },
+    { title: 'Technology • BaaS • SaaS • Quantum', text: 'Bank as a Service, SaaS, Física Quântica:\n\n⚛ Superposição\n🔗 Entrelaçamento\n🚀 Tunelamento\n\nSecure Compute + QKD BB84 - Segurança quântica bancária' },
+    { title: '15 Domínios Ativos', text: 'TI Integrations • Chemical • Civil • Engineering • Law • Medicine • Languages • Mathematics π\n\nCada elétron girando = um domínio processando\n\nLearning Rate 0.001 - Daily Loop ENABLED' }
+  ];
+  cerebroCards.forEach((card, i) => {
+    if(infos[i]){
+      card.onclick = () => {
+        document.getElementById('modal-title').innerText = infos[i].title;
+        document.getElementById('modal-text').innerText = infos[i].text;
+        document.getElementById('modal').style.display = 'flex';
+      };
+    }
+  });
+});
 </script>
 </body>
 </html>
