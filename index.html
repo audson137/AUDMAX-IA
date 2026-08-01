@@ -156,8 +156,6 @@ th{color:var(--cyan);font-size:10px;letter-spacing:1.5px}
 <div id="app" class="panel">
 <div class="card cyan"><h3>📱 APP PPX INICIAL - Integração</h3><p>Endpoint: audson137.github.io/AUDMAX-IA | Protocolo: Quantum Secure | PWA Manifest Nome AUDMAX IA Cores #66A4B | Splash + Icones 192 512 1024. Este é o ponto de entrada principal. Cérebro azul = núcleo que processa requisições PPX. Status: CONECTADO QKD ENABLED BB84.</p><button class="btn" style="margin-top:12px" onclick="alert('PPX Inicializado! Cérebro conectado. Rotina 06:00 ativa.')">INICIAR PPX</button></div>
 </div>
-
-<!-- MODAL CLICAVEL UNICO -->
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px;">
   <div style="background:#0a192f; border:2px solid #2ab0ff; border-radius:15px; padding:25px; max-width:500px; width:100%; color:white; box-shadow:0 0 40px rgba(42,176,255,0.5);">
     <h2 id="modal-title" style="color:#2ab0ff; font-size:16px;"></h2>
@@ -165,13 +163,12 @@ th{color:var(--cyan);font-size:10px;letter-spacing:1.5px}
     <button onclick="document.getElementById('modal').style.display='none'" style="margin-top:20px; background:#2ab0ff; color:#000; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer;">FECHAR</button>
   </div>
 </div>
-
 <script>
 function openTab(id){
  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
  document.getElementById(id).classList.add('active');
- event.currentTarget.classList.add('active');
+ if(event && event.currentTarget) event.currentTarget.classList.add('active');
  window.scrollTo({top:0,behavior:'smooth'});
 }
 let hist=[];
@@ -183,6 +180,15 @@ function perguntar(){
  setTimeout(()=>{
   let lower=txt.toLowerCase();
   let resp='';
+  let conta = txt.replace(/x/g,'*').replace(/X/g,'*').replace(/,/g,'.');
+  if(/^[0-9+\-*/().\s]+$/.test(conta) && /[0-9]/.test(conta)){
+    try{
+      let resultado = Function('"use strict"; return ('+conta+')')();
+      resp = '🧠 CÉREBRO QUANTUM calculou: ' + txt + ' = ' + resultado;
+      addMsg(resp,'bot');
+      return;
+    }catch(e){}
+  }
   if(lower.includes('billing')||lower.includes('banco')) resp='PROTOCOLO v1.4 BILLING: Precisa cadastrar banco! Wise US + Nomad hoje, LLC Wyoming + Mercury depois $500. Apple 30% depois 15% recebe dia 15 $10 min, Google 15% até $1M recebe dia 15 $1 min, Stripe 2.9%+0.30 Mercury. RevenueCat 3 moedas. Planos FREE 100 msgs, PRO R$19,90, QUANTUM R$49,90.';
   else if(lower.includes('produto')) resp='8 PRODUTOS 100% V3.2 validado 17/07/2026. Produto 8 Tile Sticker 2-Pack Black Overall Pick $44.99 4.2★ 1.8K amzn.to/4gl5y0f PUBLISH OK Pinterest. Trava Ponto 4 Face/Insta pendente desde 15/07.';
   else if(lower.includes('qgis')||lower.includes('luce')) resp='QGIS v3.3 GEOLOCALIZADO: 100% GRATIS vs ArcGIS R$8k-25k/ano. Dados IBGE, Renda, Idade, Sexo, Habitação, CNAE, Carência 1km clínicas. Exemplo Bairro X 12.450 hab 68% mulheres 30-55 Classe B 0 clínicas 1,5km = Oportunidade OURO +35% rentabilidade.';
@@ -194,10 +200,8 @@ function addMsg(t,c){
  const d=document.createElement('div'); d.className='msg '+c; d.innerText=t;
  const box=document.getElementById('chatBox'); box.appendChild(d); box.scrollTop=99999;
 }
-
-// CARDS CLICAVEIS - 4 CARDS DO CEREBRO
 document.addEventListener('DOMContentLoaded', () => {
-   const cerebroCards = document.querySelectorAll('#cerebro .card');
+   const cerebroCards = document.querySelectorAll('#cerebro.card');
   const infos = [
     { title: '2) CAPCUT - Integração em Destaque', text: 'Automação de vídeos via API.\n\n✅ Corte inteligente\n✅ Legendas automáticas\n✅ Templates virais\n✅ Postagem diária 06:00 BRT\n\nParte da rotina com Canva + Pinterest + Amazon' },
     { title: 'Architecture • Urbanism • Design', text: 'Domínios principais:\n\n🏛 Bartlett UCL - London\n🏙 NUS - Singapore\n🏗 Manchester - UK\n🎨 Polimi - Milan\n\nPipeline: Ingestão → Embedding → Neo4j → Pinecone → LoRA fine-tune' },
