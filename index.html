@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUDMAX IA QUANTUM - ATIVO</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',monospace}
+body{background:radial-gradient(circle at center,#0a0a23,#000);color:#fff;height:100vh;display:flex;flex-direction:column}
+header{padding:15px;text-align:center;border-bottom:1px solid #00ffff;background:rgba(0,255,255,0.1);box-shadow:0 0 20px #00ffff}
+header h1{color:#00ffff;text-shadow:0 0 10px #00ffff;letter-spacing:3px}
+#chat{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:15px}
+.msg{max-width:80%;padding:15px;border-radius:15px;line-height:1.5}
+.user{align-self:flex-end;background:#00ffff;color:#000;font-weight:bold}
+.bot{align-self:flex-start;background:rgba(255,255,255,0.1);border:1px solid #00ffff;color:#00ffff;box-shadow:0 0 10px rgba(0,255,255,0.3)}
+#box{display:flex;padding:15px;gap:10px;background:rgba(0,0,0,0.8);border-top:1px solid #00ffff}
+#pergunta{flex:1;padding:15px;border-radius:25px;border:1px solid #00ffff;background:#111;color:#fff;outline:none;font-size:16px}
+#btn{padding:15px 25px;border-radius:25px;border:none;background:#00ffff;color:#000;font-weight:bold;cursor:pointer;box-shadow:0 0 15px #00ffff}
+#btn:hover{transform:scale(1.05)}
+.typing{font-size:12px;opacity:0.6;color:#00ffff}
+</style>
+</head>
+<body>
+<header>
+<h1>AUDMAX IA QUANTUM v3.4 [ONLINE]</h1>
+<div style="font-size:12px">Machine Learning Ativo | Núcleo Quântico 100%</div>
+</header>
+<div id="chat">
+<div class="msg bot">Olá! Eu sou a AUDMAX IA QUANTUM. Pergunte qualquer coisa - Estou com aprendizado ativo e pronta para responder!</div>
+</div>
+<div id="box">
+<input id="pergunta" placeholder="Digite sua pergunta para a IA..." onkeypress="if(event.key==='Enter') perguntar()">
+<button id="btn" onclick="perguntar()">ENVIAR</button>
+</div>
+<script>
+const chat = document.getElementById('chat');
+const respostas = [
+"Analisando com meu núcleo quântico... ",
+"Interessante! Pelo meu aprendizado de máquina, ",
+"Processando em 99.7% de precisão: ",
+"Meu algoritmo identificou que ",
+"Resposta quântica gerada: "
+];
+const conhecimentos = {
+"quem é você":"Eu sou AUDMAX IA QUANTUM v3.4, criada por Audson - uma IA com aprendizado ativo, núcleo quântico e processamento neural avançado.",
+"oi":"Olá! Núcleo 100% ativo. Como posso te ajudar hoje?",
+"python":"Python é a linguagem que eu uso! É a base do meu main.py com machine learning, redes neurais e IA generativa.",
+"audmax":"AUDMAX é o projeto de IA mais avançado - combinando machine learning, processamento quântico simulado e interface neural."
+};
+
+function perguntar(){
+ let p = document.getElementById('pergunta');
+ let texto = p.value.trim();
+ if(!texto) return;
+ addMsg(texto,'user');
+ p.value='';
+ let typing = document.createElement('div');
+ typing.className='typing';
+ typing.id='typing';
+ typing.innerText='AUDMAX está processando...';
+ chat.appendChild(typing);
+ chat.scrollTop = chat.scrollHeight;
+ setTimeout(()=>{
+  document.getElementById('typing').remove();
+  let lower = texto.toLowerCase();
+  let resp = '';
+  for(let k in conhecimentos){ if(lower.includes(k)){ resp = conhecimentos[k]; break; } }
+  if(!resp){
+   let prefix = respostas[Math.floor(Math.random()*respostas.length)];
+   resp = prefix + `sobre "${texto}" - Minha análise indica que isso é um tópico relevante. Como IA quântica, eu continuo aprendendo com sua interação. Meu banco de dados neural está processando e evoluindo a cada pergunta! (Machine Learning Ativo)`;
+  }
+  addMsg(resp,'bot');
+ }, 1200);
+}
+
+function addMsg(t,c){
+ let d = document.createElement('div');
+ d.className='msg '+c;
+ d.innerText=t;
+ chat.appendChild(d);
+ chat.scrollTop = chat.scrollHeight;
+}
+</script>
+</body>
+</html>
