@@ -1,0 +1,15 @@
+{
+  "name": "AUDMAX IA QUANTUM",
+  "short_name": "AUDMAX IA",
+  "start_url": "/AUDMAX-IA/",
+  "display": "standalone",
+  "background_color": "#1a0a4a",
+  "theme_color": "#6d28d9",
+  "icons": [
+    {
+      "src": "ICONE PARA PUBLICAÇÃO.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
