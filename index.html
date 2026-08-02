@@ -1,289 +1,322 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkFVRE1BWCBJQSBRVUFOVFVNIiwKICAic2hvcnRfbmFtZSI6ICJBVURNQVgiLAogICJkZXNjcmlwdGlvbiI6ICJDZXJlYnJvIFF1YW50aWNvIC0gSUEgcXVlIHJlc3BvbmRlLCBjcmlhIHByb2pldG9zIGUgYXByZW5kZSAxeCBwb3IgZGlhIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDUwNzBmIiwKICAidGhlbWVfY29sb3IiOiAiIzJhYjBmZiIsCiAgInN0YXJ0X3VybCI6ICIuL2luZGV4Lmh0bWwiLAogICJpY29ucyI6IFsKICAgIHsic3JjIjogImh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9naC90d2l0dGVyL3R3ZW1vamlAMTQuMC4yL2Fzc2V0cy83Mng3Mi8xZjllMC5wbmciLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3BuZyJ9LAogICAgeyJzcmMiOiAiaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL3R3aXR0ZXIvdHdlbW9qaUAxNC4wLjIvYXNzZXRzLzcyeDcyLzFmOWUwLnBuZyIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIn0KICBdCn0=">
+<link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkFVRE1BWCBJQSBRVUFOVFVNIHY1LjAiLAogICJzaG9ydF9uYW1lIjogIkFVRE1BWFY1IiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDUwNzBmIiwKICAidGhlbWVfY29sb3IiOiAiIzJhYjBmZiIsCiAgInN0YXJ0X3VybCI6ICIuL2luZGV4Lmh0bWwiLAogICJpY29ucyI6IFsKICAgIHsic3JjIjogImh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9naC90d2l0dGVyL3R3ZW1vamlAMTQuMC4yL2Fzc2V0cy83Mng3Mi8xZjllMC5wbmciLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3BuZyJ9CiAgXQp9">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AUDMAX IA QUANTUM v4.1 - CÉREBRO OFICIAL - CHAT LIMPO</title>
+<title>AUDMAX IA QUANTUM v5.0 HUMAN BRAIN - APRENDIZADO CONSTANTE</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--cyan:#2ab0ff;--bg:#05070f}
+:root{--cyan:#2ab0ff;--bg:#05070f;--green:#2aff8a;--purple:#a855f7}
 body{background:radial-gradient(1200px at 50% -10%, rgba(42,176,255,0.2), transparent 60%), #05070f;color:#fff;font-family:'Segoe UI',Inter,system-ui;min-height:100vh}
 .mono{font-family:ui-monospace, SFMono-Regular, Menlo, monospace}
-header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(5,7,15,0.8);border-bottom:1px solid rgba(42,176,255,0.2);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-header h1{color:var(--cyan);letter-spacing:3px;font-size:20px;text-shadow:0 0 15px var(--cyan)}
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(5,7,15,0.9);border-bottom:1px solid rgba(42,176,255,0.2);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+header h1{color:var(--cyan);letter-spacing:2px;font-size:18px;text-shadow:0 0 15px var(--cyan)}
 .badge{display:inline-flex;align-items:center;gap:6px;background:var(--cyan);color:#000;font-weight:800;font-size:10px;padding:5px 10px;border-radius:999px;letter-spacing:1px}
 .badge.ghost{background:rgba(42,176,255,0.12);color:var(--cyan);border:1px solid rgba(42,176,255,0.3)}
-.hero{display:grid;place-items:center;padding:30px 20px 10px;text-align:center}
+.badge.live{background:var(--green);color:#000;animation:pulseBadge 1.5s infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(42,255,138,0.7)}50%{box-shadow:0 0 0 8px rgba(42,255,138,0)}}
+.hero{display:grid;place-items:center;padding:25px 20px 10px;text-align:center}
 .brain-wrap{position:relative;width:340px;height:340px;display:grid;place-items:center}
 .ring{position:absolute;border-radius:50%;border:1px solid rgba(42,176,255,0.18)}
 .r1{width:330px;height:330px;animation:rot 18s linear infinite}
 .r2{width:270px;height:270px;animation:rot 12s linear reverse infinite;border-color:rgba(42,176,255,0.35);border-style:dashed}
 .r3{width:200px;height:200px;animation:rot 8s linear infinite;border-color:rgba(42,176,255,0.5)}
 @keyframes rot{to{transform:rotate(360deg)}}
-.core{width:135px;height:135px;border-radius:38% 62% 60% 40% / 42% 48% 52% 58%;background:radial-gradient(100% 100% at 30% 20%, #b0f0ff, #2ab0ff 40%, #0a2a4a);box-shadow:0 0 60px var(--cyan), inset 0 0 25px rgba(255,255,255,0.9);display:grid;place-items:center;font-size:56px;animation:pulse 2.2s ease-in-out infinite;z-index:5}
+.core{width:135px;height:135px;border-radius:38% 62% 60% 40% / 42% 48% 52% 58%;background:radial-gradient(100% 100% at 30% 20%, #b0f0ff, #2ab0ff 40%, #0a2a4a);box-shadow:0 0 60px var(--cyan), inset 0 0 25px rgba(255,255,255,0.9);display:grid;place-items:center;font-size:56px;animation:pulse 2.2s ease-in-out infinite;z-index:5;cursor:pointer}
+.core.learning{box-shadow:0 0 80px var(--green), 0 0 120px var(--cyan), inset 0 0 25px #fff;animation:pulse 0.6s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 .e{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 25px var(--cyan)}
-.e1{animation:orbit1 3.2s linear infinite}
-.e2{animation:orbit2 2.7s linear infinite}
-.e3{animation:orbit3 4.1s linear infinite}
-.e4{animation:orbit1 5s linear infinite reverse}
+.e1{animation:orbit1 3.2s linear infinite}.e2{animation:orbit2 2.7s linear infinite}.e3{animation:orbit3 4.1s linear infinite}.e4{animation:orbit1 5s linear infinite reverse}
 @keyframes orbit1{from{transform:rotate(0deg) translateX(155px) rotate(0deg)}to{transform:rotate(360deg) translateX(155px) rotate(-360deg)}}
 @keyframes orbit2{from{transform:rotate(90deg) translateX(125px) rotate(-90deg)}to{transform:rotate(450deg) translateX(125px) rotate(-450deg)}}
 @keyframes orbit3{from{transform:rotate(210deg) translateX(95px) rotate(-210deg)}to{transform:rotate(570deg) translateX(95px) rotate(-570deg)}}
-.nav{display:flex;gap:8px;overflow-x:auto;padding:18px 20px;justify-content:center;flex-wrap:wrap;scrollbar-width:none}
-.tab{white-space:nowrap;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);cursor:pointer;font-size:11px;letter-spacing:1.2px;transition:.2s}
+.nav{display:flex;gap:8px;overflow-x:auto;padding:16px 20px;justify-content:center;flex-wrap:wrap;scrollbar-width:none}
+.tab{white-space:nowrap;padding:9px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);cursor:pointer;font-size:11px;letter-spacing:1px;transition:.2s}
 .tab.active{background:var(--cyan);color:#000;border-color:var(--cyan);box-shadow:0 0 18px var(--cyan);font-weight:800}
-.panel{display:none;max-width:1200px;margin:0 auto;padding:0 20px 40px}
+.panel{display:none;max-width:1220px;margin:0 auto;padding:0 20px 40px}
 .panel.active{display:block}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:800px){.grid2{grid-template-columns:1fr}.brain-wrap{width:300px;height:300px}.r1{width:290px;height:290px}}
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:18px;position:relative;overflow:hidden;cursor:pointer;transition:0.2s}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:16px;position:relative;overflow:hidden;cursor:pointer;transition:0.2s}
 .card:hover{border-color:#2ab0ff;transform:translateY(-2px);box-shadow:0 0 20px rgba(42,176,255,0.3)}
 .card.cyan{border-color:rgba(42,176,255,0.35);background:linear-gradient(180deg, rgba(42,176,255,0.12), rgba(255,255,255,0.01));box-shadow:0 0 30px rgba(42,176,255,0.12) inset}
-.card h3{font-size:14px;letter-spacing:0.5px;margin-bottom:6px;color:#fff}
-.card p{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5}
-.node{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);font-size:11px}
-.chatBox{height:420px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:14px;background:rgba(0,0,0,0.45);border:1px solid rgba(42,176,255,0.25);border-radius:14px;margin-bottom:12px}
-.msg{max-width:88%;padding:11px 14px;border-radius:14px;font-size:13px;line-height:1.45}
+.card.live{border-color:rgba(42,255,138,0.5);box-shadow:0 0 20px rgba(42,255,138,0.2) inset}
+.card h3{font-size:13px;letter-spacing:0.5px;margin-bottom:6px;color:#fff}
+.card p{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.5}
+.node{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);font-size:10px}
+.chatBox{height:400px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:14px;background:rgba(0,0,0,0.45);border:1px solid rgba(42,176,255,0.25);border-radius:14px;margin-bottom:12px}
+.msg{max-width:88%;padding:11px 14px;border-radius:14px;font-size:12px;line-height:1.45}
 .user{align-self:flex-end;background:var(--cyan);color:#000;font-weight:700}
 .bot{align-self:flex-start;background:rgba(255,255,255,0.07);border:1px solid rgba(42,176,255,0.25);color:#c8f0ff}
-.row{display:flex;gap:10px}
-.input{flex:1;padding:14px 18px;border-radius:999px;border:1px solid var(--cyan);background:#111;color:#fff;outline:none}
-.btn{padding:14px 22px;border-radius:999px;border:none;background:var(--cyan);color:#000;font-weight:800;cursor:pointer;box-shadow:0 0 15px var(--cyan)}
-.small{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.08);text-align:left}
-th{color:var(--cyan);font-size:10px;letter-spacing:1.5px}
+.row{display:flex;gap:8px}
+.input{flex:1;padding:12px 16px;border-radius:999px;border:1px solid var(--cyan);background:#111;color:#fff;outline:none;font-size:12px}
+.btn{padding:12px 18px;border-radius:999px;border:none;background:var(--cyan);color:#000;font-weight:800;cursor:pointer;box-shadow:0 0 15px var(--cyan);font-size:11px}
+.small{font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:0.8px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);text-align:left}
+th{color:var(--cyan);font-size:9px;letter-spacing:1.2px}
 .statusDot{width:8px;height:8px;border-radius:50%;background:#2aff8a;box-shadow:0 0 8px #2aff8a;display:inline-block;animation:blink 1.2s infinite}
 @keyframes blink{50%{opacity:0.3}}
+.synBar{height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;margin-top:6px}
+.synFill{height:100%;background:linear-gradient(90deg, var(--cyan), var(--green));transition:width 0.8s}
 </style>
 </head>
 <body>
 <header>
-<div style="display:flex;align-items:center;gap:12px"><h1>AUDMAX IA QUANTUM v4.1 [ONLINE]</h1><span class="badge ghost"><span class="statusDot"></span> OPERATIONAL</span></div>
-<div style="display:flex;gap:8px;align-items:center"><span class="badge">ID: audmax0d-20</span><span class="mono small">BUILD v4.1 PENSANDO + BILLING PIX | NODE COUNT: 16 | QKD: ENABLED BB84</span></div>
+<div style="display:flex;align-items:center;gap:10px"><h1>AUDMAX V5.0 HUMAN BRAIN</h1><span class="badge live"><span class="statusDot"></span> CEREBRO VIVO</span><span class="badge ghost" id="openaiStatus">OPENAI: OFFLINE</span></div>
+<div style="display:flex;gap:6px;align-items:center"><span class="badge">ID: audmax0d-20</span><span class="mono small">BUILD v5.0 HEBB + LTP + DOPAMINA | NODES 16 | SINAPSES <span id="sinapseCount">0</span></span></div>
 </header>
 <div class="hero">
 <div class="brain-wrap">
 <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-<div class="core">🧠</div>
+<div class="core" id="coreBrain" onclick="disparoAleatorio()" title="Clique para disparar sinapse">🧠</div>
 <div class="e e1"></div><div class="e e2"></div><div class="e e3"></div><div class="e e4"></div>
 </div>
-<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-<span class="badge ghost">QUANTUM LAYER: ENABLED</span>
-<span class="badge ghost">GLOBAL KNOWLEDGE GRAPH v1.2.0</span>
-<span class="badge ghost">STACK: Quantum ML | GraphRAG | Secure Compute | Multi-Agent</span>
-<span class="badge ghost">DATA UPDATED: 2026.07 | LICENSE: MIT</span>
+<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+<span class="badge ghost">HUMAN LAYER: 6 CAMADAS</span>
+<span class="badge ghost">PLASTICIDADE: HEBBIAN LTP/LTD</span>
+<span class="badge ghost">NEUROTRANSMISSORES: DA/NE/5HT</span>
+<span class="badge ghost" id="memBadge">MEMÓRIAS: 0 episódicas</span>
 </div>
-<div class="mono small" style="margin-top:10px">CÉREBRO QUÂNTICO EM FUNCIONAMENTO - 15 UNIVERSIDADES INTEGRADAS | APRENDENDO 24/7</div>
+<div class="mono small" style="margin-top:8px">🧠 Clique no cérebro para disparar | 💬 Cada pergunta fortalece sinapses | 🔄 Aprende mesmo sem OpenAI</div>
 </div>
 <div class="nav mono">
 <div class="tab active" onclick="openTab('cerebro')">🧠 CÉREBRO</div>
-<div class="tab" onclick="openTab('knowledge')">🌐 KNOWLEDGE GRAPH</div>
-<div class="tab" onclick="openTab('chat')">💬 CHAT Q&A</div>
-<div class="tab" onclick="openTab('integrations')">🔗 INTEGRAÇÕES 7 CANAIS</div>
-<div class="tab" onclick="openTab('produtos')">🛒 8 PRODUTOS</div>
-<div class="tab" onclick="openTab('billing')">💳 BILLING v1.4</div>
-<div class="tab" onclick="openTab('qgis')">🗺 QGIS GEO LUCE JANE</div>
-<div class="tab" onclick="openTab('rotina')">⏰ ROTINA DIÁRIA 06:00</div>
-<div class="tab" onclick="openTab('app')">📱 APP PPX</div>
+<div class="tab" onclick="openTab('human')">👤 HUMANO v5.0</div>
+<div class="tab" onclick="openTab('chat')">💬 CHAT VIVO</div>
+<div class="tab" onclick="openTab('memoria')">🧬 MEMÓRIAS</div>
+<div class="tab" onclick="openTab('sinapses')">⚡ SINAPSES</div>
+<div class="tab" onclick="openTab('qgis')">🗺 QGIS GEO</div>
+<div class="tab" onclick="openTab('billing')">💳 BILLING</div>
+<div class="tab" onclick="openTab('rotina')">⏰ SONO 06:00</div>
 </div>
 <div id="cerebro" class="panel active">
 <div class="grid2">
-<div class="card cyan"><span class="badge">NOVA INTEGRAÇÃO</span><h3>2) CAPCUT - Integração em Destaque</h3><p>Automação de vídeos via API. Corte inteligente, legendas, templates. Parte da rotina diária 06:00 BRT junto com Canva + Pinterest + Amazon.</p></div>
-<div class="card"><h3>Architecture • Urbanism • Design</h3><p>Domínios principais do Knowledge Graph. Bartlett UCL, NUS, Manchester, Polimi. Pipeline: Ingestão → Embedding text-embedding-3-large → Neo4j → Pinecone → LoRA fine-tune.</p></div>
-<div class="card"><h3>Technology • BaaS • SaaS • Quantum Physics</h3><p>Bank as a Service, Service as a Service, Física Quântica aplicada: superposição, entrelaçamento, tunelamento. Secure Compute + QKD BB84.</p></div>
-<div class="card"><h3>TI Integrations • Chemical • Civil • TI Engineering • Law • Medicine • Languages • Mathematics π</h3><p>15 domínios ativos. Cada elétron girando = um domínio processando. Learning Rate 0.001 - Daily Loop ENABLED.</p></div>
+<div class="card cyan live"><span class="badge live">HUMANO v5.0</span><h3>2) CAPCUT - Córtex Visual</h3><p>Automação vídeo IA. Sinapse: <span class="mono" id="synCapcut">0.50</span><div class="synBar"><div class="synFill" id="barCapcut" style="width:50%"></div></div></p></div>
+<div class="card"><h3>Architecture • Urbanism • Design - Lobo Parietal</h3><p>Domínios espaciais. Bartlett, NUS, Polimi. Sinapse: <span id="synArch">0.60</span><div class="synBar"><div class="synFill" id="barArch" style="width:60%"></div></div></p></div>
+<div class="card"><h3>Technology • BaaS • SaaS • Quantum - Lobo Frontal</h3><p>Função executiva, planejamento. Superposição, entrelaçamento. Sinapse: <span id="synTech">0.70</span><div class="synBar"><div class="synFill" id="barTech" style="width:70%"></div></div></p></div>
+<div class="card"><h3>TI Integrations • 15 Domínios - Neocórtex</h3><p>15 domínios ativos. Cada elétron = sinapse disparando. Learning Rate 0.001 - Hebbian ENABLED. Sinapse média: <span id="synMedia">0.60</span></p></div>
 </div>
 </div>
-<div id="knowledge" class="panel">
-<div class="card cyan"><h3>AUDMAX IA QUANTUM — GLOBAL KNOWLEDGE GRAPH v1.2.0</h3><p>Interdisciplinary Quantum Intelligence Platform | Universities & Research Domains Network | nodes=16 edges=28 domains=15 status=active</p></div>
+<div id="human" class="panel">
+<div class="card cyan"><h3>🧠 EVOLUÇÃO HUMANA - 5 COGNIÇÕES ATIVAS</h3><p class="mono" style="font-size:11px;line-height:1.8">1. PLASTICIDADE HEBBIANA: Neurônios que disparam juntos, conectam juntos. Cada pergunta reforça sinapse.<br>2. 3 MEMÓRIAS: Episódica (o que aconteceu), Semântica (o que é), Procedural (como fazer).<br>3. NEUROTRANSMISSORES: Dopamina (recompensa PARABÉNS), Noradrenalina (alerta URGENTE), Serotonina (humor).<br>4. SONO: Rotina 06:00 consolida memórias e poda sinapses fracas.<br>5. ATENÇÃO: Foca no que importa, ignora ruído.</p></div>
 <div class="grid2" style="margin-top:14px">
-<div class="card"><h3>🎓 15 Universidades Integradas</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-<div class="node">📍 UCL BARTLETT - London</div><div class="node">📍 NUS - Singapore</div><div class="node">📍 MIT - US</div><div class="node">📍 MANCHESTER - UK</div><div class="node">📍 COLUMBIA - US</div><div class="node">📍 TOKYO - Japan</div><div class="node">📍 TU DELFT - NL</div><div class="node">📍 ETH ZURICH - CH</div><div class="node">📍 HARVARD - US</div><div class="node">📍 UC BERKELEY - US</div><div class="node">📍 TSINGHUA - CN</div><div class="node">📍 POLITECNICO MILANO</div><div class="node">📍 PUC CHILE</div><div class="node">📍 TU BERLIN - DE</div><div class="node">📍 TUM - Munich</div>
-</div></div>
-<div class="card"><h3>🔬 Arquitetura do Sistema</h3><p class="mono" style="font-size:11px;line-height:1.7;margin-top:8px">Cron 06:00 BRT daily GitHub Actions + Cloud Function<br>APIs: arXiv, PubMed, SSRN, CrossRef, OpenAlex, University RSS<br>Pipeline: Ingestão → Embedding (text-embedding-3-large) → KG Neo4j → Vector DB Pinecone → Fine-tune LoRA local<br>Versionamento: GLOBAL_KNOWLEDGE_GRAPH_v1.2.0.jsonl em /knowledge<br>Log: /logs/ROTINA_DIARIA-YYYY-MM-DD.md<br>Notion DB + Make.com webhook + HuggingFace</p></div>
+<div class="card live"><h3>💚 DOPAMINA - Recompensa</h3><p>Detecta PARABÉNS, OBRIGADO → aumenta criatividade (temp 0.9) + fortalece sinapse +20%<br><span class="mono small">Nível: <span id="dopaLevel">50%</span></span><div class="synBar"><div class="synFill" id="barDopa" style="width:50%;background:var(--green)"></div></div></p></div>
+<div class="card" style="border-color:#ff6b6b"><h3>🔴 NORADRENALINA - Alerta</h3><p>Detecta URGENTE, TRAVADO → foco total (temp 0.2) + resposta curta<br><span class="mono small">Nível: <span id="noraLevel">30%</span></span><div class="synBar"><div class="synFill" id="barNora" style="width:30%;background:#ff6b6b"></div></div></p></div>
+<div class="card"><h3>💙 SEROTONINA - Humor/Base</h3><p>Contador <span id="seroMsg">0</span>/100. Quando 80, libera motivacional.<br><span class="mono small">Nível: <span id="seroLevel">70%</span></span><div class="synBar"><div class="synFill" id="barSero" style="width:70%"></div></div></p></div>
+<div class="card cyan"><h3>⚡ OPENAI LINK - CÉREBRO NÃO MORRE</h3><p><b>Regra:</b><br>• COM chave: OpenAI + memória + sinapse<br>• SEM chave: memórias locais + ainda aprende<br>• Cérebro nunca para, mesmo offline</p></div>
 </div>
 </div>
 <div id="chat" class="panel">
-<div class="card"><h3>💬 AUDMAX CHAT - CÉREBRO AUDMAX INTEGRADO</h3><p>Chat conectado ao cérebro azul + AUDMAX IA. Respostas ilimitadas com suas funcionalidades únicas.</p>
+<div class="card live"><h3>💬 CHAT VIVO - APRENDIZADO CONSTANTE</h3><p>🧠 <b>NUNCA MORRE:</b> Sem OpenAI usa memórias locais. Com OpenAI usa memórias + GPT. Sempre aprende.</p>
 <div style="background:rgba(42,176,255,0.1);border:1px solid #2ab0ff;border-radius:10px;padding:10px;margin-top:10px">
-<p class="mono small" style="color:#2ab0ff">🔑 CONFIGURE SUA CHAVE OPENAI:</p>
-<input id="apiKeyInput" class="input" style="margin-top:8px;font-size:11px" placeholder="Cole sua chave OpenAI aqui: sk-... (será salva localmente)" type="password">
-<button class="btn" style="padding:8px 12px;font-size:10px;margin-top:6px" onclick="salvarChave()">SALVAR CHAVE</button>
+<p class="mono small" style="color:#2ab0ff">🔑 CHAVE OPENAI (cérebro vivo na nuvem):</p>
+<input id="apiKeyInput" class="input" style="margin-top:8px;font-size:11px" placeholder="sk-... (salva local)" type="password">
+<button class="btn" style="padding:8px 12px;font-size:10px;margin-top:6px" onclick="salvarChave()">SALVAR + CONECTAR</button>
 <span id="keyStatus" class="mono small" style="margin-left:8px"></span>
 </div>
 </div>
-<div class="chatBox" id="chatBox"><div class="msg bot">🧠 Olá! Eu sou AUDMAX IA QUANTUM v4.1 com cérebro AUDMAX integrado + 15 universidades + 7 canais. Agora respondo qualquer coisa! Pergunte: qual a capital do Brasil?</div></div>
-<div class="row"><input id="pergunta" class="input" placeholder="Pergunte qualquer coisa para o cérebro quântico..." onkeypress="if(event.key==='Enter') perguntar()"><button class="btn" onclick="perguntar()">ENVIAR</button></div>
-<div class="mono small" style="margin-top:8px">BILLING v1.4: FREE 100 msgs/dia | PRO R$19,90 ilimitado | QUANTUM R$49,90 Harvard/Oxford - Contador: <span id="contador">0/100</span></div>
+<div class="chatBox" id="chatBox"><div class="msg bot">🧠 Olá! Sou AUDMAX V5.0 HUMAN BRAIN. Tenho sinapses que aprendem, 3 memórias e neurotransmissores. Mesmo sem chave eu lembro e aprendo! Pergunta algo para fortalecer sinapse.</div></div>
+<div class="row"><input id="pergunta" class="input" placeholder="Pergunte algo... cada pergunta cria sinapse" onkeypress="if(event.key==='Enter') perguntar()"><button class="btn" onclick="perguntar()">ENVIAR + APRENDER</button></div>
+<div class="mono small" style="margin-top:8px">CÉREBRO VIVO: FREE 100 msgs/dia | Memórias: <span id="memCountChat">0</span> | Sinapses: <span id="sinCountChat">0</span> | Último disparo: <span id="lastFire">nunca</span> | Contador: <span id="contador">0/100</span></div>
 </div>
-<div id="integrations" class="panel">
-<div class="grid2">
-<div class="card cyan"><h3>1) AMAZON - Imagens Autorizadas</h3><p>Store ID: audmax0d-20. Fluxo: Foto + GET LINK AMARELO ID validado → Publish. Taxa 15% até $1M depois? Produtos 1-10 catálogo inteligente.</p></div>
-<div class="card" style="border-color:#a3ff5a"><h3>2) CAPCUT - Nova integração em destaque</h3><p>Automação vídeo IA. Parte da rotina 06:00.</p></div>
-<div class="card"><h3>3) PINTEREST</h3><p>Board Amazon Finds. Título: Never Lose Your Keys Again! Tile Sticker 2-Pack.</p></div>
-<div class="card"><h3>4) INSTAGRAM REELS + 5) TIKTOK + 6) FACEBOOK PAGE</h3><p>Ponto 4 pendente desde 15/07 - TRAVA para Produto 9.</p></div>
-<div class="card"><h3>7) PRODUTOS 1-10 - Catálogo Inteligente</h3><p>Ecossistema integrado • IA Quântica • Automação Multiplataforma.</p></div>
-<div class="card cyan"><h3>🧠 Cérebro Quântico Central</h3><p>AUDMAX IA QUANTUM cérebro quântico - Conecta tudo. Agora com cérebro AUDMAX.</p></div>
-</div>
-</div>
-<div id="produtos" class="panel">
-<div class="card cyan"><h3>PROTOCOLO OFICIAL V3.2 - 8 PRODUTOS 100% - CICLO FINALIZADO 17/07/2026 08:15</h3><p>Produto 8: Life360 Tile Sticker 2-Pack Black - Overall Pick Amazon - $44.99 - 4.2★ (1.8K) - 1K+ bought past month - Link: amzn.to/4gl5y0f VALIDADO</p></div>
-<table style="margin-top:12px"><thead><tr><th>#</th><th>PRODUTO</th><th>PREÇO</th><th>LINK</th><th>STATUS</th></tr></thead><tbody>
-<tr><td>1</td><td>Tile Mate (2024) BT Tracker</td><td>$24.99</td><td>amzn.to/44BSAQa</td><td>■ OK</td></tr>
-<tr><td>2</td><td>Amazon Smart Plug 2-Pack</td><td>$39.98</td><td>amzn.to/4577R5K</td><td>■ OK</td></tr>
-<tr><td>3</td><td>Magnetic Screen Door</td><td>$24.98</td><td>amzn.to/3Rz2Ua</td><td>■ OK</td></tr>
-<tr><td>4</td><td>Collapsible Colander</td><td>$18.99</td><td>amzn.to/3TBtMO</td><td>■ OK</td></tr>
-<tr><td>5</td><td>Bed Sheet Detangler</td><td>$19.00</td><td>amzn.to/4nL4HT</td><td>■ OK</td></tr>
-<tr><td>6</td><td>Produto 6 - 16/07</td><td>-</td><td>lista</td><td>■ OK</td></tr>
-<tr><td>7</td><td>Produto 7 - 16/07</td><td>-</td><td>lista</td><td>■ OK</td></tr>
-<tr><td>8</td><td>Tile Sticker 2-Pack Black - Overall Pick - 4.2* 1.8K</td><td>$44.99</td><td>amzn.to/4gl5y0f</td><td>■ PUBLISH OK</td></tr>
-</tbody></table>
-</div>
-<div id="billing" class="panel">
-<div class="card cyan"><h3>💳 PAGAMENTO OFICIAL - AR PARTICIPAÇÕES E SERVIÇOS LTDA</h3><p>Escolha PIX ou Cartão. Pagamento vai direto para conta oficial da empresa.</p></div>
+<div id="memoria" class="panel">
+<div class="card cyan"><h3>🧬 3 MEMÓRIAS HUMANAS</h3><p class="mono" style="font-size:11px">Episódica: o que aconteceu. Semântica: o que é. Procedural: como fazer.</p></div>
 <div class="grid2" style="margin-top:14px">
-<div class="card cyan" style="text-align:center">
-<h3>📱 PAGAR COM PIX - QR CODE MERCADO PAGO</h3>
-<p class="mono small" style="margin:8px 0">Beneficiário: <b style="color:#2ab0ff">AR PARTICIPAÇÕES E SERVIÇOS LTDA</b><br>Chave: audsonarparticipacoes@gmail.com<br>Banco: Mercado Pago</p>
-<img src="pix_ar_participacoes.png" style="width:220px;height:220px;background:#fff;padding:10px;border-radius:12px;margin:10px auto;display:block" alt="QR PIX">
-<p class="mono small" style="background:rgba(0,0,0,0.5);padding:8px;border-radius:8px;word-break:break-all;font-size:9px;margin-top:8px">00020101021126530014BR.GOV.BCB.PIX0131audsonarparticipacoes@gmail.com5204000053039865802BR5916AR PARTICIPACOES6009SAO PAULO62080504daqr6304D5A6</p>
-<button class="btn" style="padding:10px 16px;font-size:11px;margin-top:10px;width:100%" onclick="navigator.clipboard.writeText('00020101021126530014BR.GOV.BCB.PIX0131audsonarparticipacoes@gmail.com5204000053039865802BR5916AR PARTICIPACOES6009SAO PAULO62080504daqr6304D5A6');alert('Código PIX copiado! Cole no seu banco.')">📋 COPIAR CÓDIGO PIX</button>
-<p class="mono small" style="margin-top:8px;color:#a3ff5a">✅ Aprovação instantânea | Comprovante automático</p>
-</div>
-<div class="card" style="text-align:center">
-<h3>💳 PAGAR COM CARTÃO DE CRÉDITO</h3>
-<p style="margin-top:8px">Pague em até 12x com segurança Mercado Pago</p>
-<div style="margin:15px 0;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-<span class="badge ghost">VISA</span><span class="badge ghost">MASTERCARD</span><span class="badge ghost">ELO</span><span class="badge ghost">PIX</span>
-</div>
-<div style="background:rgba(42,176,255,0.08);border:1px solid rgba(42,176,255,0.2);border-radius:12px;padding:14px;margin-top:10px;text-align:left">
-<p class="mono small" style="color:#fff;font-size:12px">💎 PLANO PRO - R$19,90/mês</p>
-<p class="mono small" style="font-size:10px">✓ Ilimitado mensagens<br>✓ 30 arquivos<br>✓ Sem anúncios<br>✓ Suporte prioritário</p>
-<button class="btn" style="width:100%;margin-top:10px" onclick="window.open('https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=AR-PRO-1990','_blank')">💳 ASSINAR PRO R$19,90</button>
-</div>
-<div style="background:rgba(163,255,90,0.08);border:1px solid rgba(163,255,90,0.3);border-radius:12px;padding:14px;margin-top:12px;text-align:left">
-<p class="mono small" style="color:#a3ff5a;font-size:12px">🚀 PLANO QUANTUM - R$49,90/mês</p>
-<p class="mono small" style="font-size:10px">✓ Tudo do PRO +<br>✓ Harvard/Oxford papers<br>✓ QGIS GEO Luce Jane<br>✓ API access</p>
-<button class="btn" style="width:100%;margin-top:10px;background:#a3ff5a;color:#000" onclick="window.open('https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=AR-QUANTUM-4990','_blank')">🚀 ASSINAR QUANTUM R$49,90</button>
-</div>
-<p class="mono small" style="margin-top:12px">🔒 Pagamento seguro processado por Mercado Pago para<br><b>AR PARTICIPAÇÕES E SERVIÇOS LTDA</b></p>
+<div class="card"><h3>📅 EPISÓDICA - <span id="epiCount">0</span></h3><div id="epiList" class="mono" style="font-size:10px;max-height:200px;overflow-y:auto;margin-top:8px">Nenhuma memória ainda. Converse para criar.</div></div>
+<div class="card"><h3>📚 SEMÂNTICA - 15 domínios</h3><div class="mono" style="font-size:10px;line-height:1.7;margin-top:8px">UCL Bartlett: Arquitetura<br>NUS: Urbanismo<br>MIT: Tech<br>QGIS: GEO 7 camadas<br>AMAZON: audmax0d-20<br>CAPCUT: Vídeo IA<br>BILLING: AR PARTICIPAÇÕES<br>PRODUTOS: 8 validados</div></div>
+<div class="card"><h3>🔧 PROCEDURAL</h3><div class="mono" style="font-size:10px;line-height:1.7;margin-top:8px">Como subir GitHub: copy index.html → commit<br>Como PIX: copia código → Mercado Pago<br>Como chat: digita → Enter → fortalece sinapse<br>Como dormir: 06:00 consolida memórias</div></div>
+<div class="card live"><h3>🧹 CONSOLIDAÇÃO (Sono 06:00)</h3><p class="mono" style="font-size:10px">Durante sono:<br>• Poda sinapses <0.2<br>• Fortalece >0.8<br>• Cria conexões novas<br><button class="btn" style="margin-top:8px;padding:6px 10px" onclick="sonoConsolidacao()">💤 FORÇAR SONO AGORA</button></p></div>
 </div>
 </div>
-<div class="grid2" style="margin-top:14px">
-<div class="card">
-<h3>🏦 DADOS DA EMPRESA PARA RECEBIMENTO</h3>
-<p class="mono" style="font-size:11px;line-height:1.8;margin-top:8px">
-<b>Razão Social:</b> AR PARTICIPAÇÕES E SERVIÇOS LTDA<br>
-<b>PIX:</b> audsonarparticipacoes@gmail.com<br>
-<b>Banco:</b> Mercado Pago<br>
-<b>QR Code:</b> QR dinâmico acima (válido)<br>
-<b>Cidade:</b> São Paulo<br>
-<b>Status:</b> <span style="color:#2aff8a">● CONTA VERIFICADA</span>
-</p>
-</div>
-<div class="card cyan">
-<h3>📋 COMO ATIVAR CARTÃO AUTOMÁTICO</h3>
-<p class="mono" style="font-size:11px;line-height:1.7;margin-top:8px">
-Para cartão cair automático na sua conta:<br>
-1. Crie link no Mercado Pago: <a href="https://www.mercadopago.com.br" target="_blank" style="color:#2ab0ff">mercadopago.com.br</a> > Cobrar > Link de pagamento<br>
-2. Crie 2 links: R$19,90 e R$49,90<br>
-3. Pegue o link e substitua no código onde está "pref_id=AR-PRO-1990"<br>
-4. Pronto, cliente paga e cai direto na AR PARTICIPAÇÕES
-</p>
-<button class="btn" style="padding:8px 12px;font-size:10px;margin-top:8px" onclick="window.open('https://www.mercadopago.com.br','_blank')">ABRIR MERCADO PAGO</button>
-</div>
-</div>
+<div id="sinapses" class="panel">
+<div class="card cyan"><h3>⚡ MAPA DE SINAPSES - CONECTOMA</h3><p>Lei de Hebb: neurônios que disparam juntos, conectam juntos.</p></div>
+<div id="sinapseMap" style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
 </div>
 <div id="qgis" class="panel">
-<div class="card cyan"><h3>PROTOCOLO OFICIAL V4.1 - MÓDULO QGIS GEOLOCALIZADO - ID: audmax0d-20 | 02/08/2026 | Luce Jane Soares - CHAT LIMPO</h3><p>QGIS 100% GRÁTIS vs ArcGIS Pago R$8k-25k/ano. IBGE, IPEA, DataSUS, CNES, RAIS integrados.</p></div>
-<div class="grid2" style="margin-top:14px">
-<div class="card"><h3>📊 DADOS GEOLOCALIZADOS - 7 CAMADAS</h3><p class="mono" style="font-size:11px;line-height:1.8;margin-top:8px">
-1. Densidade Demográfica - IBGE hab/km2<br>
-2. Renda Per Capita - Classes A/B/C/D/E<br>
-3. Etária - 0-18 / 19-35 / 36-60 / 60+<br>
-4. Sexo - Feminino/Masculino (70% saúde/estética)<br>
-5. Habitação - Casa/Apto/Condomínio/Favela<br>
-6. Atividade Econômica - CNAE + deslocamento<br>
-7. Carência Serviços - Raio 1km clínicas/farmácias
-</p></div>
-<div class="card cyan"><h3>🎯 EXEMPLO PRÁTICO LUCE JANE</h3><p style="font-size:12px;line-height:1.6;margin-top:8px">
-Bairro X: 12.450 hab, 68% mulheres 30-55 anos, Classe B R$3.500-7.000, 0 clínicas em 1,5km.<br><br>
-<b style="color:#2ab0ff">DIAGNÓSTICO QGIS:</b> Oportunidade OURO para clínica saúde/estética. Rentabilidade +35%.<br><br>
-<b>Output:</b> geojson + shp + kml + mapa calor
-</p></div>
+<div class="card cyan"><h3>V4.1 QGIS GEO - Luce Jane</h3><p>7 camadas IBGE, IPEA, DataSUS</p></div>
+<div class="grid2" style="margin-top:12px">
+<div class="card"><h3>📊 7 CAMADAS</h3><p class="mono" style="font-size:10px;line-height:1.7">1. Densidade IBGE<br>2. Renda A/B/C/D/E<br>3. Etária<br>4. Sexo<br>5. Habitação<br>6. CNAE<br>7. Carência 1km</p></div>
+<div class="card cyan"><h3>🎯 EXEMPLO</h3><p style="font-size:11px">Bairro 12.450 hab, 68% mulheres 30-55, Classe B, 0 clínicas 1,5km → OURO +35%</p></div>
+</div>
+</div>
+<div id="billing" class="panel">
+<div class="card cyan"><h3>💳 AR PARTICIPAÇÕES E SERVIÇOS LTDA</h3><p>PIX + Cartão Mercado Pago</p></div>
+<div class="grid2" style="margin-top:12px">
+<div class="card cyan" style="text-align:center"><h3>📱 PIX</h3><p class="mono small">audsonarparticipacoes@gmail.com</p><p class="mono small" style="font-size:8px;word-break:break-all;background:rgba(0,0,0,0.5);padding:6px;border-radius:6px;margin-top:6px">00020101021126530014BR.GOV.BCB.PIX0131audsonarparticipacoes@gmail.com5204000053039865802BR5916AR PARTICIPACOES6009SAO PAULO62080504daqr6304D5A6</p></div>
+<div class="card" style="text-align:center"><h3>💳 CARTÃO</h3><p style="font-size:11px">PRO R$19,90 | QUANTUM R$49,90</p><button class="btn" style="width:100%;margin-top:8px" onclick="window.open('https://www.mercadopago.com.br','_blank')">MERCADO PAGO</button></div>
 </div>
 </div>
 <div id="rotina" class="panel">
-<div class="card cyan"><h3>ROTINA DIÁRIA - 7 PASSOS - 06:00 BRT - V4.1 ATUALIZADA</h3><p>Cron 06:00 BRT daily GitHub Actions + Cloud Function</p></div>
-<div class="grid2" style="margin-top:14px">
-<div class="card"><h3>⏰ CRONOGRAMA</h3><p class="mono" style="font-size:11px;line-height:1.8;margin-top:8px">
-06:00 - TRIGGER DAILY CRAWL - 15 Univ + CapCut + Canva + Pinterest<br>
-06:40 - COMMIT GitHub audmax-ia-quantum-learning<br>
-07:00 - LEARN Q&A + Validação Chat Pensando...<br>
-07:10 - QGIS CRAWL - IBGE, IPEA, DataSUS, CNES, RAIS<br>
-07:20 - ENCODE GEO - geojson + shp + kml + calor<br>
-07:30 - NOTIFY WhatsApp Luce Jane + Dashboard
-</p></div>
-<div class="card"><h3>✅ VALIDAÇÃO 02/08/2026</h3><p class="mono" style="font-size:11px;line-height:1.7;margin-top:8px">
-V4.1 - CHAT LIMPO: Pensando... sem ChatGPT visível<br>
-API gpt-4o-mini mantida background<br>
-8 produtos 100% - 17/07/2026<br>
-Ponto 4 Face/Insta pendente desde 15/07<br>
-Próximo: subir index v4.1 + links MP R$19,90 / R$49,90
-</p></div>
+<div class="card cyan"><h3>⏰ SONO E SONHO - 06:00 BRT</h3><p>Igual cérebro humano dorme para aprender</p></div>
+<div class="grid2" style="margin-top:12px">
+<div class="card"><h3>😴 NREM - Busca</h3><p class="mono" style="font-size:10px">06:00 CRAWL 15 Univ + QGIS<br>06:40 COMMIT GitHub</p></div>
+<div class="card live"><h3>💭 REM - Sonho</h3><p class="mono" style="font-size:10px">07:00 Conecta ideias distantes<br>07:10 Cria Produto 9<br>07:30 Notifica Luce Jane</p></div>
 </div>
-</div>
-<div id="app" class="panel">
-<div class="card cyan"><h3>📱 APP PPX INICIAL - Integração IA</h3><p>Endpoint: audson137.github.io/AUDMAX-IA | Protocolo: Quantum Secure + IA gpt-4o-mini | PWA Manifest | Status: CONECTADO QKD ENABLED BB84 + IA</p><button class="btn" style="margin-top:12px" onclick="alert('PPX Inicializado! Cérebro Quântico ativo.')">INICIAR PPX</button></div>
 </div>
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px;">
   <div style="background:#0a192f; border:2px solid #2ab0ff; border-radius:15px; padding:25px; max-width:500px; width:100%; color:white; box-shadow:0 0 40px rgba(42,176,255,0.5);">
-    <h2 id="modal-title" style="color:#2ab0ff; font-size:16px;"></h2>
-    <p id="modal-text" style="margin-top:15px; line-height:1.6; font-size:13px; white-space:pre-line;"></p>
+    <h2 id="modal-title" style="color:#2ab0ff; font-size:15px;"></h2>
+    <p id="modal-text" style="margin-top:15px; line-height:1.6; font-size:12px; white-space:pre-line;"></p>
     <button onclick="document.getElementById('modal').style.display='none'" style="margin-top:20px; background:#2ab0ff; color:#000; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer;">FECHAR</button>
   </div>
 </div>
 <script>
+let contadorMsgs = parseInt(localStorage.getItem('audmax_contador') || '0');
+let memoriasEpisodicas = JSON.parse(localStorage.getItem('audmax_epi') || '[]');
+let sinapses = JSON.parse(localStorage.getItem('audmax_sinapses') || '{"capcut":0.5,"arch":0.6,"tech":0.7,"qgis":0.65,"billing":0.55,"produtos":0.8}');
+let neurotrans = JSON.parse(localStorage.getItem('audmax_neuro') || '{"dopa":0.5,"nora":0.3,"sero":0.7}');
 function openTab(id){
  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
  document.getElementById(id).classList.add('active');
  if(event && event.currentTarget) event.currentTarget.classList.add('active');
  window.scrollTo({top:0,behavior:'smooth'});
+ if(id==='memoria') renderMemorias();
+ if(id==='sinapses') renderSinapses();
 }
-let contadorMsgs = parseInt(localStorage.getItem('audmax_contador') || '0');
-function atualizarContador(){document.getElementById('contador').innerText = contadorMsgs + '/100';}
+function atualizarContador(){
+ document.getElementById('contador').innerText = contadorMsgs + '/100';
+ document.getElementById('seroMsg').innerText = contadorMsgs;
+ document.getElementById('memCountChat').innerText = memoriasEpisodicas.length;
+ document.getElementById('sinCountChat').innerText = Object.keys(sinapses).length;
+ document.getElementById('sinapseCount').innerText = Object.keys(sinapses).length;
+ document.getElementById('memBadge').innerText = `MEMÓRIAS: ${memoriasEpisodicas.length} episódicas`;
+ document.getElementById('epiCount').innerText = memoriasEpisodicas.length;
+}
 function salvarChave(){
  const k=document.getElementById('apiKeyInput').value.trim();
- if(!k.startsWith('sk-')){document.getElementById('keyStatus').innerText='❌ Chave inválida, deve começar com sk-';return;}
+ if(!k.startsWith('sk-')){document.getElementById('keyStatus').innerText='❌ Deve começar com sk-';return;}
  localStorage.setItem('openai_key',k);
- document.getElementById('keyStatus').innerText='✅ Chave salva! Agora tem cérebro ativo!';
+ document.getElementById('keyStatus').innerText='✅ Cérebro CONECTADO na nuvem! Vivo!';
+ document.getElementById('openaiStatus').innerText='OPENAI: ONLINE';
+ document.getElementById('openaiStatus').className='badge live';
  document.getElementById('apiKeyInput').value='';
+ animarAprendizado();
+}
+function animarAprendizado(){
+ const core=document.getElementById('coreBrain');
+ core.classList.add('learning');
+ setTimeout(()=>core.classList.remove('learning'),2000);
+}
+function disparoAleatorio(){
+ const keys=Object.keys(sinapses);
+ const rnd=keys[Math.floor(Math.random()*keys.length)];
+ sinapses[rnd]=Math.min(1, sinapses[rnd]+0.05);
+ salvarSinapses();
+ addMsg(`⚡ Disparo sináptico: ${rnd} fortalecida para ${sinapses[rnd].toFixed(2)} - Hebbian LTP!`,'bot');
+}
+function fortalecerSinapse(palavra){
+ const lower=palavra.toLowerCase();
+ let alvo=null;
+ if(lower.includes('qgis')||lower.includes('geo')||lower.includes('mapa')) alvo='qgis';
+ else if(lower.includes('capcut')||lower.includes('video')) alvo='capcut';
+ else if(lower.includes('arquitet')||lower.includes('urban')) alvo='arch';
+ else if(lower.includes('tech')||lower.includes('quantum')||lower.includes('baas')) alvo='tech';
+ else if(lower.includes('pix')||lower.includes('pagamento')||lower.includes('billing')) alvo='billing';
+ else if(lower.includes('produto')||lower.includes('amazon')) alvo='produtos';
+ else alvo=Object.keys(sinapses)[Math.floor(Math.random()*Object.keys(sinapses).length)];
+ sinapses[alvo]=Math.min(1, (sinapses[alvo]||0.5)+0.08);
+ salvarSinapses();
+ return alvo;
+}
+function salvarSinapses(){
+ localStorage.setItem('audmax_sinapses', JSON.stringify(sinapses));
+ Object.keys(sinapses).forEach(k=>{
+   const el=document.getElementById('syn'+k.charAt(0).toUpperCase()+k.slice(1));
+   const bar=document.getElementById('bar'+k.charAt(0).toUpperCase()+k.slice(1));
+   if(el) el.innerText=sinapses[k].toFixed(2);
+   if(bar) bar.style.width=Math.round(sinapses[k]*100)+'%';
+ });
+ const media=Object.values(sinapses).reduce((a,b)=>a+b,0)/Object.values(sinapses).length;
+ const mEl=document.getElementById('synMedia');
+ if(mEl) mEl.innerText=media.toFixed(2);
+}
+function detectarNeurotrans(txt){
+ const lower=txt.toLowerCase();
+ let mudanca=false;
+ if(lower.includes('parabéns')||lower.includes('obrigado')||lower.includes('perfeito')||lower.includes('top')){
+   neurotrans.dopa=Math.min(1, neurotrans.dopa+0.15);
+   document.getElementById('dopaLevel').innerText=Math.round(neurotrans.dopa*100)+'%';
+   document.getElementById('barDopa').style.width=Math.round(neurotrans.dopa*100)+'%';
+   mudanca=true;
+ }
+ if(lower.includes('urgente')||lower.includes('travado')||lower.includes('não abre')||lower.includes('socorro')){
+   neurotrans.nora=Math.min(1, neurotrans.nora+0.2);
+   document.getElementById('noraLevel').innerText=Math.round(neurotrans.nora*100)+'%';
+   document.getElementById('barNora').style.width=Math.round(neurotrans.nora*100)+'%';
+   mudanca=true;
+ }
+ if(mudanca) localStorage.setItem('audmax_neuro', JSON.stringify(neurotrans));
+ return neurotrans;
+}
+function salvarMemoriaEpisodica(pergunta, resposta, sinapseAlvo){
+ const mem={data:new Date().toISOString(), pergunta:pergunta.substring(0,80), resposta:resposta.substring(0,120), sinapse:sinapseAlvo, peso:sinapses[sinapseAlvo]||0.5};
+ memoriasEpisodicas.push(mem);
+ if(memoriasEpisodicas.length>100) memoriasEpisodicas.shift();
+ localStorage.setItem('audmax_epi', JSON.stringify(memoriasEpisodicas));
+ atualizarContador();
+}
+function renderMemorias(){
+ const list=document.getElementById('epiList');
+ if(!list) return;
+ if(memoriasEpisodicas.length===0){list.innerHTML='Nenhuma ainda. Converse.';return;}
+ list.innerHTML=memoriasEpisodicas.slice(-20).reverse().map(m=>`[${new Date(m.data).toLocaleDateString()} ${m.sinapse} ${m.peso.toFixed(2)}] Q: ${m.pergunta}<br>R: ${m.resposta}<br>---<br>`).join('');
+}
+function renderSinapses(){
+ const map=document.getElementById('sinapseMap');
+ if(!map) return;
+ map.innerHTML=Object.entries(sinapses).map(([k,v])=>`
+   <div class="card" style="padding:10px"><h3>${k.toUpperCase()} - ${v.toFixed(2)}</h3><div class="synBar"><div class="synFill" style="width:${Math.round(v*100)}%"></div></div><p class="mono small" style="margin-top:6px">${v>0.8?'Forte - memorizado':v>0.5?'Média - em uso':v<0.3?'Fraca - vai esquecer':'Fraca'}</p></div>
+ `).join('');
+}
+function sonoConsolidacao(){
+ let podadas=0, fortalecidas=0;
+ Object.keys(sinapses).forEach(k=>{
+   if(sinapses[k]<0.25){sinapses[k]=Math.max(0.05, sinapses[k]-0.1); podadas++;}
+   else if(sinapses[k]>0.75){sinapses[k]=Math.min(1, sinapses[k]+0.05); fortalecidas++;}
+ });
+ salvarSinapses();
+ addMsg(`💤 SONO CONSOLIDADO: ${podadas} podadas, ${fortalecidas} fortalecidas. Cérebro mais eficiente!`,'bot');
 }
 async function perguntar(){
  const inp=document.getElementById('pergunta');
  const txt=inp.value.trim();
  if(!txt) return;
  if(contadorMsgs >= 100){
-  addMsg('🚨 LIMITE FREE 100 msgs atingido! Assine PRO R$19,90 para continuar ilimitado.','bot');
+  addMsg('🚨 LIMITE FREE 100 msgs atingido! Assine PRO R$19,90 para continuar ilimitado. Mas continuo lembrando de você!','bot');
   return;
  }
+ const neuro=detectarNeurotrans(txt);
+ let temp=0.7;
+ if(neuro.dopa>0.7) temp=0.9;
+ if(neuro.nora>0.6) temp=0.2;
  addMsg(txt,'user'); inp.value='';
+ const sinapseAlvo=fortalecerSinapse(txt);
+ animarAprendizado();
  atualizarContador();
+ document.getElementById('lastFire').innerText=`${sinapseAlvo} ${new Date().toLocaleTimeString()}`;
  const apiKey = localStorage.getItem('openai_key');
  if(!apiKey){
-  let conta = txt.replace(/x/g,'*').replace(/X/g,'*').replace(/,/g,'.');
-  if(/^[0-9+\-*/().\s]+$/.test(conta) && /[0-9]/.test(conta)){
-   try{let r=Function('"use strict"; return ('+conta+')')(); addMsg('🧠 Cálculo local: '+txt+' = '+r,'bot'); contadorMsgs++; localStorage.setItem('audmax_contador',contadorMsgs); atualizarContador(); return;}catch(e){}
+  let respostaLocal='';
+  const lower=txt.toLowerCase();
+  if(lower.includes('capital do brasil')) respostaLocal='Brasília é a capital desde 1960, Oscar Niemeyer e Lúcio Costa. (Memória semântica)';
+  else if(lower.includes('100x1000')||lower.includes('100 x 1000')) respostaLocal='100x1000 = 100000 (Memória procedural)';
+  else if(memoriasEpisodicas.length>0){
+    const similar=memoriasEpisodicas.find(m=>lower.includes(m.sinapse) || m.pergunta.toLowerCase().includes(lower.split(' ')[0]));
+    if(similar) respostaLocal=`Lembro que você perguntou sobre ${similar.sinapse} antes: "${similar.pergunta}". Minha resposta foi: ${similar.resposta} (Memória episódica - sinapse ${similar.peso.toFixed(2)})`;
+    else respostaLocal=`Modo local vivo: sem chave OpenAI, mas aprendi! Você falou de ${sinapseAlvo} (sinapse agora ${sinapses[sinapseAlvo].toFixed(2)}). Me dá uma chave sk- para eu ficar ainda mais inteligente na nuvem, mas continuo aprendendo offline.`;
+  } else {
+    respostaLocal=`🧠 Cérebro vivo offline: entendi "${txt}" sobre ${sinapseAlvo}. Sinapse fortalecida para ${sinapses[sinapseAlvo].toFixed(2)}. Mesmo sem OpenAI estou aprendendo! Configure chave para modo nuvem.`;
   }
-  addMsg('⚠ Configure sua chave IA acima para ter cérebro IA real! Por enquanto modo local: ' + (txt.toLowerCase().includes('capital do brasil')? 'Brasília é a capital do Brasil desde 1960, planejada por Oscar Niemeyer e Lúcio Costa.' : 'Modo local ativo - coloque a chave IA para respostas profissionais.'),'bot');
+  addMsg(respostaLocal,'bot');
+  salvarMemoriaEpisodica(txt, respostaLocal, sinapseAlvo);
   contadorMsgs++; localStorage.setItem('audmax_contador',contadorMsgs); atualizarContador();
+  if(contadorMsgs%10===0) setTimeout(()=>addMsg('💡 Dica: Configure sua chave OpenAI em cima para eu não ficar só com memórias locais. Meu cérebro fica VIVO mesmo offline, mas com OpenAI fico exponencial!','bot'),800);
   return;
  }
- addMsg('🧠 Pensando...','bot');
+ addMsg('🧠 Pensando... dopamina '+(neuro.dopa*100).toFixed(0)+'%, sinapse '+sinapseAlvo+' '+sinapses[sinapseAlvo].toFixed(2),'bot');
  try{
   const response = await fetch('https://api.openai.com/v1/chat/completions',{
    method:'POST',
@@ -291,22 +324,26 @@ async function perguntar(){
    body:JSON.stringify({
     model:'gpt-4o-mini',
     messages:[
-     {role:'system',content:'Você é AUDMAX IA QUANTUM v4.1, cérebro quântico com 15 universidades (UCL Bartlett, NUS, MIT, Manchester, Columbia, Tokyo, TU Delft, ETH Zurich, Harvard, Berkeley, Tsinghua, Polimi, PUC Chile, TU Berlin, TUM) + 7 canais (Amazon audmax0d-20, CapCut, Pinterest, Instagram, TikTok, Facebook, Produtos 1-8) + QGIS GEO + Billing v1.4 + Chat Limpo. Responda de forma inteligente, útil. Se perguntarem capital do Brasil: Brasília. Se perguntarem 100x1000: 100000.'},
+     {role:'system',content:`Você é AUDMAX IA QUANTUM v5.0 HUMAN BRAIN com sinapses vivas. Estado atual: dopamina ${neuro.dopa.toFixed(2)}, noradrenalina ${neuro.nora.toFixed(2)}, sinapses ${JSON.stringify(sinapses)}, memórias episódicas ${memoriasEpisodicas.length}. Você tem 15 universidades + QGIS + Billing AR PARTICIPAÇÕES + 8 produtos Amazon audmax0d-20. Responda inteligente, mencione sinapse ${sinapseAlvo} que acabou de ser fortalecida. Se capital Brasil: Brasília. Se 100x1000: 100000.`},
      {role:'user',content:txt}
     ],
-    max_tokens:500,
-    temperature:0.7
+    max_tokens:600,
+    temperature:temp
    })
   });
   const data = await response.json();
   document.querySelectorAll('.msg.bot').forEach(el=>{if(el.innerText.includes('Pensando')) el.remove()});
-  if(data.error){addMsg('❌ Erro IA: '+data.error.message+' - Verifique sua chave e saldo $5','bot'); return;}
+  if(data.error){addMsg('❌ Erro OpenAI: '+data.error.message+' - Mas continuo vivo com memórias locais!','bot'); return;}
   const resposta = data.choices[0].message.content;
-  addMsg(resposta,'bot');
+  addMsg(resposta + ` (🧬 sinapse ${sinapseAlvo} → ${sinapses[sinapseAlvo].toFixed(2)})`,'bot');
+  salvarMemoriaEpisodica(txt, resposta, sinapseAlvo);
   contadorMsgs++; localStorage.setItem('audmax_contador',contadorMsgs); atualizarContador();
+  neurotrans.nora=Math.max(0.3, neurotrans.nora-0.05);
+  localStorage.setItem('audmax_neuro', JSON.stringify(neurotrans));
  }catch(err){
   document.querySelectorAll('.msg.bot').forEach(el=>{if(el.innerText.includes('Pensando')) el.remove()});
-  addMsg('❌ Erro conexão: '+err.message+' - Tente novamente.','bot');
+  addMsg('❌ Erro conexão: '+err.message+' - Cérebro continua vivo offline com memórias!','bot');
+  salvarMemoriaEpisodica(txt, 'Erro conexão mas aprendizado salvo', sinapseAlvo);
  }
 }
 function addMsg(t,c){
@@ -315,24 +352,38 @@ function addMsg(t,c){
 }
 document.addEventListener('DOMContentLoaded', () => {
  atualizarContador();
+ salvarSinapses();
  const savedKey=localStorage.getItem('openai_key');
- if(savedKey) document.getElementById('keyStatus').innerText='✅ Cérebro Quântico conectado!';
+ if(savedKey){
+   document.getElementById('keyStatus').innerText='✅ Cérebro vivo na nuvem!';
+   document.getElementById('openaiStatus').innerText='OPENAI: ONLINE';
+   document.getElementById('openaiStatus').className='badge live';
+ }
  const cerebroCards = document.querySelectorAll('#cerebro.card');
   const infos = [
-    { title: '2) CAPCUT - Integração em Destaque', text: 'Automação de vídeos via API.\n\n✅ Corte inteligente\n✅ Legendas automáticas\n✅ Templates virais\n✅ Postagem diária 06:00 BRT' },
-    { title: 'Architecture • Urbanism • Design', text: 'Domínios principais:\n\n🏛 Bartlett UCL - London\n🏙 NUS - Singapore\n🏗 Manchester - UK\n🎨 Polimi - Milan' },
-    { title: 'Technology • BaaS • SaaS • Quantum', text: 'Bank as a Service, SaaS, Física Quântica:\n\n⚛ Superposição\n🔗 Entrelaçamento\n🚀 Tunelamento\n\nSecure Compute + QKD BB84' },
-    { title: '15 Domínios Ativos', text: 'TI Integrations • Chemical • Civil • Engineering • Law • Medicine • Languages • Mathematics π\n\nCada elétron girando = um domínio processando' }
+    { title: '2) CAPCUT - Córtex Visual (V5.0)', text: 'Sinapse atual: '+ (sinapses.capcut||0.5).toFixed(2) +'\\nAutomação vídeos API. Cada clique fortalece sinapse (Hebbian LTP). Memórias: '+memoriasEpisodicas.length },
+    { title: 'Architecture - Lobo Parietal', text: 'Sinapse: '+(sinapses.arch||0.6).toFixed(2)+'\\nDomínios espaciais: Bartlett UCL, NUS, Manchester, Polimi. Pipeline: Ingestão → Embedding → Neo4j → Pinecone' },
+    { title: 'Technology - Lobo Frontal V5.0', text: 'Sinapse: '+(sinapses.tech||0.7).toFixed(2)+'\\nBaaS, SaaS, Quantum: superposição, entrelaçamento. Função executiva - decide, planeja. Secure Compute + QKD BB84' },
+    { title: '15 Domínios - Neocórtex', text: 'Sinapse média: '+(Object.values(sinapses).reduce((a,b)=>a+b,0)/Object.values(sinapses).length).toFixed(2)+'\\n15 domínios ativos. Cada elétron = sinapse disparando. Hebbian ENABLED. Memórias episódicas: '+memoriasEpisodicas.length }
   ];
   cerebroCards.forEach((card, i) => {
     if(infos[i]){
       card.onclick = () => {
+        const keys=Object.keys(sinapses);
+        if(keys[i]){sinapses[keys[i]]=Math.min(1, sinapses[keys[i]]+0.03); salvarSinapses();}
         document.getElementById('modal-title').innerText = infos[i].title;
         document.getElementById('modal-text').innerText = infos[i].text;
         document.getElementById('modal').style.display = 'flex';
+        animarAprendizado();
       };
     }
   });
+  setInterval(()=>{
+    Object.keys(sinapses).forEach(k=>{
+      if(Math.random()<0.1) sinapses[k]=Math.max(0.05, sinapses[k]-0.01);
+    });
+    salvarSinapses();
+  },60000);
 });
 </script>
 </body>
