@@ -1,1 +1,40 @@
-
+name: SONO AUDMAX V5.1 - Auto Evolução 06:00 BRT
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+jobs:
+  sono-e-sonho:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Criar pasta knowledge
+        run: mkdir -p knowledge
+      - name: 1. NREM - Buscar Colleges
+        run: |
+          curl -s "http://export.arxiv.org/api/query?search_query=quantum+machine+learning&max_results=3" -o knowledge/arxiv_quantum.xml || true
+          curl -s "http://export.arxiv.org/api/query?search_query=QGIS+geospatial&max_results=3" -o knowledge/arxiv_qgis.xml || true
+          curl -s "https://api.crossref.org/works?query=architecture+urbanism&rows=2" -o knowledge/crossref_arch.json || true
+      - name: 2. REM - Sonhar com OpenAI
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "# Sonho $(date +%Y-%m-%d) - Local
+            Conectei QGIS + CapCut = Produto 9: Vídeo com mapa calor para Luce Jane" > knowledge/sonho_$(date +%Y-%m-%d).md
+          else
+            curl -s https://api.openai.com/v1/chat/completions -H "Authorization: Bearer $OPENAI_API_KEY" -H "Content-Type: application/json" -d "{\"model\":\"gpt-4o-mini\",\"messages\":[{\"role\":\"system\",\"content\":\"Você é SONO REM AUDMAX V5.1. Crie 1 conexão nova entre 15 universidades + QGIS + 8 produtos Amazon audmax0d-20. 200 palavras.\"},{\"role\":\"user\",\"content\":\"Sonhe hoje.\"}]}" -o /tmp/sonho.json
+            cat /tmp/sonho.json | jq -r '.choices[0].message.content' > knowledge/sonho_$(date +%Y-%m-%d).md || echo "Sonho fallback" > knowledge/sonho_$(date +%Y-%m-%d).md
+          fi
+      - name: 3. Consolidação sináptica
+        run: |
+          if [ ! -f sinapses.json ]; then echo '{"capcut":0.5,"arch":0.6,"tech":0.7,"qgis":0.65,"billing":0.55,"produtos":0.8,"last_evolution":"'$(date -I)'"}' > sinapses.json; fi
+          jq '.last_evolution = "'$(date -I)'"' sinapses.json > /tmp/s.json && mv /tmp/s.json sinapses.json
+      - name: 4. Commit evolução
+        run: |
+          git config user.name "AUDMAX SONO REM V5.1"
+          git config user.email "sono@audmaxia.com"
+          git add knowledge/ sinapses.json || true
+          git diff --cached --quiet && exit 0
+          git commit -m "🧠 SONO $(date +%Y-%m-%d) V5.1 AUTO-EVOLUÇÃO"
+          git push
