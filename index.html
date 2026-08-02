@@ -1,3 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkFVRE1BWCBJQSBRVUFOVFVNIiwKICAic2hvcnRfbmFtZSI6ICJBVURNQVgiLAogICJkZXNjcmlwdGlvbiI6ICJDZXJlYnJvIFF1YW50aWNvIC0gSUEgcXVlIHJlc3BvbmRlLCBjcmlhIHByb2pldG9zIGUgYXByZW5kZSAxeCBwb3IgZGlhIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDUwNzBmIiwKICAidGhlbWVfY29sb3IiOiAiIzJhYjBmZiIsCiAgInN0YXJ0X3VybCI6ICIuL2luZGV4Lmh0bWwiLAogICJpY29ucyI6IFsKICAgIHsic3JjIjogImh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9naC90d2l0dGVyL3R3ZW1vamlAMTQuMC4yL2Fzc2V0cy83Mng3Mi8xZjllMC5wbmciLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3BuZyJ9LAogICAgeyJzcmMiOiAiaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL3R3aXR0ZXIvdHdlbW9qaUAxNC4wLjIvYXNzZXRzLzcyeDcyLzFmOWUwLnBuZyIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIn0KICBdCn0=">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUDMAX IA QUANTUM v4.1 - CÉREBRO OFICIAL - CHAT LIMPO</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cyan:#2ab0ff;--bg:#05070f}
+body{background:radial-gradient(1200px at 50% -10%, rgba(42,176,255,0.2), transparent 60%), #05070f;color:#fff;font-family:'Segoe UI',Inter,system-ui;min-height:100vh}
+.mono{font-family:ui-monospace, SFMono-Regular, Menlo, monospace}
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(5,7,15,0.8);border-bottom:1px solid rgba(42,176,255,0.2);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+header h1{color:var(--cyan);letter-spacing:3px;font-size:20px;text-shadow:0 0 15px var(--cyan)}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--cyan);color:#000;font-weight:800;font-size:10px;padding:5px 10px;border-radius:999px;letter-spacing:1px}
+.badge.ghost{background:rgba(42,176,255,0.12);color:var(--cyan);border:1px solid rgba(42,176,255,0.3)}
+.hero{display:grid;place-items:center;padding:30px 20px 10px;text-align:center}
+.brain-wrap{position:relative;width:340px;height:340px;display:grid;place-items:center}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(42,176,255,0.18)}
+.r1{width:330px;height:330px;animation:rot 18s linear infinite}
+.r2{width:270px;height:270px;animation:rot 12s linear reverse infinite;border-color:rgba(42,176,255,0.35);border-style:dashed}
+.r3{width:200px;height:200px;animation:rot 8s linear infinite;border-color:rgba(42,176,255,0.5)}
+@keyframes rot{to{transform:rotate(360deg)}}
+.core{width:135px;height:135px;border-radius:38% 62% 60% 40% / 42% 48% 52% 58%;background:radial-gradient(100% 100% at 30% 20%, #b0f0ff, #2ab0ff 40%, #0a2a4a);box-shadow:0 0 60px var(--cyan), inset 0 0 25px rgba(255,255,255,0.9);display:grid;place-items:center;font-size:56px;animation:pulse 2.2s ease-in-out infinite;z-index:5}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.e{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 25px var(--cyan)}
+.e1{animation:orbit1 3.2s linear infinite}
+.e2{animation:orbit2 2.7s linear infinite}
+.e3{animation:orbit3 4.1s linear infinite}
+.e4{animation:orbit1 5s linear infinite reverse}
+@keyframes orbit1{from{transform:rotate(0deg) translateX(155px) rotate(0deg)}to{transform:rotate(360deg) translateX(155px) rotate(-360deg)}}
+@keyframes orbit2{from{transform:rotate(90deg) translateX(125px) rotate(-90deg)}to{transform:rotate(450deg) translateX(125px) rotate(-450deg)}}
+@keyframes orbit3{from{transform:rotate(210deg) translateX(95px) rotate(-210deg)}to{transform:rotate(570deg) translateX(95px) rotate(-570deg)}}
+.nav{display:flex;gap:8px;overflow-x:auto;padding:18px 20px;justify-content:center;flex-wrap:wrap;scrollbar-width:none}
+.tab{white-space:nowrap;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);cursor:pointer;font-size:11px;letter-spacing:1.2px;transition:.2s}
+.tab.active{background:var(--cyan);color:#000;border-color:var(--cyan);box-shadow:0 0 18px var(--cyan);font-weight:800}
+.panel{display:none;max-width:1200px;margin:0 auto;padding:0 20px 40px}
+.panel.active{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}.brain-wrap{width:300px;height:300px}.r1{width:290px;height:290px}}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:18px;position:relative;overflow:hidden;cursor:pointer;transition:0.2s}
+.card:hover{border-color:#2ab0ff;transform:translateY(-2px);box-shadow:0 0 20px rgba(42,176,255,0.3)}
+.card.cyan{border-color:rgba(42,176,255,0.35);background:linear-gradient(180deg, rgba(42,176,255,0.12), rgba(255,255,255,0.01));box-shadow:0 0 30px rgba(42,176,255,0.12) inset}
+.card h3{font-size:14px;letter-spacing:0.5px;margin-bottom:6px;color:#fff}
+.card p{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5}
+.node{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);font-size:11px}
+.chatBox{height:420px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:14px;background:rgba(0,0,0,0.45);border:1px solid rgba(42,176,255,0.25);border-radius:14px;margin-bottom:12px}
+.msg{max-width:88%;padding:11px 14px;border-radius:14px;font-size:13px;line-height:1.45}
+.user{align-self:flex-end;background:var(--cyan);color:#000;font-weight:700}
+.bot{align-self:flex-start;background:rgba(255,255,255,0.07);border:1px solid rgba(42,176,255,0.25);color:#c8f0ff}
+.row{display:flex;gap:10px}
+.input{flex:1;padding:14px 18px;border-radius:999px;border:1px solid var(--cyan);background:#111;color:#fff;outline:none}
+.btn{padding:14px 22px;border-radius:999px;border:none;background:var(--cyan);color:#000;font-weight:800;cursor:pointer;box-shadow:0 0 15px var(--cyan)}
+.small{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.08);text-align:left}
+th{color:var(--cyan);font-size:10px;letter-spacing:1.5px}
+.statusDot{width:8px;height:8px;border-radius:50%;background:#2aff8a;box-shadow:0 0 8px #2aff8a;display:inline-block;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:0.3}}
+</style>
+</head>
+<body>
+<header>
+<div style="display:flex;align-items:center;gap:12px"><h1>AUDMAX IA QUANTUM v4.1 [ONLINE]</h1><span class="badge ghost"><span class="statusDot"></span> OPERATIONAL</span></div>
+<div style="display:flex;gap:8px;align-items:center"><span class="badge">ID: audmax0d-20</span><span class="mono small">BUILD v4.1 PENSANDO + BILLING PIX | NODE COUNT: 16 | QKD: ENABLED BB84</span></div>
+</header>
+<div class="hero">
+<div class="brain-wrap">
+<div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+<div class="core">🧠</div>
+<div class="e e1"></div><div class="e e2"></div><div class="e e3"></div><div class="e e4"></div>
+</div>
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+<span class="badge ghost">QUANTUM LAYER: ENABLED</span>
+<span class="badge ghost">GLOBAL KNOWLEDGE GRAPH v1.2.0</span>
+<span class="badge ghost">STACK: Quantum ML | GraphRAG | Secure Compute | Multi-Agent</span>
+<span class="badge ghost">DATA UPDATED: 2026.07 | LICENSE: MIT</span>
+</div>
+<div class="mono small" style="margin-top:10px">CÉREBRO QUÂNTICO EM FUNCIONAMENTO - 15 UNIVERSIDADES INTEGRADAS | APRENDENDO 24/7</div>
+</div>
+<div class="nav mono">
+<div class="tab active" onclick="openTab('cerebro')">🧠 CÉREBRO</div>
+<div class="tab" onclick="openTab('knowledge')">🌐 KNOWLEDGE GRAPH</div>
+<div class="tab" onclick="openTab('chat')">💬 CHAT Q&A</div>
+<div class="tab" onclick="openTab('integrations')">🔗 INTEGRAÇÕES 7 CANAIS</div>
+<div class="tab" onclick="openTab('produtos')">🛒 8 PRODUTOS</div>
+<div class="tab" onclick="openTab('billing')">💳 BILLING v1.4</div>
+<div class="tab" onclick="openTab('qgis')">🗺 QGIS GEO LUCE JANE</div>
+<div class="tab" onclick="openTab('rotina')">⏰ ROTINA DIÁRIA 06:00</div>
+<div class="tab" onclick="openTab('app')">📱 APP PPX</div>
+</div>
+<div id="cerebro" class="panel active">
+<div class="grid2">
+<div class="card cyan"><span class="badge">NOVA INTEGRAÇÃO</span><h3>2) CAPCUT - Integração em Destaque</h3><p>Automação de vídeos via API. Corte inteligente, legendas, templates. Parte da rotina diária 06:00 BRT junto com Canva + Pinterest + Amazon.</p></div>
+<div class="card"><h3>Architecture • Urbanism • Design</h3><p>Domínios principais do Knowledge Graph. Bartlett UCL, NUS, Manchester, Polimi. Pipeline: Ingestão → Embedding text-embedding-3-large → Neo4j → Pinecone → LoRA fine-tune.</p></div>
+<div class="card"><h3>Technology • BaaS • SaaS • Quantum Physics</h3><p>Bank as a Service, Service as a Service, Física Quântica aplicada: superposição, entrelaçamento, tunelamento. Secure Compute + QKD BB84.</p></div>
+<div class="card"><h3>TI Integrations • Chemical • Civil • TI Engineering • Law • Medicine • Languages • Mathematics π</h3><p>15 domínios ativos. Cada elétron girando = um domínio processando. Learning Rate 0.001 - Daily Loop ENABLED.</p></div>
+</div>
+</div>
+<div id="knowledge" class="panel">
+<div class="card cyan"><h3>AUDMAX IA QUANTUM — GLOBAL KNOWLEDGE GRAPH v1.2.0</h3><p>Interdisciplinary Quantum Intelligence Platform | Universities & Research Domains Network | nodes=16 edges=28 domains=15 status=active</p></div>
+<div class="grid2" style="margin-top:14px">
+<div class="card"><h3>🎓 15 Universidades Integradas</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+<div class="node">📍 UCL BARTLETT - London</div><div class="node">📍 NUS - Singapore</div><div class="node">📍 MIT - US</div><div class="node">📍 MANCHESTER - UK</div><div class="node">📍 COLUMBIA - US</div><div class="node">📍 TOKYO - Japan</div><div class="node">📍 TU DELFT - NL</div><div class="node">📍 ETH ZURICH - CH</div><div class="node">📍 HARVARD - US</div><div class="node">📍 UC BERKELEY - US</div><div class="node">📍 TSINGHUA - CN</div><div class="node">📍 POLITECNICO MILANO</div><div class="node">📍 PUC CHILE</div><div class="node">📍 TU BERLIN - DE</div><div class="node">📍 TUM - Munich</div>
+</div></div>
+<div class="card"><h3>🔬 Arquitetura do Sistema</h3><p class="mono" style="font-size:11px;line-height:1.7;margin-top:8px">Cron 06:00 BRT daily GitHub Actions + Cloud Function<br>APIs: arXiv, PubMed, SSRN, CrossRef, OpenAlex, University RSS<br>Pipeline: Ingestão → Embedding (text-embedding-3-large) → KG Neo4j → Vector DB Pinecone → Fine-tune LoRA local<br>Versionamento: GLOBAL_KNOWLEDGE_GRAPH_v1.2.0.jsonl em /knowledge<br>Log: /logs/ROTINA_DIARIA-YYYY-MM-DD.md<br>Notion DB + Make.com webhook + HuggingFace</p></div>
+</div>
+</div>
+<div id="chat" class="panel">
+<div class="card"><h3>💬 AUDMAX CHAT - CÉREBRO AUDMAX INTEGRADO</h3><p>Chat conectado ao cérebro azul + AUDMAX IA. Respostas ilimitadas com suas funcionalidades únicas.</p>
+<div style="background:rgba(42,176,255,0.1);border:1px solid #2ab0ff;border-radius:10px;padding:10px;margin-top:10px">
+<p class="mono small" style="color:#2ab0ff">🔑 CONFIGURE SUA CHAVE OPENAI:</p>
+<input id="apiKeyInput" class="input" style="margin-top:8px;font-size:11px" placeholder="Cole sua chave OpenAI aqui: sk-... (será salva localmente)" type="password">
+<button class="btn" style="padding:8px 12px;font-size:10px;margin-top:6px" onclick="salvarChave()">SALVAR CHAVE</button>
+<span id="keyStatus" class="mono small" style="margin-left:8px"></span>
+</div>
+</div>
+<div class="chatBox" id="chatBox"><div class="msg bot">🧠 Olá! Eu sou AUDMAX IA QUANTUM v4.1 com cérebro AUDMAX integrado + 15 universidades + 7 canais. Agora respondo qualquer coisa! Pergunte: qual a capital do Brasil?</div></div>
+<div class="row"><input id="pergunta" class="input" placeholder="Pergunte qualquer coisa para o cérebro quântico..." onkeypress="if(event.key==='Enter') perguntar()"><button class="btn" onclick="perguntar()">ENVIAR</button></div>
+<div class="mono small" style="margin-top:8px">BILLING v1.4: FREE 100 msgs/dia | PRO R$19,90 ilimitado | QUANTUM R$49,90 Harvard/Oxford - Contador: <span id="contador">0/100</span></div>
+</div>
+<div id="integrations" class="panel">
+<div class="grid2">
+<div class="card cyan"><h3>1) AMAZON - Imagens Autorizadas</h3><p>Store ID: audmax0d-20. Fluxo: Foto + GET LINK AMARELO ID validado → Publish. Taxa 15% até $1M depois? Produtos 1-10 catálogo inteligente.</p></div>
+<div class="card" style="border-color:#a3ff5a"><h3>2) CAPCUT - Nova integração em destaque</h3><p>Automação vídeo IA. Parte da rotina 06:00.</p></div>
+<div class="card"><h3>3) PINTEREST</h3><p>Board Amazon Finds. Título: Never Lose Your Keys Again! Tile Sticker 2-Pack.</p></div>
+<div class="card"><h3>4) INSTAGRAM REELS + 5) TIKTOK + 6) FACEBOOK PAGE</h3><p>Ponto 4 pendente desde 15/07 - TRAVA para Produto 9.</p></div>
+<div class="card"><h3>7) PRODUTOS 1-10 - Catálogo Inteligente</h3><p>Ecossistema integrado • IA Quântica • Automação Multiplataforma.</p></div>
+<div class="card cyan"><h3>🧠 Cérebro Quântico Central</h3><p>AUDMAX IA QUANTUM cérebro quântico - Conecta tudo. Agora com cérebro AUDMAX.</p></div>
+</div>
+</div>
+<div id="produtos" class="panel">
+<div class="card cyan"><h3>PROTOCOLO OFICIAL V3.2 - 8 PRODUTOS 100% - CICLO FINALIZADO 17/07/2026 08:15</h3><p>Produto 8: Life360 Tile Sticker 2-Pack Black - Overall Pick Amazon - $44.99 - 4.2★ (1.8K) - 1K+ bought past month - Link: amzn.to/4gl5y0f VALIDADO</p></div>
+<table style="margin-top:12px"><thead><tr><th>#</th><th>PRODUTO</th><th>PREÇO</th><th>LINK</th><th>STATUS</th></tr></thead><tbody>
+<tr><td>1</td><td>Tile Mate (2024) BT Tracker</td><td>$24.99</td><td>amzn.to/44BSAQa</td><td>■ OK</td></tr>
+<tr><td>2</td><td>Amazon Smart Plug 2-Pack</td><td>$39.98</td><td>amzn.to/4577R5K</td><td>■ OK</td></tr>
+<tr><td>3</td><td>Magnetic Screen Door</td><td>$24.98</td><td>amzn.to/3Rz2Ua</td><td>■ OK</td></tr>
+<tr><td>4</td><td>Collapsible Colander</td><td>$18.99</td><td>amzn.to/3TBtMO</td><td>■ OK</td></tr>
+<tr><td>5</td><td>Bed Sheet Detangler</td><td>$19.00</td><td>amzn.to/4nL4HT</td><td>■ OK</td></tr>
+<tr><td>6</td><td>Produto 6 - 16/07</td><td>-</td><td>lista</td><td>■ OK</td></tr>
+<tr><td>7</td><td>Produto 7 - 16/07</td><td>-</td><td>lista</td><td>■ OK</td></tr>
+<tr><td>8</td><td>Tile Sticker 2-Pack Black - Overall Pick - 4.2* 1.8K</td><td>$44.99</td><td>amzn.to/4gl5y0f</td><td>■ PUBLISH OK</td></tr>
+</tbody></table>
+</div>
+<div id="billing" class="panel">
+<div class="card cyan"><h3>💳 PAGAMENTO OFICIAL - AR PARTICIPAÇÕES E SERVIÇOS LTDA</h3><p>Escolha PIX ou Cartão. Pagamento vai direto para conta oficial da empresa.</p></div>
+<div class="grid2" style="margin-top:14px">
+<div class="card cyan" style="text-align:center">
+<h3>📱 PAGAR COM PIX - QR CODE MERCADO PAGO</h3>
+<p class="mono small" style="margin:8px 0">Beneficiário: <b style="color:#2ab0ff">AR PARTICIPAÇÕES E SERVIÇOS LTDA</b><br>Chave: audsonarparticipacoes@gmail.com<br>Banco: Mercado Pago</p>
+<img src="pix_ar_participacoes.png" style="width:220px;height:220px;background:#fff;padding:10px;border-radius:12px;margin:10px auto;display:block" alt="QR PIX">
+<p class="mono small" style="background:rgba(0,0,0,0.5);padding:8px;border-radius:8px;word-break:break-all;font-size:9px;margin-top:8px">00020101021126530014BR.GOV.BCB.PIX0131audsonarparticipacoes@gmail.com5204000053039865802BR5916AR PARTICIPACOES6009SAO PAULO62080504daqr6304D5A6</p>
+<button class="btn" style="padding:10px 16px;font-size:11px;margin-top:10px;width:100%" onclick="navigator.clipboard.writeText('00020101021126530014BR.GOV.BCB.PIX0131audsonarparticipacoes@gmail.com5204000053039865802BR5916AR PARTICIPACOES6009SAO PAULO62080504daqr6304D5A6');alert('Código PIX copiado! Cole no seu banco.')">📋 COPIAR CÓDIGO PIX</button>
+<p class="mono small" style="margin-top:8px;color:#a3ff5a">✅ Aprovação instantânea | Comprovante automático</p>
+</div>
+<div class="card" style="text-align:center">
+<h3>💳 PAGAR COM CARTÃO DE CRÉDITO</h3>
+<p style="margin-top:8px">Pague em até 12x com segurança Mercado Pago</p>
+<div style="margin:15px 0;display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
+<span class="badge ghost">VISA</span><span class="badge ghost">MASTERCARD</span><span class="badge ghost">ELO</span><span class="badge ghost">PIX</span>
+</div>
+<div style="background:rgba(42,176,255,0.08);border:1px solid rgba(42,176,255,0.2);border-radius:12px;padding:14px;margin-top:10px;text-align:left">
+<p class="mono small" style="color:#fff;font-size:12px">💎 PLANO PRO - R$19,90/mês</p>
+<p class="mono small" style="font-size:10px">✓ Ilimitado mensagens<br>✓ 30 arquivos<br>✓ Sem anúncios<br>✓ Suporte prioritário</p>
+<button class="btn" style="width:100%;margin-top:10px" onclick="window.open('https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=AR-PRO-1990','_blank')">💳 ASSINAR PRO R$19,90</button>
+</div>
+<div style="background:rgba(163,255,90,0.08);border:1px solid rgba(163,255,90,0.3);border-radius:12px;padding:14px;margin-top:12px;text-align:left">
+<p class="mono small" style="color:#a3ff5a;font-size:12px">🚀 PLANO QUANTUM - R$49,90/mês</p>
+<p class="mono small" style="font-size:10px">✓ Tudo do PRO +<br>✓ Harvard/Oxford papers<br>✓ QGIS GEO Luce Jane<br>✓ API access</p>
+<button class="btn" style="width:100%;margin-top:10px;background:#a3ff5a;color:#000" onclick="window.open('https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=AR-QUANTUM-4990','_blank')">🚀 ASSINAR QUANTUM R$49,90</button>
+</div>
+<p class="mono small" style="margin-top:12px">🔒 Pagamento seguro processado por Mercado Pago para<br><b>AR PARTICIPAÇÕES E SERVIÇOS LTDA</b></p>
+</div>
+</div>
+<div class="grid2" style="margin-top:14px">
+<div class="card">
+<h3>🏦 DADOS DA EMPRESA PARA RECEBIMENTO</h3>
+<p class="mono" style="font-size:11px;line-height:1.8;margin-top:8px">
+<b>Razão Social:</b> AR PARTICIPAÇÕES E SERVIÇOS LTDA<br>
+<b>PIX:</b> audsonarparticipacoes@gmail.com<br>
+<b>Banco:</b> Mercado Pago<br>
+<b>QR Code:</b> QR dinâmico acima (válido)<br>
+<b>Cidade:</b> São Paulo<br>
+<b>Status:</b> <span style="color:#2aff8a">● CONTA VERIFICADA</span>
+</p>
+</div>
+<div class="card cyan">
+<h3>📋 COMO ATIVAR CARTÃO AUTOMÁTICO</h3>
+<p class="mono" style="font-size:11px;line-height:1.7;margin-top:8px">
+Para cartão cair automático na sua conta:<br>
+1. Crie link no Mercado Pago: <a href="https://www.mercadopago.com.br" target="_blank" style="color:#2ab0ff">mercadopago.com.br</a> > Cobrar > Link de pagamento<br>
+2. Crie 2 links: R$19,90 e R$49,90<br>
+3. Pegue o link e substitua no código onde está "pref_id=AR-PRO-1990"<br>
+4. Pronto, cliente paga e cai direto na AR PARTICIPAÇÕES
+</p>
+<button class="btn" style="padding:8px 12px;font-size:10px;margin-top:8px" onclick="window.open('https://www.mercadopago.com.br','_blank')">ABRIR MERCADO PAGO</button>
+</div>
+</div>
+</div>
+<div id="qgis" class="panel">
+<div class="card cyan"><h3>PROTOCOLO OFICIAL V4.1 - MÓDULO QGIS GEOLOCALIZADO - ID: audmax0d-20 | 02/08/2026 | Luce Jane Soares - CHAT LIMPO</h3><p>QGIS 100% GRÁTIS vs ArcGIS Pago R$8k-25k/ano. IBGE, IPEA, DataSUS, CNES, RAIS integrados.</p></div>
+<div class="grid2" style="margin-top:14px">
+<div class="card"><h3>📊 DADOS GEOLOCALIZADOS - 7 CAMADAS</h3><p class="mono" style="font-size:11px;line-height:1.8;margin-top:8px">
+1. Densidade Demográfica - IBGE hab/km2<br>
+2. Renda Per Capita - Classes A/B/C/D/E<br>
+3. Etária - 0-18 / 19-35 / 36-60 / 60+<br>
+4. Sexo - Feminino/Masculino (70% saúde/estética)<br>
+5. Habitação - Casa/Apto/Condomínio/Favela<br>
+6. Atividade Econômica - CNAE + deslocamento<br>
+7. Carência Serviços - Raio 1km clínicas/farmácias
+</p></div>
+<div class="card cyan"><h3>🎯 EXEMPLO PRÁTICO LUCE JANE</h3><p style="font-size:12px;line-height:1.6;margin-top:8px">
+Bairro X: 12.450 hab, 68% mulheres 30-55 anos, Classe B R$3.500-7.000, 0 clínicas em 1,5km.<br><br>
+<b style="color:#2ab0ff">DIAGNÓSTICO QGIS:</b> Oportunidade OURO para clínica saúde/estética. Rentabilidade +35%.<br><br>
+<b>Output:</b> geojson + shp + kml + mapa calor
+</p></div>
+</div>
+</div>
+<div id="rotina" class="panel">
+<div class="card cyan"><h3>ROTINA DIÁRIA - 7 PASSOS - 06:00 BRT - V4.1 ATUALIZADA</h3><p>Cron 06:00 BRT daily GitHub Actions + Cloud Function</p></div>
+<div class="grid2" style="margin-top:14px">
+<div class="card"><h3>⏰ CRONOGRAMA</h3><p class="mono" style="font-size:11px;line-height:1.8;margin-top:8px">
+06:00 - TRIGGER DAILY CRAWL - 15 Univ + CapCut + Canva + Pinterest<br>
+06:40 - COMMIT GitHub audmax-ia-quantum-learning<br>
+07:00 - LEARN Q&A + Validação Chat Pensando...<br>
+07:10 - QGIS CRAWL - IBGE, IPEA, DataSUS, CNES, RAIS<br>
+07:20 - ENCODE GEO - geojson + shp + kml + calor<br>
+07:30 - NOTIFY WhatsApp Luce Jane + Dashboard
+</p></div>
+<div class="card"><h3>✅ VALIDAÇÃO 02/08/2026</h3><p class="mono" style="font-size:11px;line-height:1.7;margin-top:8px">
+V4.1 - CHAT LIMPO: Pensando... sem ChatGPT visível<br>
+API gpt-4o-mini mantida background<br>
+8 produtos 100% - 17/07/2026<br>
+Ponto 4 Face/Insta pendente desde 15/07<br>
+Próximo: subir index v4.1 + links MP R$19,90 / R$49,90
+</p></div>
+</div>
+</div>
+<div id="app" class="panel">
+<div class="card cyan"><h3>📱 APP PPX INICIAL - Integração IA</h3><p>Endpoint: audson137.github.io/AUDMAX-IA | Protocolo: Quantum Secure + IA gpt-4o-mini | PWA Manifest | Status: CONECTADO QKD ENABLED BB84 + IA</p><button class="btn" style="margin-top:12px" onclick="alert('PPX Inicializado! Cérebro Quântico ativo.')">INICIAR PPX</button></div>
+</div>
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px;">
+  <div style="background:#0a192f; border:2px solid #2ab0ff; border-radius:15px; padding:25px; max-width:500px; width:100%; color:white; box-shadow:0 0 40px rgba(42,176,255,0.5);">
+    <h2 id="modal-title" style="color:#2ab0ff; font-size:16px;"></h2>
+    <p id="modal-text" style="margin-top:15px; line-height:1.6; font-size:13px; white-space:pre-line;"></p>
+    <button onclick="document.getElementById('modal').style.display='none'" style="margin-top:20px; background:#2ab0ff; color:#000; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer;">FECHAR</button>
+  </div>
+</div>
 <script>
 function openTab(id){
  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
@@ -87,3 +335,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+</body>
+</html>
