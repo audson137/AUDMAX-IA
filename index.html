@@ -263,16 +263,6 @@ function salvarChave(){
  document.getElementById('keyStatus').innerText='✅ Chave salva! Agora tem cérebro ativo!';
  document.getElementById('apiKeyInput').value='';
 }
-function salvarBanco(){
- const pix=document.getElementById('pixKey').value.trim();
- const bank=document.getElementById('bankName').value.trim();
- const holder=document.getElementById('holderName').value.trim();
- if(!pix){document.getElementById('bankStatus').innerText='❌ Digite sua chave PIX';return;}
- localStorage.setItem('audmax_pix',pix);
- localStorage.setItem('audmax_bank',bank);
- localStorage.setItem('audmax_holder',holder);
- document.getElementById('bankStatus').innerText='✅ Dados bancários salvos localmente! Seguro!';
-}
 async function perguntar(){
  const inp=document.getElementById('pergunta');
  const txt=inp.value.trim();
@@ -327,33 +317,23 @@ document.addEventListener('DOMContentLoaded', () => {
  atualizarContador();
  const savedKey=localStorage.getItem('openai_key');
  if(savedKey) document.getElementById('keyStatus').innerText='✅ Cérebro Quântico conectado!';
- const pix=localStorage.getItem('audmax_pix');
- if(pix){
-   const elPix=document.getElementById('pixKey');
-   if(elPix) elPix.value=pix;
-   const elBank=document.getElementById('bankName');
-   if(elBank) elBank.value=localStorage.getItem('audmax_bank')||'';
-   const elHolder=document.getElementById('holderName');
-   if(elHolder) elHolder.value=localStorage.getItem('audmax_holder')||'';
-   const elStatus=document.getElementById('bankStatus');
-   if(elStatus) elStatus.innerText='✅ Banco já configurado!';
- }
+ // CORREÇÃO CLIQUE - espaço entre #cerebro e.card
  const cerebroCards = document.querySelectorAll('#cerebro.card');
-  const infos = [
-    { title: '2) CAPCUT - Integração em Destaque', text: 'Automação de vídeos via API.\n\n✅ Corte inteligente\n✅ Legendas automáticas\n✅ Templates virais\n✅ Postagem diária 06:00 BRT' },
-    { title: 'Architecture • Urbanism • Design', text: 'Domínios principais:\n\n🏛 Bartlett UCL - London\n🏙 NUS - Singapore\n🏗 Manchester - UK\n🎨 Polimi - Milan' },
-    { title: 'Technology • BaaS • SaaS • Quantum', text: 'Bank as a Service, SaaS, Física Quântica:\n\n⚛ Superposição\n🔗 Entrelaçamento\n🚀 Tunelamento\n\nSecure Compute + QKD BB84' },
-    { title: '15 Domínios Ativos', text: 'TI Integrations • Chemical • Civil • Engineering • Law • Medicine • Languages • Mathematics π\n\nCada elétron girando = um domínio processando' }
-  ];
-  cerebroCards.forEach((card, i) => {
-    if(infos[i]){
-      card.onclick = () => {
-        document.getElementById('modal-title').innerText = infos[i].title;
-        document.getElementById('modal-text').innerText = infos[i].text;
-        document.getElementById('modal').style.display = 'flex';
-      };
-    }
-  });
+ const infos = [
+  { title: '2) CAPCUT - Integração em Destaque', text: 'Automação de vídeos via API.\n\n✅ Corte inteligente\n✅ Legendas automáticas\n✅ Templates virais\n✅ Postagem diária 06:00 BRT' },
+  { title: 'Architecture • Urbanism • Design', text: 'Domínios principais:\n\n🏛 Bartlett UCL - London\n🏙 NUS - Singapore\n🏗 Manchester - UK\n🎨 Polimi - Milan' },
+  { title: 'Technology • BaaS • SaaS • Quantum', text: 'Bank as a Service, SaaS, Física Quântica:\n\n⚛ Superposição\n🔗 Entrelaçamento\n🚀 Tunelamento\n\nSecure Compute + QKD BB84' },
+  { title: '15 Domínios Ativos', text: 'TI Integrations • Chemical • Civil • Engineering • Law • Medicine • Languages • Mathematics π\n\nCada elétron girando = um domínio processando' }
+ ];
+ cerebroCards.forEach((card, i) => {
+  if(infos[i]){
+   card.onclick = () => {
+    document.getElementById('modal-title').innerText = infos[i].title;
+    document.getElementById('modal-text').innerText = infos[i].text;
+    document.getElementById('modal').style.display = 'flex';
+   };
+  }
+ });
 });
 </script>
 </body>
