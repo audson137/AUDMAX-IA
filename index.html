@@ -1,9 +1,9 @@
-name: SONO AUDMAX V5.2
+name: SONO AUDMAX V5.3
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 9 * * *' # 06:00 Recife
+    - cron: '0 9 * * *'
 
 permissions:
   contents: write
@@ -15,7 +15,6 @@ concurrency:
 jobs:
   sono:
     runs-on: ubuntu-latest
-    if: ${{ github.actor != 'github-actions[bot]' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,24 +22,28 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Gerar conhecimento do sonho
+      - name: Gerar conhecimento
         run: |
           mkdir -p knowledge
           DATA=$(date +%Y-%m-%d)
-          echo "# Sonho $DATA QGIS+CapCut Produto 9" > "knowledge/sonho_${DATA}.md"
-          echo "{\"qgis\":0.68,\"capcut\":0.53,\"last\":\"$(date -I)\"}" > sinapses.json
-          ls -lh knowledge/ sinapses.json
+          HORA=$(date +%H:%M)
+          echo "# Sonho $DATA $HORA - QGIS+CapCut" > "knowledge/sonho_${DATA}.md"
+          echo "- QGIS: evoluindo mapa" >> "knowledge/sonho_${DATA}.md"
+          echo "- CapCut: Produto 9" >> "knowledge/sonho_${DATA}.md"
+          echo "{\"qgis\":0.75,\"capcut\":0.61,\"last\":\"$(date -Iseconds)\"}" > sinapses.json
+          cat sinapses.json
 
-      - name: Commit seguro sem loop
+      - name: Commit universal main/master
         run: |
           git config user.name "AUDMAX SONO"
           git config user.email "sono@audmax.com"
+          BRANCH=$(git branch --show-current)
+          echo "Branch atual: $BRANCH"
           git add knowledge/ sinapses.json
           if git diff --staged --quiet; then
-            echo "Nada novo para commitar"
+            echo "Nada novo"
             exit 0
           fi
           git commit -m "🧠 SONO $(date +%Y-%m-%d) [skip ci]"
-          git pull --rebase origin master || true
-          git push origin HEAD:master
-          git push origin HEAD:cerebro --force || true
+          git push origin HEAD:$BRANCH
+          git push origin HEAD:cerebro --force
