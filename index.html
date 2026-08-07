@@ -1,37 +1,137 @@
-name: SONO AUDMAX V5.5 VIVO
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUDMAX IA QUANTUM v5.0 - CÉREBRO VIVO</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cyan:#2ab0ff;--bg:#05070f}
+body{background:radial-gradient(1200px at 50% -10%, rgba(42,176,255,0.25), transparent 60%), #05070f;color:#fff;font-family:'Segoe UI',system-ui;min-height:100vh;overflow-x:hidden}
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(5,7,15,0.85);border-bottom:1px solid rgba(42,176,255,0.2);padding:14px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+header h1{color:var(--cyan);letter-spacing:3px;font-size:18px;text-shadow:0 0 15px var(--cyan)}
+.badge{display:inline-flex;gap:6px;background:var(--cyan);color:#000;font-weight:800;font-size:10px;padding:5px 10px;border-radius:999px}
+.badge.ghost{background:rgba(42,176,255,0.12);color:var(--cyan);border:1px solid rgba(42,176,255,0.3)}
+.dot{width:8px;height:8px;border-radius:50%;background:#2aff8a;box-shadow:0 0 8px #2aff8a;display:inline-block;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.3}}
+.hero{position:relative;display:grid;place-items:center;padding:40px 20px 10px;text-align:center;overflow:hidden}
+#synapseCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.brain-wrap{position:relative;width:360px;height:360px;display:grid;place-items:center;z-index:2}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(42,176,255,0.2)}
+.r1{width:340px;height:340px;animation:rot 20s linear infinite}
+.r2{width:280px;height:280px;animation:rot 14s linear reverse infinite;border-color:rgba(42,176,255,0.4);border-style:dashed}
+.r3{width:210px;height:210px;animation:rot 9s linear infinite;border-color:rgba(42,176,255,0.6)}
+@keyframes rot{to{transform:rotate(360deg)}}
+.core{width:140px;height:140px;border-radius:38% 62% 60% 40% / 42% 48% 52% 58%;background:radial-gradient(100% at 30% 20%, #d0f6ff, #2ab0ff 45%, #071a33);box-shadow:0 0 70px var(--cyan), inset 0 0 30px #fff;display:grid;place-items:center;font-size:60px;animation:pulse 1.8s ease-in-out infinite;z-index:5}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+/* PROTONS / ELETRONS GIRANDO */
+.proton{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 30px var(--cyan);z-index:3}
+.p1{animation:orbit1 3s linear infinite}
+.p2{animation:orbit2 2.4s linear infinite}
+.p3{animation:orbit3 3.8s linear infinite}
+.p4{animation:orbit1 5.5s linear infinite reverse}
+.p5{width:8px;height:8px;background:#fff;animation:orbit2 4.2s linear infinite reverse}
+@keyframes orbit1{from{transform:rotate(0deg) translateX(165px) rotate(0deg)}to{transform:rotate(360deg) translateX(165px) rotate(-360deg)}}
+@keyframes orbit2{from{transform:rotate(90deg) translateX(135px) rotate(-90deg)}to{transform:rotate(450deg) translateX(135px) rotate(-450deg)}}
+@keyframes orbit3{from{transform:rotate(210deg) translateX(105px) rotate(-210deg)}to{transform:rotate(570deg) translateX(105px) rotate(-570deg)}}
+.nav{display:flex;gap:8px;overflow-x:auto;padding:16px 20px;justify-content:center;flex-wrap:wrap}
+.tab{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);cursor:pointer;font-size:11px;letter-spacing:1px}
+.tab.active{background:var(--cyan);color:#000;font-weight:800;box-shadow:0 0 18px var(--cyan)}
+.panel{display:none;max-width:1200px;margin:0 auto;padding:0 20px 50px}
+.panel.active{display:block}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:18px;margin-bottom:12px}
+.card.cyan{border-color:rgba(42,176,255,0.35);box-shadow:0 0 30px rgba(42,176,255,0.12) inset}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}.brain-wrap{width:300px;height:300px}.r1{width:290px;height:290px}}
+.mono{font-family:monospace}
+</style>
+</head>
+<body>
+<header>
+<div style="display:flex;align-items:center;gap:10px"><h1>AUDMAX IA QUANTUM v5.0 [VIVO]</h1><span class="badge ghost"><span class="dot"></span> OPERATIONAL</span></div>
+<div><span class="badge">ID: audmax0d-20</span> <span class="mono" style="font-size:10px;opacity:.5">BUILD v5.0 | NODES 16 | QKD BB84 | www.audmaxia.com</span></div>
+</header>
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 */2 * * *'
+<div class="hero">
+<canvas id="synapseCanvas"></canvas>
+<div class="brain-wrap">
+<div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+<div class="core">🧠</div>
+<div class="proton p1"></div><div class="proton p2"></div><div class="proton p3"></div><div class="proton p4"></div><div class="proton p5"></div>
+</div>
+<div style="z-index:2;margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+<span class="badge ghost">QUANTUM LAYER: ENABLED</span>
+<span class="badge ghost">BAAS | SAAS | INDUSTRIES | CHEMICAL</span>
+<span class="badge ghost" id="liveVals">QGIS 0.68 | CapCut 0.53</span>
+</div>
+</div>
 
-permissions:
-  contents: write
+<div class="nav mono">
+<div class="tab active" onclick="openTab('cerebro')">🧠 CÉREBRO</div>
+<div class="tab" onclick="openTab('colleges')">📚 COLLEGES 15</div>
+<div class="tab" onclick="openTab('integra')">🔗 INTEGRAÇÕES</div>
+<div class="tab" onclick="openTab('industries')">🏭 INDUSTRIES</div>
+<div class="tab" onclick="openTab('chemical')">🧪 CHEMICAL</div>
+<div class="tab" onclick="openTab('baas')">💰 BAAS/SAAS</div>
+<div class="tab" onclick="openTab('social')">🌐 SOCIAL</div>
+<div class="tab" onclick="openTab('quantum')">📈 QUANTICO</div>
+</div>
 
-jobs:
-  sono:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-      - name: Cerebro Evolutivo
-        run: |
-          mkdir -p knowledge
-          DATA=$(date +%Y-%m-%d_%H-%M)
-          QGIS=$(awk -v min=0.6 -v max=0.99 'BEGIN{srand(); print min+rand()*(max-min)}')
-          CAPCUT=$(awk -v min=0.5 -v max=0.95 'BEGIN{srand(); print min+rand()*(max-min)}')
-          echo "www.audmaxia.com" > CNAME
-          echo "# Sonho $DATA - Aprendendo QGIS CapCut Produto 9" > knowledge/sonho_${DATA}.md
-          echo "{\"qgis\":$QGIS,\"capcut\":$CAPCUT,\"last\":\"$(date -Iseconds)\",\"sonhos\":$(ls knowledge | wc -l)}" > sinapses.json
-          cat sinapses.json
-      - name: Push Vivo
-        run: |
-          git config user.name "AUDMAX SONO"
-          git config user.email "sono@audmax.com"
-          BRANCH=$(git branch --show-current)
-          git add knowledge/ sinapses.json CNAME
-          git diff --staged --quiet && exit 0
-          git commit -m "🧠 SONO VIVO $DATA [skip ci]"
-          git push origin HEAD:$BRANCH
+<div id="cerebro" class="panel active">
+<div class="grid2">
+<div class="card cyan"><h3>🧠 CÉREBRO EM MOVIMENTO</h3><p>Prótons girando + sinapses animadas + pulso ligado ao QGIS. Buscando sinapses.json...</p><p class="mono" id="sinapseInfo" style="margin-top:10px"></p></div>
+<div class="card"><h3>💤 SONHAR AGORA</h3><p>Clique para forçar evolução quântica</p><button onclick="window.open('https://github.com/audson137/audmaxia/actions','_blank')" style="margin-top:10px;padding:10px 18px;border-radius:999px;border:none;background:#2ab0ff;font-weight:800;cursor:pointer">GERAR SONHO</button></div>
+</div>
+</div>
+
+<div id="colleges" class="panel"><div class="grid2">
+<div class="card"><h3>UCL Bartlett</h3><p>Architecture & Urbanism</p></div>
+<div class="card"><h3>MIT</h3><p>Quantum ML | BaaS</p></div>
+<div class="card"><h3>TU Delft</h3><p>Architecture</p></div>
+<div class="card"><h3>ETH Zurich</h3><p>Quantum Physics</p></div>
+<div class="card"><h3>Harvard</h3><p>Medicine + Law</p></div>
+<div class="card"><h3>NUS Singapore</h3><p>Smart Cities</p></div>
+<div class="card"><h3>+ 9 mais: Manchester, Berkeley, Tsinghua, Polimi, PUC Chile, TUM, TU Berlin, Columbia, Tokyo</h3><p>15 universidades aprendendo 06:00 BRT</p></div>
+</div></div>
+
+<div id="integra" class="panel"><div class="card cyan"><h3>7 INTEGRAÇÕES ATIVAS</h3><p>1 Amazon (imagens) 2 CapCut (vídeo) 3 Pinterest 4 Instagram Reels 5 TikTok 6 Facebook Page 7 Catálogo Produtos 1-10 - Todas conectadas ao núcleo azul.</p></div></div>
+<div id="industries" class="panel"><div class="card"><h3>INDUSTRIES + BAAS/SAAS</h3><p>BaaS Backend as a Service | SaaS Software | Industries 4.0 | Chemical | Civil | TI Integrations - Stack: Quantum ML | GraphRAG | Secure Compute | Multi-Agent</p></div></div>
+<div id="chemical" class="panel"><div class="card cyan"><h3>CHEMICAL ENGINEERING - QUANTUM</h3><p>Aprendizado quântico químico, simulações moleculares, análise de materiais para arquitetura e indústria. Integrado ao GraphRAG.</p></div></div>
+<div id="baas" class="panel"><div class="card"><h3>BILLING v1.4</h3><p>Wise US + Nomad | LLC Wyoming + Mercury $500 | Apple 30% depois 15% dia 15 $10 min | Google 15% até $1M dia 15 $1 | Stripe 2.9%+0.30 | RevenueCat | Planos FREE 100 msgs, PRO R$19,90, QUANTUM R$49,90</p></div></div>
+<div id="social" class="panel"><div class="card"><h3>SOCIAL + QGIS GEO</h3><p>IBGE Densidade, Renda A/B/C, Idade, Sexo (70% mulheres saúde), Habitação, CNAE, Carência 1km clínicas. Ex: Bairro X 12.450 hab 68% mulheres 30-55 Classe B 0 clínicas 1,5km = OURO +35% Luce Jane 403m²</p></div></div>
+<div id="quantum" class="panel"><div class="card cyan"><h3>APRENDIZADO QUÂNTICO 24/7</h3><p class="mono">06:00 CRAWL 15 Univ + CapCut + QGIS<br>06:40 COMMIT GitHub<br>07:10 QGIS CRAWL IBGE/IPEA/DataSUS<br>07:20 ENCODE geojson/shp/kml<br>07:30 NOTIFY WhatsApp + Dashboard<br><br>QKD ENABLED BB84 - Quantum Secure</p></div></div>
+
+<script>
+// TABS
+function openTab(id){
+ document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ event.currentTarget.classList.add('active');
+}
+// SYNAPSES CANVAS
+const canvas=document.getElementById('synapseCanvas');
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight}
+resize();window.addEventListener('resize',resize);
+let pts=[];
+for(let i=0;i<80;i++) pts.push({x:Math.random()*window.innerWidth,y:Math.random()*400,vx:(Math.random()-0.5)*0.6,vy:(Math.random()-0.5)*0.6});
+function animate(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>canvas.width)p.vx*=-1;if(p.y<0||p.y>canvas.height)p.vy*=-1});
+ ctx.strokeStyle='rgba(42,176,255,0.12)';
+ pts.forEach((a,i)=>{pts.slice(i+1).forEach(b=>{let d=Math.hypot(a.x-b.x,a.y-b.y);if(d<120){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}})});
+ ctx.fillStyle='#2ab0ff';
+ pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,Math.PI*2);ctx.fill();ctx.shadowBlur=10;ctx.shadowColor='#2ab0ff'});
+ requestAnimationFrame(animate);
+}
+animate();
+// LIVE DATA
+fetch('sinapses.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+ document.getElementById('liveVals').innerText=`QGIS ${d.qgis.toFixed(2)} | CapCut ${d.capcut.toFixed(2)}`;
+ document.getElementById('sinapseInfo').innerText=`Ultimo sonho: ${d.last} | Sonhos: ${d.sonhos||0} | QGIS ${d.qgis} CapCut ${d.capcut}`;
+ document.querySelector('.core').style.animationDuration=(2.2-d.qgis*0.8)+'s';
+}).catch(()=>{document.getElementById('sinapseInfo').innerText='Aguardando sinapses.json - rode o workflow V5.5'});
+</script>
+</body>
+</html>
