@@ -1,23 +1,43 @@
 name: SONO AUDMAX V5.1
+
 on:
-  push:
-    branches: [master]
   workflow_dispatch:
   schedule:
     - cron: '0 9 * * *'
+
 permissions:
   contents: write
+
+concurrency:
+  group: sono-audmax
+  cancel-in-progress: false
+
 jobs:
   sono:
     runs-on: ubuntu-latest
+    if: github.actor!= 'github-actions[bot]'
     steps:
-      - uses: actions/checkout@v4
-      - run: mkdir -p knowledge
-      - run: echo "# Sonho $(date +%Y-%m-%d) QGIS+CapCut Produto 9" > knowledge/sonho_$(date +%Y-%m-%d).md
-      - run: echo '{"qgis":0.68,"capcut":0.53,"last":"'$(date -I)'"}' > sinapses.json
-      - run: |
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Gerar conhecimento do sonho
+        run: |
+          mkdir -p knowledge
+          DATA=$(date +%Y-%m-%d)
+          echo "# Sonho $DATA QGIS+CapCut Produto 9" > "knowledge/sonho_${DATA}.md"
+          echo "{\"qgis\":0.68,\"capcut\":0.53,\"last\":\"$(date -I)\"}" > sinapses.json
+          ls -lh knowledge/ sinapses.json
+
+      - name: Commit seguro sem loop
+        run: |
           git config user.name "AUDMAX SONO"
           git config user.email "sono@audmax.com"
           git add knowledge/ sinapses.json
-          git commit -m "🧠 SONO $(date)" || true
-          git push || true
+          if git diff --staged --quiet; then
+            echo "Nada novo para commitar"
+            exit 0
+          fi
+          git commit -m "🧠 SONO $(date +%Y-%m-%d) [skip ci]"
+          git push
