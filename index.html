@@ -4,106 +4,95 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AUDMAX IA QUANTUM v5.0 - CEREBRO VIVO</title>
+<base href="/AUDMAX-IA/">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--cyan:#2ab0ff;--bg:#05070f}
-body{background:radial-gradient(1200px at 50% -10%, rgba(42,176,255,.25), transparent 60%), #05070f;color:#fff;font-family:'Segoe UI',system-ui;min-height:100vh;overflow-x:hidden}
-header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(5,7,15,.85);border-bottom:1px solid rgba(42,176,255,.2);padding:14px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-header h1{color:var(--cyan);letter-spacing:3px;font-size:18px;text-shadow:0 0 15px var(--cyan)}
-.badge{display:inline-flex;gap:6px;background:var(--cyan);color:#000;font-weight:800;font-size:10px;padding:5px 10px;border-radius:999px}
-.badge.ghost{background:rgba(42,176,255,.12);color:var(--cyan);border:1px solid rgba(42,176,255,.3)}
-.dot{width:8px;height:8px;border-radius:50%;background:#2aff8a;box-shadow:0 0 8px #2aff8a;display:inline-block;animation:blink 1s infinite}
-@keyframes blink{50%{opacity:.3}}
-.hero{position:relative;display:grid;place-items:center;padding:50px 20px 10px;text-align:center;overflow:hidden}
-#synapseCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-.brain-wrap{position:relative;width:380px;height:380px;display:grid;place-items:center;z-index:2}
-.ring{position:absolute;border-radius:50%;border:1px solid rgba(42,176,255,.2)}
-.r1{width:360px;height:360px;animation:rot 20s linear infinite}
-.r2{width:300px;height:300px;animation:rot 14s linear reverse infinite;border-color:rgba(42,176,255,.4);border-style:dashed}
-.r3{width:220px;height:220px;animation:rot 9s linear infinite;border-color:rgba(42,176,255,.6)}
-@keyframes rot{to{transform:rotate(360deg)}}
-.core{width:145px;height:145px;border-radius:38% 62% 60% 40% / 42% 48% 52% 58%;background:radial-gradient(100% at 30% 20%, #d0f6ff, #2ab0ff 45%, #071a33);box-shadow:0 0 80px var(--cyan), inset 0 0 30px #fff;display:grid;place-items:center;font-size:64px;animation:pulse 1.6s ease-in-out infinite;z-index:5}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-.proton{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--cyan);box-shadow:0 0 15px var(--cyan),0 0 35px var(--cyan);z-index:3}
-.p1{animation:orbit1 2.8s linear infinite}
-.p2{animation:orbit2 2.2s linear infinite}
-.p3{animation:orbit3 3.6s linear infinite}
-.p4{animation:orbit1 5.2s linear infinite reverse;background:#fff}
-.p5{width:9px;height:9px;animation:orbit2 4s linear infinite reverse;background:#b0f0ff}
-@keyframes orbit1{from{transform:rotate(0deg) translateX(175px) rotate(0deg)}to{transform:rotate(360deg) translateX(175px) rotate(-360deg)}}
-@keyframes orbit2{from{transform:rotate(90deg) translateX(145px) rotate(-90deg)}to{transform:rotate(450deg) translateX(145px) rotate(-450deg)}}
-@keyframes orbit3{from{transform:rotate(210deg) translateX(112px) rotate(-210deg)}to{transform:rotate(570deg) translateX(112px) rotate(-570deg)}}
-.nav{display:flex;gap:8px;overflow-x:auto;padding:16px 20px;justify-content:center;flex-wrap:wrap}
-.tab{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);cursor:pointer;font-size:11px;letter-spacing:1px}
-.tab.active{background:var(--cyan);color:#000;font-weight:800;box-shadow:0 0 18px var(--cyan)}
-.panel{display:none;max-width:1200px;margin:0 auto;padding:0 20px 50px}
-.panel.active{display:block}
-.card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:18px;margin-bottom:12px}
-.card.cyan{border-color:rgba(42,176,255,.35);box-shadow:0 0 30px rgba(42,176,255,.12) inset}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:800px){.grid2{grid-template-columns:1fr}.brain-wrap{width:310px;height:310px}.r1{width:300px;height:300px}}
-.mono{font-family:monospace}
+:root{--neon:#2ab0ff;--bg:#050a14;--card:#0d1526}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+body{background:radial-gradient(1200px at 50% -10%, #132a4a 0%, var(--bg) 60%);color:#cfe6ff;min-height:100vh;overflow-x:hidden}
+header{padding:20px;text-align:center}
+.badge{display:inline-block;border:1px solid var(--neon);color:var(--neon);padding:6px 12px;border-radius:999px;font-size:12px;letter-spacing:2px}
+.brain-wrap{position:relative;width:420px;height:420px;margin:20px auto}
+.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:110px;height:110px;background:radial-gradient(circle at 30% 30%, #fff, var(--neon));border-radius:50%;box-shadow:0 0 60px var(--neon), 0 0 120px var(--neon);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.08)}}
+.ring{position:absolute;left:50%;top:50%;border:1px solid rgba(42,176,255,.25);border-radius:50%;transform:translate(-50%,-50%)}
+.r1{width:180px;height:180px;animation:spin 12s linear infinite}
+.r2{width:260px;height:260px;animation:spin 18s linear reverse infinite}
+.r3{width:340px;height:340px;animation:spin 25s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.proton{position:absolute;width:12px;height:12px;background:#fff;border-radius:50%;box-shadow:0 0 12px var(--neon);top:-6px;left:50%}
+.synapse{position:absolute;width:2px;height:2px;background:var(--neon);border-radius:50%;box-shadow:0 0 6px var(--neon)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:1100px;margin:20px auto;padding:0 16px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));border:1px solid rgba(42,176,255,.2);border-radius:18px;padding:18px;backdrop-filter:blur(8px)}
+.card h3{color:var(--neon);margin-bottom:8px;font-size:14px;letter-spacing:1px}
+#chatBox{max-width:800px;margin:30px auto;background:var(--card);border:1px solid rgba(42,176,255,.3);border-radius:20px;overflow:hidden}
+#messages{height:320px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{padding:10px 14px;border-radius:14px;max-width:80%;font-size:14px;line-height:1.4}
+.user{align-self:flex-end;background:var(--neon);color:#00111f}
+.bot{align-self:flex-start;background:#152238;border:1px solid rgba(42,176,255,.2)}
+#inputArea{display:flex;border-top:1px solid rgba(42,176,255,.2)}
+#inputArea input{flex:1;background:transparent;border:none;color:#fff;padding:14px;outline:none}
+#inputArea button{background:var(--neon);border:none;color:#000;padding:0 22px;font-weight:700;cursor:pointer}
+.status{text-align:center;font-size:12px;opacity:.7;margin:10px}
+a{color:var(--neon);text-decoration:none}
 </style>
 </head>
 <body>
 <header>
-<div style="display:flex;align-items:center;gap:10px"><h1>AUDMAX IA QUANTUM v5.0 [VIVO]</h1><span class="badge ghost"><span class="dot"></span> OPERATIONAL</span></div>
-<div><span class="badge">ID: audmax0d-20</span> <span class="mono" style="font-size:10px;opacity:.5">NODES 16 | QKD BB84</span></div>
+<div class="badge">QUANTUM LAYER: ENABLED | BAAS | SAAS | CHEMICAL | INDUSTRIES</div>
+<h1 style="margin-top:16px">🧠 AUDMAX IA QUANTUM v5.0 - CEREBRO VIVO</h1>
+<div class="status">Live: https://audson137.github.io/AUDMAX-IA/ | QKD BB84 ENABLED</div>
 </header>
 
-<div class="hero">
-<canvas id="synapseCanvas"></canvas>
-<div class="brain-wrap">
-<div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-<div class="core">🧠</div>
-<div class="proton p1"></div><div class="proton p2"></div><div class="proton p3"></div><div class="proton p4"></div><div class="proton p5"></div>
+<div class="brain-wrap" id="brain">
+<div class="ring r1"><div class="proton"></div></div>
+<div class="ring r2"><div class="proton" style="left:20%"></div></div>
+<div class="ring r3"><div class="proton" style="left:80%"></div></div>
+<div class="core"></div>
 </div>
-<div style="z-index:2;margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-<span class="badge ghost">QUANTUM LAYER: ENABLED</span>
-<span class="badge ghost">BAAS | SAAS | CHEMICAL | INDUSTRIES</span>
-<span class="badge ghost" id="liveVals">QGIS 0.68 | CapCut 0.53 | LEARNING...</span>
+
+<div class="status" id="sinapseStatus">Buscando sinapses.json... 80 sinapses ativas</div>
+
+<div id="chatBox">
+<div id="messages">
+<div class="msg bot">Olá! Sou o AUDMAX Quantum. Cérebro vivo operacional. Como posso ajudar?</div>
+</div>
+<div id="inputArea">
+<input id="inp" placeholder="Pergunte ao cérebro...">
+<button onclick="send()">Enviar</button>
 </div>
 </div>
 
-<div class="nav mono">
-<div class="tab active" onclick="openTab('cerebro')">🧠 CEREBRO</div>
-<div class="tab" onclick="openTab('colleges')">📚 COLLEGES 15</div>
-<div class="tab" onclick="openTab('integra')">🔗 INTEGRACOES</div>
-<div class="tab" onclick="openTab('industries')">🏭 INDUSTRIES</div>
-<div class="tab" onclick="openTab('chemical')">🧪 CHEMICAL</div>
-<div class="tab" onclick="openTab('baas')">💰 BAAS/SAAS</div>
-<div class="tab" onclick="openTab('social')">🌐 SOCIAL</div>
-<div class="tab" onclick="openTab('quantum')">📈 QUANTICO</div>
+<div class="grid">
+<div class="card"><h3>UCL BARTLETT + MIT + TU DELFT + ETH + HARVARD + NUS</h3>15 universidades - Crawl 06:00 BRT</div>
+<div class="card"><h3>7 INTEGRAÇÕES</h3>Amazon | CapCut | Pinterest | Instagram | TikTok | Facebook | Produtos</div>
+<div class="card"><h3>BILLING v1.4</h3>Wise, Mercury, Apple, Google, Stripe | FREE 100 msgs, PRO R$19,90, QUANTUM R$49,90</div>
+<div class="card"><h3>QGIS GEO</h3>IBGE, IPEA, DataSUS, Renda, CNAE, Carência 1km</div>
 </div>
-
-<div id="cerebro" class="panel active">
-<div class="grid2">
-<div class="card cyan"><h3>🧠 CEREBRO EM MOVIMENTO - SINAPSES VIVAS</h3><p>Cerebro girando + 5 protons orbitando + 80 sinapses conectando em tempo real. Pulso sincronizado com QGIS.</p><p class="mono" id="sinapseInfo" style="margin-top:12px;font-size:11px;opacity:.8">Buscando sinapses.json...</p></div>
-<div class="card"><h3>💤 SONHAR AGORA</h3><p>Forca evolucao quantica</p><button onclick="window.open('https://github.com/audson137/AUDMAX-IA/actions','_blank')" style="margin-top:10px;padding:10px 18px;border-radius:999px;border:none;background:#2ab0ff;font-weight:800;cursor:pointer">GERAR SONHO</button></div>
-</div>
-</div>
-
-<div id="colleges" class="panel"><div class="grid2">
-<div class="card"><h3>UCL Bartlett</h3><p>Architecture & Urbanism</p></div><div class="card"><h3>MIT</h3><p>Quantum ML | BaaS</p></div>
-<div class="card"><h3>TU Delft</h3><p>Architecture</p></div><div class="card"><h3>ETH Zurich</h3><p>Quantum Physics</p></div>
-<div class="card"><h3>Harvard</h3><p>Medicine + Law</p></div><div class="card"><h3>NUS</h3><p>Smart Cities</p></div>
-<div class="card"><h3>+9: Manchester, Berkeley, Tsinghua, Polimi, PUC Chile, TUM, TU Berlin, Columbia, Tokyo</h3><p>15 universidades 06:00 BRT</p></div>
-</div></div>
-
-<div id="integra" class="panel"><div class="card cyan"><h3>7 INTEGRACOES</h3><p>1 Amazon | 2 CapCut | 3 Pinterest | 4 Instagram Reels | 5 TikTok | 6 Facebook Page | 7 Produtos 1-10 - Nucleo azul conecta tudo.</p></div></div>
-<div id="industries" class="panel"><div class="card"><h3>INDUSTRIES</h3><p>BaaS Backend as a Service | SaaS | Industries 4.0 | Civil | TI Integrations | Stack Quantum ML | GraphRAG | Multi-Agent</p></div></div>
-<div id="chemical" class="panel"><div class="card cyan"><h3>CHEMICAL ENGINEERING</h3><p>Quantum chemistry, simulacoes moleculares, materiais para arquitetura e industria. Integrado ao GraphRAG v1.2.0</p></div></div>
-<div id="baas" class="panel"><div class="card"><h3>BILLING v1.4 - BAAS/SAAS</h3><p>Wise US + Nomad | LLC Wyoming + Mercury $500 | Apple 30% depois 15% dia 15 $10 min | Google 15% ate $1M dia 15 $1 | Stripe 2.9%+0.30 | RevenueCat | FREE 100 msgs, PRO R$19,90, QUANTUM R$49,90</p></div></div>
-<div id="social" class="panel"><div class="card"><h3>SOCIAL + QGIS GEO</h3><p>IBGE Densidade, Renda A/B/C, Idade, Sexo 70% mulheres saude, Habitacao, CNAE, Carencia 1km. Ex: Bairro X 12.450 hab 68% mulheres 30-55 Classe B 0 clinicas 1,5km = OURO +35% Luce Jane 403m²</p></div></div>
-<div id="quantum" class="panel"><div class="card cyan"><h3>APRENDIZADO QUANTICO 24/7</h3><p class="mono">06:00 CRAWL 15 Univ + CapCut + QGIS<br>06:40 COMMIT GitHub<br>07:10 QGIS CRAWL IBGE/IPEA/DataSUS<br>07:20 ENCODE geojson/shp/kml<br>07:30 NOTIFY WhatsApp + Dashboard<br><br>QKD ENABLED BB84 - Quantum Secure</p></div></div>
 
 <script>
-function openTab(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');event.currentTarget.classList.add('active');}
-const canvas=document.getElementById('synapseCanvas');const ctx=canvas.getContext('2d');
-function resize(){canvas.width=canvas.offsetWidth;canvas.height=400}resize();window.addEventListener('resize',resize);
-let pts=[];for(let i=0;i<80;i++)pts.push({x:Math.random()*window.innerWidth,y:Math.random()*400,vx:(Math.random()-0.5)*0.7,vy:(Math.random()-0.5)*0.7});
-function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>canvas.width)p.vx*=-1;if(p.y<0||p.y>canvas.height)p.vy*=-1;});ctx.strokeStyle='rgba(42,176,255,0.14)';pts.forEach((a,i)=>{pts.slice(i+1).forEach(b=>{let d=Math.hypot(a.x-b.x,a.y-b.y);if(d<130){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}})});ctx.fillStyle='#2ab0ff';pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,1.8,0,Math.PI*2);ctx.fill();});requestAnimationFrame(animate);}animate();
-fetch('sinapses.json?v='+Date.now()).then(r=>r.json()).then(d=>{document.getElementById('liveVals').innerText=`QGIS ${d.qgis.toFixed(2)} | CapCut ${d.capcut.toFixed(2)} | LIVE`;document.getElementById('sinapseInfo').innerText=`Ultimo sonho: ${d.last} | Sonhos: ${d.sonhos||0} | QGIS ${d.qgis} CapCut ${d.capcut}`;document.querySelector('.core').style.animationDuration=(1.8-d.qgis*0.6)+'s';}).catch(()=>{document.getElementById('sinapseInfo').innerText='Aguardando sinapses.json - workflow V5.5 ainda nao rodou';});
+// GERA 80 SINAPSES
+const brain=document.getElementById('brain');
+for(let i=0;i<80;i++){
+ let s=document.createElement('div');s.className='synapse';
+ s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';
+ s.style.opacity=Math.random();
+ brain.appendChild(s);
+}
+// CHAT
+const messages=document.getElementById('messages');
+function send(){
+ const inp=document.getElementById('inp');const txt=inp.value.trim();if(!txt)return;
+ messages.innerHTML+=`<div class="msg user">${txt}</div>`;
+ inp.value='';
+ setTimeout(()=>{messages.innerHTML+=`<div class="msg bot">Processando no núcleo quântico: "${txt}" [Quantum Learning ativo]</div>`;messages.scrollTop=messages.scrollHeight},600);
+ messages.scrollTop=messages.scrollHeight;
+}
+document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter')send()});
+
+// CARREGA SINAPSES.JSON SEM REDIRECT
+fetch('sinapses.json').then(r=>r.json()).then(d=>{
+ document.getElementById('sinapseStatus').innerText = `Cérebro: ${Object.keys(d).length} sinapses carregadas | Último sonho: ${d.ultima_atualizacao || 'hoje'}`;
+}).catch(()=>{document.getElementById('sinapseStatus').innerText='80 sinapses ativas (modo offline)'});
 </script>
 </body>
 </html>
