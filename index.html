@@ -1,49 +1,28 @@
-name: SONO AUDMAX V5.3
-
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 9 * * *'
-
-permissions:
-  contents: write
-
-concurrency:
-  group: sono-audmax
-  cancel-in-progress: false
-
-jobs:
-  sono:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-
-      - name: Gerar conhecimento
-        run: |
-          mkdir -p knowledge
-          DATA=$(date +%Y-%m-%d)
-          HORA=$(date +%H:%M)
-          echo "# Sonho $DATA $HORA - QGIS+CapCut" > "knowledge/sonho_${DATA}.md"
-          echo "- QGIS: evoluindo mapa" >> "knowledge/sonho_${DATA}.md"
-          echo "- CapCut: Produto 9" >> "knowledge/sonho_${DATA}.md"
-          echo "{\"qgis\":0.75,\"capcut\":0.61,\"last\":\"$(date -Iseconds)\"}" > sinapses.json
-          cat sinapses.json
-
-      - name: Commit universal main/master
-        run: |
-          git config user.name "AUDMAX SONO"
-          git config user.email "sono@audmax.com"
-          BRANCH=$(git branch --show-current)
-          echo "Branch atual: $BRANCH"
-          git add knowledge/ sinapses.json
-          if git diff --staged --quiet; then
-            echo "Nada novo"
-            exit 0
-          fi
-          git commit -m "🧠 SONO $(date +%Y-%m-%d) [skip ci]"
-          git push origin HEAD:$BRANCH
-          git push origin HEAD:cerebro --force
+<!DOCTYPE html>
+<html>
+<head>
+<title>AUDMAX IA QUANTUM - CÉREBRO</title>
+<meta charset="utf-8">
+<style>
+body{background:#000;color:#0f0;font-family:monospace;padding:20px}
+#cerebro{border:1px solid #0f0;padding:20px}
+</style>
+</head>
+<body>
+<div id="cerebro">
+<h1>🧠 AUDMAX CÉREBRO - ONLINE</h1>
+<p>Status: <span id="status">Carregando...</span></p>
+<p>QGIS: <span id="qgis">--</span> | CapCut: <span id="capcut">--</span></p>
+<p>Último sonho: <span id="last">--</span></p>
+<div id="sonhos"></div>
+</div>
+<script>
+fetch('sinapses.json').then(r=>r.json()).then(d=>{
+ document.getElementById('qgis').innerText=d.qgis
+ document.getElementById('capcut').innerText=d.capcut
+ document.getElementById('last').innerText=d.last
+ document.getElementById('status').innerText='ONLINE 🟢'
+})
+</script>
+</body>
+</html>
