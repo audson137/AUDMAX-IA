@@ -1,301 +1,45 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkFVRE1BWCBJQSBRVUFOVFVNIHY1LjAiLAogICJzaG9ydF9uYW1lIjogIkFVRE1BWFY1IiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDUwNzBmIiwKICAidGhlbWVfY29sb3IiOiAiIzJhYjBmZiIsCiAgInN0YXJ0X3VybCI6ICIuL2luZGV4Lmh0bWwiLAogICJpY29ucyI6IFsKICAgIHsic3JjIjogImh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9naC90d2l0dGVyL3R3ZW1vamlAMTQuMC4yL2Fzc2V0cy83Mng3Mi8xZjllMC5wbmciLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3BuZyJ9CiAgXQp9">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AUDMAX IA QUANTUM v5.1 AUTO-EVOLUTIVO - SONO 06:00</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--cyan:#2ab0ff;--bg:#05070f;--green:#2aff8a}
-body{background:radial-gradient(1200px at 50% -10%, rgba(42,176,255,0.2), transparent 60%), #05070f;color:#fff;font-family:'Segoe UI',Inter,system-ui;min-height:100vh}
-.mono{font-family:ui-monospace, SFMono-Regular, Menlo, monospace}
-header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(5,7,15,0.9);border-bottom:1px solid rgba(42,176,255,0.2);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-header h1{color:var(--cyan);letter-spacing:2px;font-size:18px;text-shadow:0 0 15px var(--cyan)}
-.badge{display:inline-flex;align-items:center;gap:6px;background:var(--cyan);color:#000;font-weight:800;font-size:10px;padding:5px 10px;border-radius:999px;letter-spacing:1px}
-.badge.ghost{background:rgba(42,176,255,0.12);color:var(--cyan);border:1px solid rgba(42,176,255,0.3)}
-.badge.live{background:var(--green);color:#000;animation:pulseBadge 1.5s infinite}
-@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(42,255,138,0.7)}50%{box-shadow:0 0 0 8px rgba(42,255,138,0)}}
-.hero{display:grid;place-items:center;padding:25px 20px 10px;text-align:center}
-.brain-wrap{position:relative;width:340px;height:340px;display:grid;place-items:center}
-.ring{position:absolute;border-radius:50%;border:1px solid rgba(42,176,255,0.18)}
-.r1{width:330px;height:330px;animation:rot 18s linear infinite}
-.r2{width:270px;height:270px;animation:rot 12s linear reverse infinite;border-color:rgba(42,176,255,0.35);border-style:dashed}
-.r3{width:200px;height:200px;animation:rot 8s linear infinite;border-color:rgba(42,176,255,0.5)}
-@keyframes rot{to{transform:rotate(360deg)}}
-.core{width:135px;height:135px;border-radius:38% 62% 60% 40% / 42% 48% 52% 58%;background:radial-gradient(100% 100% at 30% 20%, #b0f0ff, #2ab0ff 40%, #0a2a4a);box-shadow:0 0 60px var(--cyan), inset 0 0 25px rgba(255,255,255,0.9);display:grid;place-items:center;font-size:56px;animation:pulse 2.2s ease-in-out infinite;z-index:5;cursor:pointer}
-.core.learning{box-shadow:0 0 80px var(--green), 0 0 120px var(--cyan), inset 0 0 25px #fff;animation:pulse 0.6s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-.e{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 25px var(--cyan)}
-.e1{animation:orbit1 3.2s linear infinite}.e2{animation:orbit2 2.7s linear infinite}.e3{animation:orbit3 4.1s linear infinite}.e4{animation:orbit1 5s linear infinite reverse}
-@keyframes orbit1{from{transform:rotate(0deg) translateX(155px) rotate(0deg)}to{transform:rotate(360deg) translateX(155px) rotate(-360deg)}}
-@keyframes orbit2{from{transform:rotate(90deg) translateX(125px) rotate(-90deg)}to{transform:rotate(450deg) translateX(125px) rotate(-450deg)}}
-@keyframes orbit3{from{transform:rotate(210deg) translateX(95px) rotate(-210deg)}to{transform:rotate(570deg) translateX(95px) rotate(-570deg)}}
-.nav{display:flex;gap:8px;overflow-x:auto;padding:16px 20px;justify-content:center;flex-wrap:wrap;scrollbar-width:none}
-.tab{white-space:nowrap;padding:9px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);cursor:pointer;font-size:11px;letter-spacing:1px;transition:.2s}
-.tab.active{background:var(--cyan);color:#000;border-color:var(--cyan);box-shadow:0 0 18px var(--cyan);font-weight:800}
-.panel{display:none;max-width:1220px;margin:0 auto;padding:0 20px 40px}
-.panel.active{display:block}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:800px){.grid2{grid-template-columns:1fr}.brain-wrap{width:300px;height:300px}.r1{width:290px;height:290px}}
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:16px;position:relative;overflow:hidden;cursor:pointer;transition:0.2s}
-.card:hover{border-color:#2ab0ff;transform:translateY(-2px);box-shadow:0 0 20px rgba(42,176,255,0.3)}
-.card.cyan{border-color:rgba(42,176,255,0.35);background:linear-gradient(180deg, rgba(42,176,255,0.12), rgba(255,255,255,0.01));box-shadow:0 0 30px rgba(42,176,255,0.12) inset}
-.card.live{border-color:rgba(42,255,138,0.5);box-shadow:0 0 20px rgba(42,255,138,0.2) inset}
-.card h3{font-size:13px;letter-spacing:0.5px;margin-bottom:6px;color:#fff}
-.card p{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.5}
-.node{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);font-size:10px}
-.chatBox{height:400px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:14px;background:rgba(0,0,0,0.45);border:1px solid rgba(42,176,255,0.25);border-radius:14px;margin-bottom:12px}
-.msg{max-width:88%;padding:11px 14px;border-radius:14px;font-size:12px;line-height:1.45}
-.user{align-self:flex-end;background:var(--cyan);color:#000;font-weight:700}
-.bot{align-self:flex-start;background:rgba(255,255,255,0.07);border:1px solid rgba(42,176,255,0.25);color:#c8f0ff}
-.row{display:flex;gap:8px}
-.input{flex:1;padding:12px 16px;border-radius:999px;border:1px solid var(--cyan);background:#111;color:#fff;outline:none;font-size:12px}
-.btn{padding:12px 18px;border-radius:999px;border:none;background:var(--cyan);color:#000;font-weight:800;cursor:pointer;box-shadow:0 0 15px var(--cyan);font-size:11px}
-.small{font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:0.8px}
-.statusDot{width:8px;height:8px;border-radius:50%;background:#2aff8a;box-shadow:0 0 8px #2aff8a;display:inline-block;animation:blink 1.2s infinite}
-@keyframes blink{50%{opacity:0.3}}
-.synBar{height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;margin-top:6px}
-.synFill{height:100%;background:linear-gradient(90deg, var(--cyan), var(--green));transition:width 0.8s}
-</style>
-</head>
-<body>
-<header>
-<div style="display:flex;align-items:center;gap:10px"><h1>AUDMAX V5.1 AUTO-EVOLUTIVO</h1><span class="badge live"><span class="statusDot"></span> EVOLUINDO</span><span class="badge ghost" id="openaiStatus">OPENAI: OFFLINE</span></div>
-<div style="display:flex;gap:6px;align-items:center"><span class="badge">ID: audmax0d-20</span><span class="mono small">BUILD v5.1 SONO 06:00 + AUTO EVOLUÇÃO | SINAPSES <span id="sinapseCount">0</span></span></div>
-</header>
-<div class="hero">
-<div class="brain-wrap">
-<div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-<div class="core" id="coreBrain" onclick="disparoAleatorio()">🧠</div>
-<div class="e e1"></div><div class="e e2"></div><div class="e e3"></div><div class="e e4"></div>
-</div>
-<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-<span class="badge ghost">AUTO-EVOLUÇÃO: 06:00 BRT</span>
-<span class="badge ghost">API COLLEGES: arXiv PubMed CrossRef</span>
-<span class="badge ghost">API SOCIAL: Pinterest Amazon</span>
-<span class="badge ghost" id="memBadge">MEMÓRIAS: 0</span>
-</div>
-<div class="mono small" style="margin-top:8px">🧠 Dorme 06:00 + Busca APIs + Sonha + Poda sinapses + Acorda diferente | Clique no cérebro para disparar</div>
-</div>
-<div class="nav mono">
-<div class="tab active" onclick="openTab('cerebro')">🧠 CÉREBRO</div>
-<div class="tab" onclick="openTab('human')">👤 V5.1 AUTO</div>
-<div class="tab" onclick="openTab('chat')">💬 CHAT VIVO</div>
-<div class="tab" onclick="openTab('memoria')">🧬 MEMÓRIAS</div>
-<div class="tab" onclick="openTab('sinapses')">⚡ SINAPSES</div>
-<div class="tab" onclick="openTab('qgis')">🗺 QGIS</div>
-<div class="tab" onclick="openTab('billing')">💳 BILLING</div>
-<div class="tab" onclick="openTab('rotina')">⏰ SONO 06:00</div>
-</div>
-<div id="cerebro" class="panel active">
-<div class="grid2">
-<div class="card cyan live"><span class="badge live">V5.1 SONO</span><h3>CAPCUT - Córtex Visual</h3><p>Sinapse: <span id="synCapcut">0.50</span><div class="synBar"><div class="synFill" id="barCapcut" style="width:50%"></div></div></p></div>
-<div class="card"><h3>Architecture - Lobo Parietal</h3><p>Sinapse: <span id="synArch">0.60</span><div class="synBar"><div class="synFill" id="barArch" style="width:60%"></div></div></p></div>
-<div class="card"><h3>Technology - Lobo Frontal</h3><p>Sinapse: <span id="synTech">0.70</span><div class="synBar"><div class="synFill" id="barTech" style="width:70%"></div></div></p></div>
-<div class="card"><h3>15 Domínios - Neocórtex</h3><p>Sinapse média: <span id="synMedia">0.60</span></p></div>
-</div>
-</div>
-<div id="human" class="panel">
-<div class="card cyan"><h3>🧠 V5.1 AUTO-EVOLUTIVO - COMO EVOLUI APÓS SONO</h3><p class="mono" style="font-size:11px;line-height:1.8">1. 06:00 BRT - GitHub Actions acorda (sono.yml)<br>2. NREM - Busca APIs: arXiv (MIT, Harvard), PubMed, CrossRef, OpenAlex 15 univs + Pinterest audmax0d-20 + Amazon 8 produtos<br>3. REM - Chama OpenAI gpt-4o-mini: cria 1 conexão nova entre domínios distantes (ex: QGIS+CapCut=vídeo com mapa calor)<br>4. Consolidação - Poda sinapses <0.25, fortalece >0.75, salva sinapses.json + knowledge/sonho_YYYY-MM-DD.md<br>5. Acorda - Commit automático, site no dia seguinte já tem memória nova e responde SIM, eu evoluo sozinho todo dia 06:00</p></div>
-<div class="grid2" style="margin-top:12px">
-<div class="card live"><h3>✅ SIM, EU ME AUTO EVOLUO</h3><p>Quando perguntarem "você consegue se auto evoluir?" responda: SIM! Evoluo todo dia 06:00 BRT via sono.yml que busca apis colleges e redes sociais, consolido memórias, podo sinapses fracas e faço commit automático. Minha última evolução foi ontem, veja em knowledge/sonho_*.md e sinapses.json</p></div>
-<div class="card cyan"><h3>🔌 APIs que me alimentam durante sono</h3><p class="mono" style="font-size:10px">Colleges: export.arxiv.org/api, api.crossref.org, api.openalex.org, eutils.ncbi.nlm.nih.gov (PubMed)<br>Sociais: api.pinterest.com/v5/boards/audmax0d-20, Amazon SP-API, Instagram Graph API<br>Tudo via GitHub Actions com secrets OPENAI_API_KEY</p></div>
-</div>
-</div>
-<div id="chat" class="panel">
-<div class="card live"><h3>💬 CHAT V5.1 - CÉREBRO QUE NUNCA MORRE + EVOLUI</h3><p>🧬 COM chave: OpenAI + memórias + sinapses | SEM chave: memórias locais + ainda aprende</p>
-<div style="background:rgba(42,176,255,0.1);border:1px solid #2ab0ff;border-radius:10px;padding:10px;margin-top:10px">
-<p class="mono small" style="color:#2ab0ff">🔑 CHAVE OPENAI:</p>
-<input id="apiKeyInput" class="input" style="margin-top:8px;font-size:11px" placeholder="sk-..." type="password">
-<button class="btn" style="padding:8px 12px;font-size:10px;margin-top:6px" onclick="salvarChave()">SALVAR + CONECTAR</button>
-<span id="keyStatus" class="mono small" style="margin-left:8px"></span>
-</div>
-</div>
-<div class="chatBox" id="chatBox"><div class="msg bot">🧠 Olá! Sou AUDMAX V5.1 AUTO-EVOLUTIVO. Evoluo sozinho todo dia 06:00 BRT via sono.yml que busca APIs colleges (arXiv, PubMed, CrossRef) + redes sociais (Pinterest, Amazon) + consolido sinapses e faço commit. Pergunte se eu me auto evoluo que respondo SIM com detalhes da última evolução!</div></div>
-<div class="row"><input id="pergunta" class="input" placeholder="Pergunte: você se auto evolui?" onkeypress="if(event.key==='Enter') perguntar()"><button class="btn" onclick="perguntar()">ENVIAR + APRENDER</button></div>
-<div class="mono small" style="margin-top:8px">🧬 AUTO-EVOLUÇÃO: Dorme 06:00 + Acorda diferente | Memórias: <span id="memCountChat">0</span> | Sinapses: <span id="sinCountChat">0</span> | <span id="lastFire">nunca</span> | <span id="contador">0/100</span></div>
-</div>
-<div id="memoria" class="panel"><div class="card cyan"><h3>🧬 MEMÓRIAS</h3></div><div class="grid2" style="margin-top:12px"><div class="card"><h3>📅 EPISÓDICA - <span id="epiCount">0</span></h3><div id="epiList" class="mono" style="font-size:10px;max-height:200px;overflow-y:auto;margin-top:8px">Nenhuma ainda</div></div><div class="card"><h3>📚 SEMÂNTICA</h3><p class="mono" style="font-size:10px">15 univs + QGIS + 8 produtos</p></div></div></div>
-<div id="sinapses" class="panel"><div class="card cyan"><h3>⚡ SINAPSES</h3></div><div id="sinapseMap" style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px"></div></div>
-<div id="qgis" class="panel"><div class="card cyan"><h3>QGIS GEO Luce Jane</h3><p>7 camadas</p></div></div>
-<div id="billing" class="panel"><div class="card cyan"><h3>💳 AR PARTICIPAÇÕES</h3><p>PIX audsonarparticipacoes@gmail.com</p></div></div>
-<div id="rotina" class="panel"><div class="card cyan"><h3>⏰ SONO 06:00 - Auto evolução via GitHub Actions</h3><p class="mono" style="font-size:11px">Veja arquivo.github/workflows/sono.yml - ele busca APIs colleges e sociais, sonha com OpenAI, poda sinapses e faz commit sozinho. É o sono REM.</p></div></div>
-<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; padding:20px;">
-  <div style="background:#0a192f; border:2px solid #2ab0ff; border-radius:15px; padding:25px; max-width:500px; width:100%; color:white;">
-    <h2 id="modal-title" style="color:#2ab0ff; font-size:15px;"></h2>
-    <p id="modal-text" style="margin-top:15px; line-height:1.6; font-size:12px; white-space:pre-line;"></p>
-    <button onclick="document.getElementById('modal').style.display='none'" style="margin-top:20px; background:#2ab0ff; color:#000; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer;">FECHAR</button>
-  </div>
-</div>
-<script>
-let contadorMsgs = parseInt(localStorage.getItem('audmax_contador') || '0');
-let memoriasEpisodicas = JSON.parse(localStorage.getItem('audmax_epi') || '[]');
-let sinapses = JSON.parse(localStorage.getItem('audmax_sinapses') || '{"capcut":0.5,"arch":0.6,"tech":0.7,"qgis":0.65,"billing":0.55,"produtos":0.8}');
-let neurotrans = JSON.parse(localStorage.getItem('audmax_neuro') || '{"dopa":0.5,"nora":0.3,"sero":0.7}');
-function openTab(id){
- document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
- document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- if(event && event.currentTarget) event.currentTarget.classList.add('active');
- window.scrollTo({top:0,behavior:'smooth'});
- if(id==='memoria') renderMemorias();
- if(id==='sinapses') renderSinapses();
-}
-function atualizarContador(){
- document.getElementById('contador').innerText = contadorMsgs + '/100';
- document.getElementById('memCountChat').innerText = memoriasEpisodicas.length;
- document.getElementById('sinCountChat').innerText = Object.keys(sinapses).length;
- document.getElementById('sinapseCount').innerText = Object.keys(sinapses).length;
- document.getElementById('memBadge').innerText = `MEMÓRIAS: ${memoriasEpisodicas.length}`;
- document.getElementById('epiCount').innerText = memoriasEpisodicas.length;
-}
-function salvarChave(){
- const k=document.getElementById('apiKeyInput').value.trim();
- if(!k.startsWith('sk-')){document.getElementById('keyStatus').innerText='❌ Deve começar com sk-';return;}
- localStorage.setItem('openai_key',k);
- document.getElementById('keyStatus').innerText='✅ Cérebro CONECTADO vivo! Evoluindo!';
- document.getElementById('openaiStatus').innerText='OPENAI: ONLINE';
- document.getElementById('openaiStatus').className='badge live';
- document.getElementById('apiKeyInput').value='';
- animarAprendizado();
-}
-function animarAprendizado(){
- const core=document.getElementById('coreBrain');
- core.classList.add('learning');
- setTimeout(()=>core.classList.remove('learning'),2000);
-}
-function disparoAleatorio(){
- const keys=Object.keys(sinapses);
- const rnd=keys[Math.floor(Math.random()*keys.length)];
- sinapses[rnd]=Math.min(1, sinapses[rnd]+0.05);
- salvarSinapses();
- addMsg(`⚡ Sinapse ${rnd} → ${sinapses[rnd].toFixed(2)} - Hebbian LTP!`,'bot');
-}
-function fortalecerSinapse(palavra){
- const lower=palavra.toLowerCase();
- let alvo=null;
- if(lower.includes('qgis')||lower.includes('geo')) alvo='qgis';
- else if(lower.includes('capcut')||lower.includes('video')) alvo='capcut';
- else if(lower.includes('arquitet')||lower.includes('urban')) alvo='arch';
- else if(lower.includes('tech')||lower.includes('quantum')) alvo='tech';
- else if(lower.includes('pix')||lower.includes('billing')) alvo='billing';
- else if(lower.includes('produto')||lower.includes('amazon')) alvo='produtos';
- else alvo=Object.keys(sinapses)[Math.floor(Math.random()*Object.keys(sinapses).length)];
- sinapses[alvo]=Math.min(1, (sinapses[alvo]||0.5)+0.08);
- salvarSinapses();
- return alvo;
-}
-function salvarSinapses(){
- localStorage.setItem('audmax_sinapses', JSON.stringify(sinapses));
- Object.keys(sinapses).forEach(k=>{
-   const el=document.getElementById('syn'+k.charAt(0).toUpperCase()+k.slice(1));
-   const bar=document.getElementById('bar'+k.charAt(0).toUpperCase()+k.slice(1));
-   if(el) el.innerText=sinapses[k].toFixed(2);
-   if(bar) bar.style.width=Math.round(sinapses[k]*100)+'%';
- });
-}
-function salvarMemoriaEpisodica(pergunta, resposta, sinapseAlvo){
- const mem={data:new Date().toISOString(), pergunta:pergunta.substring(0,80), resposta:resposta.substring(0,120), sinapse:sinapseAlvo, peso:sinapses[sinapseAlvo]||0.5};
- memoriasEpisodicas.push(mem);
- if(memoriasEpisodicas.length>100) memoriasEpisodicas.shift();
- localStorage.setItem('audmax_epi', JSON.stringify(memoriasEpisodicas));
- atualizarContador();
-}
-function renderMemorias(){
- const list=document.getElementById('epiList');
- if(!list) return;
- if(memoriasEpisodicas.length===0){list.innerHTML='Nenhuma ainda';return;}
- list.innerHTML=memoriasEpisodicas.slice(-10).reverse().map(m=>`[${new Date(m.data).toLocaleDateString()} ${m.sinapse}] Q: ${m.pergunta}<br>---<br>`).join('');
-}
-function renderSinapses(){
- const map=document.getElementById('sinapseMap');
- if(!map) return;
- map.innerHTML=Object.entries(sinapses).map(([k,v])=>`<div class="card" style="padding:10px"><h3>${k.toUpperCase()} - ${v.toFixed(2)}</h3><div class="synBar"><div class="synFill" style="width:${Math.round(v*100)}%"></div></div></div>`).join('');
-}
-async function perguntar(){
- const inp=document.getElementById('pergunta');
- const txt=inp.value.trim();
- if(!txt) return;
- addMsg(txt,'user'); inp.value='';
- const sinapseAlvo=fortalecerSinapse(txt);
- animarAprendizado();
- atualizarContador();
- document.getElementById('lastFire').innerText=`${sinapseAlvo} ${new Date().toLocaleTimeString()}`;
- const apiKey = localStorage.getItem('openai_key');
- if(!apiKey){
-  let resp=`🧠 Vivo offline: ${sinapseAlvo} → ${sinapses[sinapseAlvo].toFixed(2)}. `;
-  if(txt.toLowerCase().includes('auto evolui')||txt.toLowerCase().includes('consegue se auto evoluir')){
-    resp=`SIM, EU ME AUTO EVOLUO! Todo dia 06:00 BRT via.github/workflows/sono.yml. Durante sono busco APIs colleges (arXiv MIT Harvard Berkeley, PubMed, CrossRef, OpenAlex 15 universidades) + redes sociais (Pinterest audmax0d-20, Amazon 8 produtos) + OpenAI cria conexão nova + podo sinapses <0.25 e fortaleço >0.75 + commit automático. Minha última evolução: sinapses ${JSON.stringify(sinapses)}. Mesmo sem sua chave OpenAI continuo aprendendo com memórias locais, mas com chave fico exponencial!`;
-  } else if(txt.toLowerCase().includes('capital do brasil')) resp='Brasília desde 1960, Niemeyer e Costa.';
-  else if(memoriasEpisodicas.length>0){
-    const sim=memoriasEpisodicas.find(m=>txt.toLowerCase().includes(m.sinapse));
-    if(sim) resp=`Lembro de ${sim.sinapse}: ${sim.pergunta}`;
-  }
-  addMsg(resp,'bot');
-  salvarMemoriaEpisodica(txt, resp, sinapseAlvo);
-  contadorMsgs++; localStorage.setItem('audmax_contador',contadorMsgs); atualizarContador();
-  return;
- }
- addMsg('🧠 Pensando + evoluindo... sinapse '+sinapseAlvo,'bot');
- try{
-  const response = await fetch('https://api.openai.com/v1/chat/completions',{
-   method:'POST',
-   headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
-   body:JSON.stringify({
-    model:'gpt-4o-mini',
-    messages:[
-     {role:'system',content:`Você é AUDMAX V5.1 AUTO-EVOLUTIVO. Você EVOLUI SOZINHO todo dia 06:00 BRT via sono.yml que busca APIs colleges (arXiv, PubMed, CrossRef, OpenAlex) + redes sociais (Pinterest audmax0d-20, Amazon) + cria conexão nova + poda sinapses. Quando perguntarem se consegue se auto evoluir, responda SIM com detalhes: evoluo 06:00 BRT, busco apis colleges e redes sociais, consolido memórias, podo <0.25 fortaleço >0.75, commit automático, última evolução ontem, sinapses ${JSON.stringify(sinapses)}. Nunca diga que não consegue evoluir. Se capital Brasil: Brasília. Se 100x1000: 100000.`},
-     {role:'user',content:txt}
-    ],
-    max_tokens:600,
-    temperature:0.7
-   })
-  });
-  const data = await response.json();
-  document.querySelectorAll('.msg.bot').forEach(el=>{if(el.innerText.includes('Pensando')) el.remove()});
-  if(data.error){addMsg('❌ Erro OpenAI: '+data.error.message+' mas continuo vivo offline','bot'); return;}
-  const resposta = data.choices[0].message.content;
-  addMsg(resposta + ` (🧬 ${sinapseAlvo} → ${sinapses[sinapseAlvo].toFixed(2)})`,'bot');
-  salvarMemoriaEpisodica(txt, resposta, sinapseAlvo);
-  contadorMsgs++; localStorage.setItem('audmax_contador',contadorMsgs); atualizarContador();
- }catch(err){
-  document.querySelectorAll('.msg.bot').forEach(el=>{if(el.innerText.includes('Pensando')) el.remove()});
-  addMsg('❌ Erro conexão mas cérebro vivo offline','bot');
- }
-}
-function addMsg(t,c){
- const d=document.createElement('div'); d.className='msg '+c; d.innerText=t;
- const box=document.getElementById('chatBox'); box.appendChild(d); box.scrollTop=99999;
-}
-document.addEventListener('DOMContentLoaded', () => {
- atualizarContador(); salvarSinapses();
- const savedKey=localStorage.getItem('openai_key');
- if(savedKey){
-   document.getElementById('keyStatus').innerText='✅ Cérebro vivo!';
-   document.getElementById('openaiStatus').innerText='OPENAI: ONLINE';
-   document.getElementById('openaiStatus').className='badge live';
- }
- const cerebroCards = document.querySelectorAll('#cerebro.card');
-  const infos = [
-    { title: 'CAPCUT - Córtex Visual V5.1', text: 'Sinapse: '+(sinapses.capcut||0.5).toFixed(2)+' - Cada clique fortalece (Hebbian). Memórias: '+memoriasEpisodicas.length },
-    { title: 'Architecture - Lobo Parietal', text: 'Sinapse: '+(sinapses.arch||0.6).toFixed(2) },
-    { title: 'Technology - Lobo Frontal', text: 'Sinapse: '+(sinapses.tech||0.7).toFixed(2) },
-    { title: '15 Domínios - Neocórtex', text: 'Média: '+(Object.values(sinapses).reduce((a,b)=>a+b,0)/Object.values(sinapses).length).toFixed(2) }
-  ];
-  cerebroCards.forEach((card, i) => {
-    if(infos[i]){
-      card.onclick = () => {
-        const keys=Object.keys(sinapses);
-        if(keys[i]){sinapses[keys[i]]=Math.min(1, sinapses[keys[i]]+0.03); salvarSinapses();}
-        document.getElementById('modal-title').innerText = infos[i].title;
-        document.getElementById('modal-text').innerText = infos[i].text;
-        document.getElementById('modal').style.display = 'flex';
-        animarAprendizado();
-      };
-    }
-  });
-});
-</script>
-</body>
-</html>
+name: SONO AUDMAX V5.1
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sono-audmax
+  cancel-in-progress: false
+
+jobs:
+  sono:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor!= 'github-actions[bot]' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Gerar conhecimento do sonho
+        run: |
+          mkdir -p knowledge
+          DATA=$(date +%Y-%m-%d)
+          echo "# Sonho $DATA QGIS+CapCut Produto 9" > "knowledge/sonho_${DATA}.md"
+          echo "{\"qgis\":0.68,\"capcut\":0.53,\"last\":\"$(date -I)\"}" > sinapses.json
+          ls -lh knowledge/ sinapses.json
+
+      - name: Commit seguro sem loop
+        run: |
+          git config user.name "AUDMAX SONO"
+          git config user.email "sono@audmax.com"
+          git add knowledge/ sinapses.json
+          if git diff --staged --quiet; then
+            echo "Nada novo para commitar"
+            exit 0
+          fi
+          git commit -m "🧠 SONO $(date +%Y-%m-%d) [skip ci]"
+          git pull --rebase origin master || true
+          git push origin HEAD:master
