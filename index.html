@@ -5,10 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AUDMAX IA QUANTUM v5.0 - CEREBRO VIVO</title>
 <base href="/AUDMAX-IA/">
+<script>
+// KILL REDIRECT - Se tentar ir pra fora, volta pro github.io
+if (window.location.hostname !== 'audson137.github.io' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+  if (window.location.hostname.includes('audmax')) {
+    window.location.replace('https://audson137.github.io/AUDMAX-IA/');
+  }
+}
+try{ localStorage.clear(); sessionStorage.clear(); }catch(e){}
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(r=>r.forEach(reg=>reg.unregister()));
+}
+</script>
 <style>
 :root{--neon:#2ab0ff;--bg:#050a14;--card:#0d1526}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
-body{background:radial-gradient(1200px at 50% -10%, #132a4a 0%, var(--bg) 60%);color:#cfe6ff;min-height:100vh;overflow-x:hidden}
+body{background:radial-gradient(1200px at 50% -10%, #132a4a 0%, var(--bg) 60%);color:#cfe6ff;min-height:100vh}
 header{padding:20px;text-align:center}
 .badge{display:inline-block;border:1px solid var(--neon);color:var(--neon);padding:6px 12px;border-radius:999px;font-size:12px;letter-spacing:2px}
 .brain-wrap{position:relative;width:420px;height:420px;margin:20px auto}
@@ -23,9 +35,9 @@ header{padding:20px;text-align:center}
 .synapse{position:absolute;width:2px;height:2px;background:var(--neon);border-radius:50%;box-shadow:0 0 6px var(--neon)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:1100px;margin:20px auto;padding:0 16px}
 .card{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));border:1px solid rgba(42,176,255,.2);border-radius:18px;padding:18px;backdrop-filter:blur(8px)}
-.card h3{color:var(--neon);margin-bottom:8px;font-size:14px;letter-spacing:1px}
+.card h3{color:var(--neon);margin-bottom:8px;font-size:14px}
 #chatBox{max-width:800px;margin:30px auto;background:var(--card);border:1px solid rgba(42,176,255,.3);border-radius:20px;overflow:hidden}
-#messages{height:320px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+#messages{height:360px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
 .msg{padding:10px 14px;border-radius:14px;max-width:80%;font-size:14px;line-height:1.4}
 .user{align-self:flex-end;background:var(--neon);color:#00111f}
 .bot{align-self:flex-start;background:#152238;border:1px solid rgba(42,176,255,.2)}
@@ -33,14 +45,13 @@ header{padding:20px;text-align:center}
 #inputArea input{flex:1;background:transparent;border:none;color:#fff;padding:14px;outline:none}
 #inputArea button{background:var(--neon);border:none;color:#000;padding:0 22px;font-weight:700;cursor:pointer}
 .status{text-align:center;font-size:12px;opacity:.7;margin:10px}
-a{color:var(--neon);text-decoration:none}
 </style>
 </head>
 <body>
 <header>
 <div class="badge">QUANTUM LAYER: ENABLED | BAAS | SAAS | CHEMICAL | INDUSTRIES</div>
 <h1 style="margin-top:16px">🧠 AUDMAX IA QUANTUM v5.0 - CEREBRO VIVO</h1>
-<div class="status">Live: https://audson137.github.io/AUDMAX-IA/ | QKD BB84 ENABLED</div>
+<div class="status">Live: https://audson137.github.io/AUDMAX-IA/ | QKD BB84 | 80 SINAPSES</div>
 </header>
 
 <div class="brain-wrap" id="brain">
@@ -50,11 +61,11 @@ a{color:var(--neon);text-decoration:none}
 <div class="core"></div>
 </div>
 
-<div class="status" id="sinapseStatus">Buscando sinapses.json... 80 sinapses ativas</div>
+<div class="status" id="sinapseStatus">80 sinapses ativas - modo offline</div>
 
 <div id="chatBox">
 <div id="messages">
-<div class="msg bot">Olá! Sou o AUDMAX Quantum. Cérebro vivo operacional. Como posso ajudar?</div>
+<div class="msg bot">Olá! Sou o AUDMAX Quantum v5.0. Cérebro vivo operacional. Sem redirecionamento externo. Como posso ajudar?</div>
 </div>
 <div id="inputArea">
 <input id="inp" placeholder="Pergunte ao cérebro...">
@@ -63,36 +74,21 @@ a{color:var(--neon);text-decoration:none}
 </div>
 
 <div class="grid">
-<div class="card"><h3>UCL BARTLETT + MIT + TU DELFT + ETH + HARVARD + NUS</h3>15 universidades - Crawl 06:00 BRT</div>
+<div class="card"><h3>15 COLLEGES - 06:00 BRT</h3>UCL, MIT, TU Delft, ETH, Harvard, NUS +9</div>
 <div class="card"><h3>7 INTEGRAÇÕES</h3>Amazon | CapCut | Pinterest | Instagram | TikTok | Facebook | Produtos</div>
-<div class="card"><h3>BILLING v1.4</h3>Wise, Mercury, Apple, Google, Stripe | FREE 100 msgs, PRO R$19,90, QUANTUM R$49,90</div>
-<div class="card"><h3>QGIS GEO</h3>IBGE, IPEA, DataSUS, Renda, CNAE, Carência 1km</div>
+<div class="card"><h3>BILLING v1.4</h3>Wise, Mercury, Apple 30%/15%, Google 15%, Stripe 2.9%+0.30</div>
+<div class="card"><h3>QGIS GEO + CHEMICAL</h3>IBGE, IPEA, DataSUS + Quantum Chemistry</div>
 </div>
 
 <script>
-// GERA 80 SINAPSES
+// 80 SINAPSES
 const brain=document.getElementById('brain');
-for(let i=0;i<80;i++){
- let s=document.createElement('div');s.className='synapse';
- s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';
- s.style.opacity=Math.random();
- brain.appendChild(s);
-}
+for(let i=0;i<80;i++){let s=document.createElement('div');s.className='synapse';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';brain.appendChild(s);}
 // CHAT
 const messages=document.getElementById('messages');
-function send(){
- const inp=document.getElementById('inp');const txt=inp.value.trim();if(!txt)return;
- messages.innerHTML+=`<div class="msg user">${txt}</div>`;
- inp.value='';
- setTimeout(()=>{messages.innerHTML+=`<div class="msg bot">Processando no núcleo quântico: "${txt}" [Quantum Learning ativo]</div>`;messages.scrollTop=messages.scrollHeight},600);
- messages.scrollTop=messages.scrollHeight;
-}
+function send(){const inp=document.getElementById('inp');const txt=inp.value.trim();if(!txt)return;messages.innerHTML+=`<div class="msg user">${txt}</div>`;inp.value='';messages.scrollTop=messages.scrollHeight;setTimeout(()=>{messages.innerHTML+=`<div class="msg bot">🧠 Núcleo quântico processando: "${txt}" [Learning 24/7 ativo]</div>`;messages.scrollTop=messages.scrollHeight},700);}
 document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter')send()});
-
-// CARREGA SINAPSES.JSON SEM REDIRECT
-fetch('sinapses.json').then(r=>r.json()).then(d=>{
- document.getElementById('sinapseStatus').innerText = `Cérebro: ${Object.keys(d).length} sinapses carregadas | Último sonho: ${d.ultima_atualizacao || 'hoje'}`;
-}).catch(()=>{document.getElementById('sinapseStatus').innerText='80 sinapses ativas (modo offline)'});
+fetch('sinapses.json').then(r=>r.json()).then(d=>{document.getElementById('sinapseStatus').innerText=`Cérebro: ${Object.keys(d).length} sinapses | ${d.ultima_atualizacao||'hoje'}`}).catch(()=>{});
 </script>
 </body>
 </html>
