@@ -1,21 +1,15 @@
-# AUDMAX-IA
-[License](https://img.shields.io/badge/license-MIT-green)
-[Python](https://img.shields.io/badge/python-3.8+-blue)
+# 🧠 AUDMAX IA QUANTUM v5.0 - CEREBRO VIVO
 
-## Versão Inicial
+Live: https://audson137.github.io/AUDMAX-IA/
 
-Commit de início do projeto: 
-https://github.com/audson137/AUDMAX-IA/commit/cb8dba038d5df9ddd284129525efdd15ce80d717
+Quantum Layer Enabled | BaaS | SaaS | Chemical | Industries | QKD BB84
 
-## Sobre o projeto
-O AUDMAX-IA é um assistente de IA feito em Python. 
-Primeira versão do projeto, focada em estabelecer a base do código.
+## Features
+- Cérebro vivo com 80 sinapses
+- 15 Colleges crawl 06:00 BRT
+- 7 Integrações
+- Billing v1.4 - BAAS/SAAS
+- QGIS GEO + Chemical
 
-## Tecnologias
-- Python
-
-## 🚀 Como rodar
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/audson137/AUDMAX-IA.git
+## Como rodar
+git clone https://github.com/audson137/AUDMAX-IA.git
