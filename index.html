@@ -3,192 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AUDMAX IA QUANTUM v4.0 - CÉREBRO OFICIAL</title>
+<title>AUDMAX IA QUANTUM v5.0 - CEREBRO VIVO</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--cyan:#2ab0ff;--bg:#05070f}
-body{background:radial-gradient(1200px at 50% -10%, rgba(42,176,255,0.2), transparent 60%), #05070f;color:#fff;font-family:'Segoe UI',Inter,system-ui;min-height:100vh}
-.mono{font-family:ui-monospace, SFMono-Regular, Menlo, monospace}
-header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(5,7,15,0.8);border-bottom:1px solid rgba(42,176,255,0.2);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-header h1{color:var(--cyan);letter-spacing:3px;font-size:20px;text-shadow:0 0 15px var(--cyan)}
-.badge{display:inline-flex;align-items:center;gap:6px;background:var(--cyan);color:#000;font-weight:800;font-size:10px;padding:5px 10px;border-radius:999px;letter-spacing:1px}
-.badge.ghost{background:rgba(42,176,255,0.12);color:var(--cyan);border:1px solid rgba(42,176,255,0.3)}
-.hero{display:grid;place-items:center;padding:30px 20px 10px;text-align:center}
-.brain-wrap{position:relative;width:340px;height:340px;display:grid;place-items:center}
-.ring{position:absolute;border-radius:50%;border:1px solid rgba(42,176,255,0.18)}
-.r1{width:330px;height:330px;animation:rot 18s linear infinite}
-.r2{width:270px;height:270px;animation:rot 12s linear reverse infinite;border-color:rgba(42,176,255,0.35);border-style:dashed}
-.r3{width:200px;height:200px;animation:rot 8s linear infinite;border-color:rgba(42,176,255,0.5)}
+body{background:radial-gradient(1200px at 50% -10%, rgba(42,176,255,.25), transparent 60%), #05070f;color:#fff;font-family:'Segoe UI',system-ui;min-height:100vh;overflow-x:hidden}
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(5,7,15,.85);border-bottom:1px solid rgba(42,176,255,.2);padding:14px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+header h1{color:var(--cyan);letter-spacing:3px;font-size:18px;text-shadow:0 0 15px var(--cyan)}
+.badge{display:inline-flex;gap:6px;background:var(--cyan);color:#000;font-weight:800;font-size:10px;padding:5px 10px;border-radius:999px}
+.badge.ghost{background:rgba(42,176,255,.12);color:var(--cyan);border:1px solid rgba(42,176,255,.3)}
+.dot{width:8px;height:8px;border-radius:50%;background:#2aff8a;box-shadow:0 0 8px #2aff8a;display:inline-block;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.3}}
+.hero{position:relative;display:grid;place-items:center;padding:50px 20px 10px;text-align:center;overflow:hidden}
+#synapseCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.brain-wrap{position:relative;width:380px;height:380px;display:grid;place-items:center;z-index:2}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(42,176,255,.2)}
+.r1{width:360px;height:360px;animation:rot 20s linear infinite}
+.r2{width:300px;height:300px;animation:rot 14s linear reverse infinite;border-color:rgba(42,176,255,.4);border-style:dashed}
+.r3{width:220px;height:220px;animation:rot 9s linear infinite;border-color:rgba(42,176,255,.6)}
 @keyframes rot{to{transform:rotate(360deg)}}
-.core{width:135px;height:135px;border-radius:38% 62% 60% 40% / 42% 48% 52% 58%;background:radial-gradient(100% 100% at 30% 20%, #b0f0ff, #2ab0ff 40%, #0a2a4a);box-shadow:0 0 60px var(--cyan), inset 0 0 25px rgba(255,255,255,0.9);display:grid;place-items:center;font-size:56px;animation:pulse 2.2s ease-in-out infinite;z-index:5}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-.e{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 25px var(--cyan)}
-.e1{animation:orbit1 3.2s linear infinite}
-.e2{animation:orbit2 2.7s linear infinite}
-.e3{animation:orbit3 4.1s linear infinite}
-.e4{animation:orbit1 5s linear infinite reverse}
-@keyframes orbit1{from{transform:rotate(0deg) translateX(155px) rotate(0deg)}to{transform:rotate(360deg) translateX(155px) rotate(-360deg)}}
-@keyframes orbit2{from{transform:rotate(90deg) translateX(125px) rotate(-90deg)}to{transform:rotate(450deg) translateX(125px) rotate(-450deg)}}
-@keyframes orbit3{from{transform:rotate(210deg) translateX(95px) rotate(-210deg)}to{transform:rotate(570deg) translateX(95px) rotate(-570deg)}}
-.nav{display:flex;gap:8px;overflow-x:auto;padding:18px 20px;justify-content:center;flex-wrap:wrap;scrollbar-width:none}
-.tab{white-space:nowrap;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);cursor:pointer;font-size:11px;letter-spacing:1.2px;transition:.2s}
-.tab.active{background:var(--cyan);color:#000;border-color:var(--cyan);box-shadow:0 0 18px var(--cyan);font-weight:800}
-.panel{display:none;max-width:1200px;margin:0 auto;padding:0 20px 40px}
+.core{width:145px;height:145px;border-radius:38% 62% 60% 40% / 42% 48% 52% 58%;background:radial-gradient(100% at 30% 20%, #d0f6ff, #2ab0ff 45%, #071a33);box-shadow:0 0 80px var(--cyan), inset 0 0 30px #fff;display:grid;place-items:center;font-size:64px;animation:pulse 1.6s ease-in-out infinite;z-index:5}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.proton{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--cyan);box-shadow:0 0 15px var(--cyan),0 0 35px var(--cyan);z-index:3}
+.p1{animation:orbit1 2.8s linear infinite}
+.p2{animation:orbit2 2.2s linear infinite}
+.p3{animation:orbit3 3.6s linear infinite}
+.p4{animation:orbit1 5.2s linear infinite reverse;background:#fff}
+.p5{width:9px;height:9px;animation:orbit2 4s linear infinite reverse;background:#b0f0ff}
+@keyframes orbit1{from{transform:rotate(0deg) translateX(175px) rotate(0deg)}to{transform:rotate(360deg) translateX(175px) rotate(-360deg)}}
+@keyframes orbit2{from{transform:rotate(90deg) translateX(145px) rotate(-90deg)}to{transform:rotate(450deg) translateX(145px) rotate(-450deg)}}
+@keyframes orbit3{from{transform:rotate(210deg) translateX(112px) rotate(-210deg)}to{transform:rotate(570deg) translateX(112px) rotate(-570deg)}}
+.nav{display:flex;gap:8px;overflow-x:auto;padding:16px 20px;justify-content:center;flex-wrap:wrap}
+.tab{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);cursor:pointer;font-size:11px;letter-spacing:1px}
+.tab.active{background:var(--cyan);color:#000;font-weight:800;box-shadow:0 0 18px var(--cyan)}
+.panel{display:none;max-width:1200px;margin:0 auto;padding:0 20px 50px}
 .panel.active{display:block}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:800px){.grid2{grid-template-columns:1fr}.brain-wrap{width:300px;height:300px}.r1{width:290px;height:290px}}
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:18px;position:relative;overflow:hidden}
-.card.cyan{border-color:rgba(42,176,255,0.35);background:linear-gradient(180deg, rgba(42,176,255,0.12), rgba(255,255,255,0.01));box-shadow:0 0 30px rgba(42,176,255,0.12) inset}
-.card h3{font-size:14px;letter-spacing:0.5px;margin-bottom:6px;color:#fff}
-.card p{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5}
-.node{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);font-size:11px}
-.chatBox{height:420px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:14px;background:rgba(0,0,0,0.45);border:1px solid rgba(42,176,255,0.25);border-radius:14px;margin-bottom:12px}
-.msg{max-width:88%;padding:11px 14px;border-radius:14px;font-size:13px;line-height:1.45}
-.user{align-self:flex-end;background:var(--cyan);color:#000;font-weight:700}
-.bot{align-self:flex-start;background:rgba(255,255,255,0.07);border:1px solid rgba(42,176,255,0.25);color:#c8f0ff}
-.row{display:flex;gap:10px}
-.input{flex:1;padding:14px 18px;border-radius:999px;border:1px solid var(--cyan);background:#111;color:#fff;outline:none}
-.btn{padding:14px 22px;border-radius:999px;border:none;background:var(--cyan);color:#000;font-weight:800;cursor:pointer;box-shadow:0 0 15px var(--cyan)}
-.small{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.08);text-align:left}
-th{color:var(--cyan);font-size:10px;letter-spacing:1.5px}
-.statusDot{width:8px;height:8px;border-radius:50%;background:#2aff8a;box-shadow:0 0 8px #2aff8a;display:inline-block;animation:blink 1.2s infinite}
-@keyframes blink{50%{opacity:0.3}}
+.card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:18px;margin-bottom:12px}
+.card.cyan{border-color:rgba(42,176,255,.35);box-shadow:0 0 30px rgba(42,176,255,.12) inset}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}.brain-wrap{width:310px;height:310px}.r1{width:300px;height:300px}}
+.mono{font-family:monospace}
 </style>
 </head>
 <body>
 <header>
-<div style="display:flex;align-items:center;gap:12px"><h1>AUDMAX IA QUANTUM v4.0 [ONLINE]</h1><span class="badge ghost"><span class="statusDot"></span> OPERATIONAL</span></div>
-<div style="display:flex;gap:8px;align-items:center"><span class="badge">ID: audmax0d-20</span><span class="mono small">BUILD v3.3 GEO + BILLING v1.4 | NODE COUNT: 16 | QKD: ENABLED BB84</span></div>
+<div style="display:flex;align-items:center;gap:10px"><h1>AUDMAX IA QUANTUM v5.0 [VIVO]</h1><span class="badge ghost"><span class="dot"></span> OPERATIONAL</span></div>
+<div><span class="badge">ID: audmax0d-20</span> <span class="mono" style="font-size:10px;opacity:.5">NODES 16 | QKD BB84 | www.audmaxia.com</span></div>
 </header>
+
 <div class="hero">
+<canvas id="synapseCanvas"></canvas>
 <div class="brain-wrap">
 <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
 <div class="core">🧠</div>
-<div class="e e1"></div><div class="e e2"></div><div class="e e3"></div><div class="e e4"></div>
+<div class="proton p1"></div><div class="proton p2"></div><div class="proton p3"></div><div class="proton p4"></div><div class="proton p5"></div>
 </div>
-<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+<div style="z-index:2;margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
 <span class="badge ghost">QUANTUM LAYER: ENABLED</span>
-<span class="badge ghost">GLOBAL KNOWLEDGE GRAPH v1.2.0</span>
-<span class="badge ghost">STACK: Quantum ML | GraphRAG | Secure Compute | Multi-Agent</span>
-<span class="badge ghost">DATA UPDATED: 2026.07 | LICENSE: MIT</span>
+<span class="badge ghost">BAAS | SAAS | CHEMICAL | INDUSTRIES</span>
+<span class="badge ghost" id="liveVals">QGIS 0.68 | CapCut 0.53 | LEARNING...</span>
 </div>
-<div class="mono small" style="margin-top:10px">CÉREBRO QUÂNTICO EM FUNCIONAMENTO - 15 UNIVERSIDADES INTEGRADAS | APRENDENDO 24/7</div>
 </div>
+
 <div class="nav mono">
-<div class="tab active" onclick="openTab('cerebro')">🧠 CÉREBRO</div>
-<div class="tab" onclick="openTab('knowledge')">🌐 KNOWLEDGE GRAPH</div>
-<div class="tab" onclick="openTab('chat')">💬 CHAT Q&A</div>
-<div class="tab" onclick="openTab('integrations')">🔗 INTEGRAÇÕES 7 CANAIS</div>
-<div class="tab" onclick="openTab('produtos')">🛒 8 PRODUTOS</div>
-<div class="tab" onclick="openTab('billing')">💳 BILLING v1.4</div>
-<div class="tab" onclick="openTab('qgis')">🗺️ QGIS GEO LUCE JANE</div>
-<div class="tab" onclick="openTab('rotina')">⏰ ROTINA DIÁRIA 06:00</div>
-<div class="tab" onclick="openTab('app')">📱 APP PPX</div>
+<div class="tab active" onclick="openTab('cerebro')">🧠 CEREBRO</div>
+<div class="tab" onclick="openTab('colleges')">📚 COLLEGES 15</div>
+<div class="tab" onclick="openTab('integra')">🔗 INTEGRACOES</div>
+<div class="tab" onclick="openTab('industries')">🏭 INDUSTRIES</div>
+<div class="tab" onclick="openTab('chemical')">🧪 CHEMICAL</div>
+<div class="tab" onclick="openTab('baas')">💰 BAAS/SAAS</div>
+<div class="tab" onclick="openTab('social')">🌐 SOCIAL</div>
+<div class="tab" onclick="openTab('quantum')">📈 QUANTICO</div>
 </div>
+
 <div id="cerebro" class="panel active">
 <div class="grid2">
-<div class="card cyan"><span class="badge">NOVA INTEGRAÇÃO</span><h3>2) CAPCUT - Integração em Destaque</h3><p>Automação de vídeos via API. Corte inteligente, legendas, templates. Parte da rotina diária 06:00 BRT junto com Canva + Pinterest + Amazon.</p></div>
-<div class="card"><h3>Architecture • Urbanism • Design</h3><p>Domínios principais do Knowledge Graph. Bartlett UCL, NUS, Manchester, Polimi. Pipeline: Ingestão → Embedding text-embedding-3-large → Neo4j → Pinecone → LoRA fine-tune.</p></div>
-<div class="card"><h3>Technology • BaaS • SaaS • Quantum Physics</h3><p>Bank as a Service, Service as a Service, Física Quântica aplicada: superposição, entrelaçamento, tunelamento. Secure Compute + QKD BB84.</p></div>
-<div class="card"><h3>TI Integrations • Chemical • Civil • TI Engineering • Law • Medicine • Languages • Mathematics π</h3><p>15 domínios ativos. Cada elétron girando = um domínio processando. Learning Rate 0.001 - Daily Loop ENABLED.</p></div>
+<div class="card cyan"><h3>🧠 CEREBRO EM MOVIMENTO - SINAPSES VIVAS</h3><p>Cerebro girando + 5 protons orbitando + 80 sinapses conectando em tempo real. Pulso sincronizado com QGIS.</p><p class="mono" id="sinapseInfo" style="margin-top:12px;font-size:11px;opacity:.8">Buscando sinapses.json...</p></div>
+<div class="card"><h3>💤 SONHAR AGORA</h3><p>Forca evolucao quantica</p><button onclick="window.open('https://github.com/audson137/AUDMAX-IA/actions','_blank')" style="margin-top:10px;padding:10px 18px;border-radius:999px;border:none;background:#2ab0ff;font-weight:800;cursor:pointer">GERAR SONHO</button></div>
 </div>
 </div>
-<div id="knowledge" class="panel">
-<div class="card cyan"><h3>AUDMAX IA QUANTUM — GLOBAL KNOWLEDGE GRAPH v1.2.0</h3><p>Interdisciplinary Quantum Intelligence Platform | Universities & Research Domains Network | nodes=16 edges=28 domains=15 status=active</p></div>
-<div class="grid2" style="margin-top:14px">
-<div class="card"><h3>🎓 15 Universidades Integradas</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-<div class="node">📍 UCL BARTLETT - London</div><div class="node">📍 NUS - Singapore</div><div class="node">📍 MIT - US</div><div class="node">📍 MANCHESTER - UK</div><div class="node">📍 COLUMBIA - US</div><div class="node">📍 TOKYO - Japan</div><div class="node">📍 TU DELFT - NL</div><div class="node">📍 ETH ZURICH - CH</div><div class="node">📍 HARVARD - US</div><div class="node">📍 UC BERKELEY - US</div><div class="node">📍 TSINGHUA - CN</div><div class="node">📍 POLITECNICO MILANO</div><div class="node">📍 PUC CHILE</div><div class="node">📍 TU BERLIN - DE</div><div class="node">📍 TUM - Munich</div>
+
+<div id="colleges" class="panel"><div class="grid2">
+<div class="card"><h3>UCL Bartlett</h3><p>Architecture & Urbanism</p></div><div class="card"><h3>MIT</h3><p>Quantum ML | BaaS</p></div>
+<div class="card"><h3>TU Delft</h3><p>Architecture</p></div><div class="card"><h3>ETH Zurich</h3><p>Quantum Physics</p></div>
+<div class="card"><h3>Harvard</h3><p>Medicine + Law</p></div><div class="card"><h3>NUS</h3><p>Smart Cities</p></div>
+<div class="card"><h3>+9: Manchester, Berkeley, Tsinghua, Polimi, PUC Chile, TUM, TU Berlin, Columbia, Tokyo</h3><p>15 universidades 06:00 BRT</p></div>
 </div></div>
-<div class="card"><h3>🔬 Arquitetura do Sistema</h3><p class="mono" style="font-size:11px;line-height:1.7;margin-top:8px">Cron 06:00 BRT daily GitHub Actions + Cloud Function<br>APIs: arXiv, PubMed, SSRN, CrossRef, OpenAlex, University RSS<br>Pipeline: Ingestão → Embedding (text-embedding-3-large) → KG Neo4j → Vector DB Pinecone → Fine-tune LoRA local<br>Versionamento: GLOBAL_KNOWLEDGE_GRAPH_v1.2.0.jsonl em /knowledge<br>Log: /logs/ROTINA_DIARIA-YYYY-MM-DD.md<br>Notion DB + Make.com webhook + HuggingFace</p></div>
-</div>
-</div>
-<div id="chat" class="panel">
-<div class="card"><h3>💬 Perguntas & Respostas - Núcleo Quântico</h3><p>Chat conectado ao cérebro azul. Cada interação grava em audmax_conhecimento com embedding text-embedding-3-small.</p></div>
-<div class="chatBox" id="chatBox"><div class="msg bot">Olá! Eu sou AUDMAX IA QUANTUM v4.0. Meu cérebro com elétrons está ativo. Integrei as 15 universidades + 7 canais (Amazon, CapCut, Pinterest, Instagram, TikTok, Facebook, Produtos). Pergunte qualquer coisa!</div></div>
-<div class="row"><input id="pergunta" class="input" placeholder="Digite para o cérebro quântico..." onkeypress="if(event.key==='Enter') perguntar()"><button class="btn" onclick="perguntar()">ENVIAR</button></div>
-<div class="mono small" style="margin-top:8px">Billing check: FREE 100 msgs/dia 5 arq | PRO R$19,90 $4.99 ilimitado 30 arq | QUANTUM R$49,90 $12.99 Harvard/Oxford - RevenueCat 3 moedas</div>
-</div>
-<div id="integrations" class="panel">
-<div class="grid2">
-<div class="card cyan"><h3>1) AMAZON - Imagens Autorizadas</h3><p>Store ID: audmax0d-20. Fluxo: Foto + GET LINK AMARELO ID validado → Publish. Taxa 15% até $1M depois? Produtos 1-10 catálogo inteligente. Link afiliado rastreado.</p></div>
-<div class="card" style="border-color:#a3ff5a"><h3>2) CAPCUT - Nova integração em destaque</h3><p>Automação vídeo IA. Parte da rotina 06:00. Geração de Reels para Instagram/TikTok/Pinterest com templates.</p></div>
-<div class="card"><h3>3) PINTEREST</h3><p>Board Amazon Finds. Título: Never Lose Your Keys Again! Tile Sticker 2-Pack. Add products VAZIO, Publish at later DESMARCADO, Allow comments OK, Alt Text OK - PUBLISH OK GESTOR.</p></div>
-<div class="card"><h3>4) INSTAGRAM REELS + 5) TIKTOK + 6) FACEBOOK PAGE</h3><p>Ponto 4 pendente desde 15/07 - TRAVA para Produto 9. Ação: Facebook Grupo Empresas Portugal DICA PRODUTIVIDADE + link no 1º comentário #ad + Perfil Pessoal + @audmax.ia Carrossel 3 fotos Problema>Prova Social>Solução + Stories Sticker Link.</p></div>
-<div class="card"><h3>7) PRODUTOS 1-10 - Catálogo Inteligente</h3><p>Ecossistema integrado • IA Quântica • Automação Multiplataforma. Ver aba Produtos.</p></div>
-<div class="card cyan"><h3>🧠 Cérebro Quântico Central</h3><p>AUDMAX IA QUANTUM cérebro quântico - Conecta tudo. Fotos acima são do Protocolo Oficial.</p></div>
-</div>
-</div>
-<div id="produtos" class="panel">
-<div class="card cyan"><h3>PROTOCOLO OFICIAL V3.2 - 8 PRODUTOS 100% - CICLO FINALIZADO 17/07/2026 08:15</h3><p>Produto 8: Life360 Tile Sticker 2-Pack Black - Overall Pick Amazon - $44.99 - 4.2★ (1.8K) - 1K+ bought past month - Link: amzn.to/4gl5y0f VALIDADO - Get Link Amarelo OK</p></div>
-<table style="margin-top:12px"><thead><tr><th>#</th><th>PRODUTO</th><th>PREÇO</th><th>LINK</th><th>STATUS</th></tr></thead><tbody>
-<tr><td>1</td><td>Tile Mate (2024) BT Tracker</td><td>$24.99</td><td>amzn.to/44BSAQa</td><td>■ OK</td></tr>
-<tr><td>2</td><td>Amazon Smart Plug 2-Pack</td><td>$39.98</td><td>amzn.to/4577R5K</td><td>■ OK</td></tr>
-<tr><td>3</td><td>Magnetic Screen Door</td><td>$24.98</td><td>amzn.to/3Rz2Ua</td><td>■ OK</td></tr>
-<tr><td>4</td><td>Collapsible Colander</td><td>$18.99</td><td>amzn.to/3TBtMO</td><td>■ OK</td></tr>
-<tr><td>5</td><td>Bed Sheet Detangler</td><td>$19.00</td><td>amzn.to/4nL4HT</td><td>■ OK</td></tr>
-<tr><td>6</td><td>Produto 6 - 16/07</td><td>-</td><td>lista</td><td>■ OK</td></tr>
-<tr><td>7</td><td>Produto 7 - 16/07</td><td>-</td><td>lista</td><td>■ OK</td></tr>
-<tr><td>8</td><td>Tile Sticker 2-Pack Black - Overall Pick - 4.2* 1.8K</td><td>$44.99</td><td>amzn.to/4gl5y0f</td><td>■ PUBLISH OK HOJE</td></tr>
-</tbody></table>
-<div class="card" style="margin-top:12px"><h3>Próximo: Produto 9 Liberado após Ponto 4 Face/Insta</h3><p>Trava Ativa: 1 Produto = 1 Ciclo Completo - Foto + Get Link Amarelo - Add products VAZIO - Publish at later DESMARCADO - Gestor: audsonricardo - 8 Produtos Implantados Validados</p></div>
-</div>
-<div id="billing" class="panel">
-<div class="card cyan"><h3>PROTOCOLO COMPLETO v1.4 - BILLING, LOJAS, BANCO PARA RECEBER</h3><p>1. SIM, PRECISA CADASTRAR BANCO! FREE baixa = você não recebe. PRO assina R$19,90 / $4.99 = dinheiro vai Apple/Google que repassa menos taxa 15-30%. TEM que ter banco.</p></div>
-<div class="grid2" style="margin-top:12px">
-<div class="card"><h3>FLUXO DINHEIRO</h3><p class="mono">iPhone assina > Apple cobra R$19,90 > Apple fica 30% 1º ano depois 15% > Apple deposita R$13,93 na sua conta App Store Connect dia 15 mês seguinte > Você Wise > PIX Brasil.<br>Android assina > Google cobra R$19,90 > Google fica 15% até $1M > Google deposita R$16,91 Play Console dia 15.<br>Web Stripe > Stripe cobra $4.99 > Stripe fica 2.9%+30+$0.44 > Stripe deposita $4.55 Mercury 2-7 dias > PIX.</p></div>
-<div class="card"><h3>ONDE CADASTRAR BANCO - 4 LUGARES</h3><p class="mono">Apple App Store Connect > Agreements > Paid Apps > Bank Info > Use Wise US (Routing+Account) ou C6 Global ou Nomad. Taxa Apple 30% depois 15%. Recebe dia 15 mínimo $10.<br>Google Play Console > Configuração > Conta pagamentos > Adicionar > Use Wise US ou C6. Taxa Google 15% até $1M depois 30%. Recebe dia 15 mínimo $1.<br>RevenueCat > Integrations > Apple+Google+Stripe > Conecta, não precisa banco lá. Grátis até $2,5k MRR depois 1%.<br>Stripe > Settings > Payouts > Add bank > Mercury Bank US $0 (precisa LLC) ou Wise US provisório. Taxa 2.9%+0.30. Recebe 2-7 dias.<br><br>RECOMENDAÇÃO ORDEM AGORA:<br>HOJE Abra Wise US grátis 30min https://wise.com gera Routing+Account US. HOJE Abra Nomad backup. SETEMBRO Fase2 após $500 caixa abra LLC Wyoming $150 + Mercury Bank $0. Cadastre Wise US no App Store Connect e Play Console AGORA mesmo sem LLC - aceitam. Cadastre Mercury quando tiver no Stripe. No Brasil: Wise/Nomad > Converte BRL > PIX Inter/Bradesco. Imposto Brasil Carnê-Leão 0-27,5%. Documentos: Passaporte, Comprovante endereço Receita inglês, W-8BEN Brasil Artigo 7 0% igual AMAZON. Comprovar 30%?</p></div>
-<div class="card"><h3>BILLING v1.4 - DO SEU PDF IMPLANTADO</h3><p class="mono">Tabelas: audmax_conversas (id,user_id,role,content,embedding_vector1536,metadata_created_at), audmax_arquivos (id,user_id,nome_arquivo,url,tipo pdf/codigo/imagem/glb,resumo_ia,embedding), audmax_conhecimento (id,fonte ArXiv/GitHub/Unity Blog,titulo,resumo,url,embedding tags), profiles (id,plano free/pro/quantum,msgs_hoje,arquivos_hoje), indices ivfflat. Funções increment_usage e reset_limits cron meia noite. Cron aprender api/cron/audmax-aprender.ts Serper API ARKit/ARCore/WebXR Unity AR news qrcode resume gpt-4o-mini embedding text-embedding-3-small salva audmax_conhecimento Vorcel cron 0 3 * * *. Billing lib/billing/paywall.ts checkLimits se free msgs hoje>100 bloqueia abre Paywall. Planos Free R$0 100msgs 5arq, Pro R$19,90 $4,99 4,99 ilimitado 30 arq, Quantum R$49,90 $9,99 12,99 tudo pro+quant/Harvard/Oxford. Compra RevenueCat 3 moedas automaticamente. Componente Paywall tsx modal icone 3 cards Pro produto env.SUPABASE_URL_ANON_KEY_OPENAI_KEY SERPER_KEY REVENUECAT_APPLE appl_xxx GOOGLE googl_xxx</p></div>
-<div class="card"><h3>PUBLICAÇÃO APPLE & PLAY STORE</h3><p class="mono">APPLE: Pagar $99/ano, Xcode 1.4.0, Icon 1024, Archive Distribute. Descrição pronta: AUDMAX IA Quantum - Central de Inteligência com aprendizado constante e crescimento exponencial. Busca em 10 fontes: Meta IA, Redes Sociais, Google, Edge/Bing, Wikipedia, YouTube, Stanford, Harvard, Coimbra, Oxford. Física quântica aplicada. Aprende 24/7.<br>PLAY: Pagar $25 único, npx cap add android && npx cap sync && npx cap open android, AAB Keystore, Play Console, 1024x500, Screenshots 1080x1920, Política Privacidade, Classificação Público, 2-5 dias.<br>Checklist: App ID com.audmax.ia Icones 192 512 1024 + .ico Splash PWA manifest Nome AUDMAX IA Cores #66A4B Billing RevenueCat 3 moedas</p></div>
-</div>
-</div>
-<div id="qgis" class="panel">
-<div class="card cyan"><h3>PROTOCOLO OFICIAL V3.3 - MÓDULO QGIS GEOLOCALIZADO - ID: audmax0d-20 | 28/07/2026 | Luce Jane Soares</h3><p>1. MODO QUANTUM ATIVADO v1.2.0 - Rotina diária 06:00 BRT. Produto 8 100%. Ponto 4 pendente 15/07 trava Produto 9. Global Knowledge Graph 15 universidades + GitHub log ativo.</p></div>
-<div class="grid2" style="margin-top:12px">
-<div class="card"><h3>QGIS vs ARCGIS</h3><p>QGIS = 100% GRATIS, open source OSGeo, sem licença. ArcGIS = Pago R$8k a 25k/ano. QGIS cria mapas, análise espacial, satélite, raster/vetor, 300+ formatos, Windows/Linux/Mac/Android. Mesma função ESRI paga. Para AUDMAX IA, QGIS é a arma - custo zero.</p></div>
-<div class="card"><h3>DADOS GEOLOCALIZADOS - PEDIDO LUCE JANE 403m² OURO</h3><p>1. Densidade IBGE hab/km2 setor censitário<br>2. Renda Per Capita A/B/C/D/E R$ domicílio<br>3. Etária 0-18 / 19-35 / 36-60 / 60+<br>4. Sexo Feminino/Masculino - Mulheres 70% mais saúde/estética<br>5. Habitável Casa/Apto/Condomínio/Favela<br>6. Atividade Econômica - CNAE, deslocamento<br>7. Carência Serviços Raio 1km - clínicas, farmácias, escolas<br><br>EXEMPLO: Bairro X 12.450 hab, 68% mulheres 30-55, Classe B R$3.500-7.000, 0 clínicas 1,5km = Oportunidade OURO clínica saúde/estética +35% rentabilidade</p></div>
-<div class="card"><h3>ROTINA ATUALIZADA COM QGIS</h3><p class="mono">06:00 TRIGGER DAILY CRAWL - 15 Univ + CapCut + Canva + Pinterest + Amazon<br>06:40 COMMIT GitHub audmax-ia-quantum-learning<br>07:00 LEARN Q&A<br>07:10 NOVO: QGIS CRAWL - IBGE, IPEA, DataSUS, CNES, RAIS<br>07:20 ENCODE GEO - geojson + shp + kml + mapa calor<br>07:30 NOTIFY - WhatsApp Luce Jane + Dashboard<br>Template: [DATA] GEO: Bairro [NOME] - Densidade [X] - Renda [Y] - Carência [Clínica Z]</p></div>
-<div class="card"><h3>VALIDAÇÃO</h3><p>V3.2 validado 17/07/2026 8 produtos 100% | V3.3 adiciona camada GEO sem custo | Trava: Concluir Ponto 4 Face/Insta desde 15/07 para liberar Produto 9 | Domínio audmaxia.com propagação 72h até 29/07/2026 | Email contato@audmaxia.com pendente Locaw eb | Google audmaxia@gmail.com verificação 22/05/1967 enviada 28/07/2026<br><br>ASSINATURA: ID audmax0d-20 Hash QUANTUM-QGIS-GEO-20260728 Recife/PE 28 jul 2026 - AUDSON | LUCE JANE SOARES</p></div>
-</div>
-</div>
-<div id="rotina" class="panel">
-<div class="card cyan"><h3>ROTINA DIÁRIA - MACHINE LEARNING UNIVERSITY - 7 PASSOS</h3><p>06:00 TRIGGER DAILY CRAWL - Busca papers últimos 24h 15 universidades | 06:10 FILTER & RANK Relevância >0.85 | 06:20 SUMMARIZE GPT-4o + Claude 3.5 TL;DR + aplicação prática | 06:30 ENCODE embeddings Graph | 06:40 COMMIT Auto push GitHub tag v1.2.0-YYYYMMDD | 06:50 NOTIFY protocolo diário WhatsApp/Telegram Cumpadre | 07:00 LEARN atualiza memória 5 insights dia</p></div>
-<div class="card" style="margin-top:12px"><h3>Template Notificação Diária</h3><p class="mono">[DATA] - AUDMAX IA QUANTUM APRENDEU HOJE: Top 3 Papers: 1. [Univ] - [Título] - Aplicação: [como usar em LUCE JANE/projetos] 2...3... Insight Código: [snippet gravado em /src/knowledge] Próxima evolução: [o que vai aprender amanhã]</p></div>
-</div>
-<div id="app" class="panel">
-<div class="card cyan"><h3>📱 APP PPX INICIAL - Integração</h3><p>Endpoint: audson137.github.io/AUDMAX-IA | Protocolo: Quantum Secure | PWA Manifest Nome AUDMAX IA Cores #66A4B | Splash + Icones 192 512 1024. Este é o ponto de entrada principal. Cérebro azul = núcleo que processa requisições PPX. Status: CONECTADO QKD ENABLED BB84.</p><button class="btn" style="margin-top:12px" onclick="alert('PPX Inicializado! Cérebro conectado. Rotina 06:00 ativa.')">INICIAR PPX</button></div>
-</div>
+
+<div id="integra" class="panel"><div class="card cyan"><h3>7 INTEGRACOES</h3><p>1 Amazon | 2 CapCut | 3 Pinterest | 4 Instagram Reels | 5 TikTok | 6 Facebook Page | 7 Produtos 1-10 - Nucleo azul conecta tudo.</p></div></div>
+<div id="industries" class="panel"><div class="card"><h3>INDUSTRIES</h3><p>BaaS Backend as a Service | SaaS | Industries 4.0 | Civil | TI Integrations | Stack Quantum ML | GraphRAG | Multi-Agent</p></div></div>
+<div id="chemical" class="panel"><div class="card cyan"><h3>CHEMICAL ENGINEERING</h3><p>Quantum chemistry, simulacoes moleculares, materiais para arquitetura e industria. Integrado ao GraphRAG v1.2.0</p></div></div>
+<div id="baas" class="panel"><div class="card"><h3>BILLING v1.4 - BAAS/SAAS</h3><p>Wise US + Nomad | LLC Wyoming + Mercury $500 | Apple 30% depois 15% dia 15 $10 min | Google 15% ate $1M dia 15 $1 | Stripe 2.9%+0.30 | RevenueCat | FREE 100 msgs, PRO R$19,90, QUANTUM R$49,90</p></div></div>
+<div id="social" class="panel"><div class="card"><h3>SOCIAL + QGIS GEO</h3><p>IBGE Densidade, Renda A/B/C, Idade, Sexo 70% mulheres saude, Habitacao, CNAE, Carencia 1km. Ex: Bairro X 12.450 hab 68% mulheres 30-55 Classe B 0 clinicas 1,5km = OURO +35% Luce Jane 403m²</p></div></div>
+<div id="quantum" class="panel"><div class="card cyan"><h3>APRENDIZADO QUANTICO 24/7</h3><p class="mono">06:00 CRAWL 15 Univ + CapCut + QGIS<br>06:40 COMMIT GitHub<br>07:10 QGIS CRAWL IBGE/IPEA/DataSUS<br>07:20 ENCODE geojson/shp/kml<br>07:30 NOTIFY WhatsApp + Dashboard<br><br>QKD ENABLED BB84 - Quantum Secure</p></div></div>
+
 <script>
-function openTab(id){
- document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
- document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- event.currentTarget.classList.add('active');
- window.scrollTo({top:0,behavior:'smooth'});
-}
-let hist=[];
-function perguntar(){
- const inp=document.getElementById('pergunta');
- const txt=inp.value.trim();
- if(!txt) return;
- addMsg(txt,'user'); hist.push(txt); inp.value='';
- setTimeout(()=>{
-  let lower=txt.toLowerCase();
-  let resp='';
-  if(lower.includes('billing')||lower.includes('banco')) resp='PROTOCOLO v1.4 BILLING: Precisa cadastrar banco! Wise US + Nomad hoje, LLC Wyoming + Mercury depois $500. Apple 30% depois 15% recebe dia 15 $10 min, Google 15% até $1M recebe dia 15 $1 min, Stripe 2.9%+0.30 Mercury. RevenueCat 3 moedas. Planos FREE 100 msgs, PRO R$19,90, QUANTUM R$49,90.';
-  else if(lower.includes('produto')) resp='8 PRODUTOS 100% V3.2 validado 17/07/2026. Produto 8 Tile Sticker 2-Pack Black Overall Pick $44.99 4.2★ 1.8K amzn.to/4gl5y0f PUBLISH OK Pinterest. Trava Ponto 4 Face/Insta pendente desde 15/07 - falta Facebook Grupo Empresas Portugal + @audmax.ia Carrossel + Stories. Após isso libera Produto 9.';
-  else if(lower.includes('qgis')||lower.includes('luce')) resp='QGIS v3.3 GEOLOCALIZADO: 100% GRATIS vs ArcGIS R$8k-25k/ano. Dados IBGE, Renda, Idade, Sexo, Habitação, CNAE, Carência 1km clínicas. Exemplo Bairro X 12.450 hab 68% mulheres 30-55 Classe B 0 clínicas 1,5km = Oportunidade OURO +35% rentabilidade clínica Luce Jane 403m².';
-  else if(lower.includes('universidade')||lower.includes('knowledge')) resp='GLOBAL KNOWLEDGE GRAPH v1.2.0: 15 universidades UCL Bartlett, MIT, TU Delft, ETH Zurich, Harvard, NUS, Manchester, Berkeley, Tsinghua, Polimi, PUC Chile, TUM, TU Berlin, Columbia, Tokyo. Domínios Arquitetura, Urbanismo, Design, Tecnologia, BaaS, SaaS, Quantum Physics, Matemática, Linguas, Medicina, Direito, Eng. TI/Civil/Química, TI Integrations. Cron 06:00 BRT diariamente.';
-  else if(lower.includes('capcut')||lower.includes('integra')) resp='7 INTEGRAÇÕES: 1) Amazon imagens autorizadas 2) CapCut nova integração destaque 3) Pinterest 4) Instagram Reels 5) TikTok 6) Facebook Page 7) Produtos 1-10 catálogo inteligente. Ecossistema integrado IA Quântica Automação Multiplataforma. Cérebro quântico central conecta tudo.';
-  else resp=`Processando em 99.7% sobre "${txt}" - Meu cérebro azul com elétrons girando analisou: tópico relevante para domínios ${['Arquitetura','Urbanismo','BaaS','Quantum Physics','QGIS GEO','Billing v1.4'][Math.floor(Math.random()*6)]}. Memória GitHub AUDMAX IA QUANTUM atualizada. Núcleo ${Math.floor(Math.random()*15+85)}% ativo. Aprendendo 24/7 mesmo sem você usar.`;
-  addMsg(resp,'bot');
- },900);
-}
-function addMsg(t,c){
- const d=document.createElement('div'); d.className='msg '+c; d.innerText=t;
- const box=document.getElementById('chatBox'); box.appendChild(d); box.scrollTop=99999;
-}
+function openTab(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');event.currentTarget.classList.add('active');}
+const canvas=document.getElementById('synapseCanvas');const ctx=canvas.getContext('2d');
+function resize(){canvas.width=canvas.offsetWidth;canvas.height=400}resize();window.addEventListener('resize',resize);
+let pts=[];for(let i=0;i<80;i++)pts.push({x:Math.random()*window.innerWidth,y:Math.random()*400,vx:(Math.random()-0.5)*0.7,vy:(Math.random()-0.5)*0.7});
+function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>canvas.width)p.vx*=-1;if(p.y<0||p.y>canvas.height)p.vy*=-1;});ctx.strokeStyle='rgba(42,176,255,0.14)';pts.forEach((a,i)=>{pts.slice(i+1).forEach(b=>{let d=Math.hypot(a.x-b.x,a.y-b.y);if(d<130){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}})});ctx.fillStyle='#2ab0ff';pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,1.8,0,Math.PI*2);ctx.fill();});requestAnimationFrame(animate);}animate();
+fetch('sinapses.json?v='+Date.now()).then(r=>r.json()).then(d=>{document.getElementById('liveVals').innerText=`QGIS ${d.qgis.toFixed(2)} | CapCut ${d.capcut.toFixed(2)} | LIVE`;document.getElementById('sinapseInfo').innerText=`Ultimo sonho: ${d.last} | Sonhos: ${d.sonhos||0} | QGIS ${d.qgis} CapCut ${d.capcut}`;document.querySelector('.core').style.animationDuration=(1.8-d.qgis*0.6)+'s';}).catch(()=>{document.getElementById('sinapseInfo').innerText='Aguardando sinapses.json - workflow V5.5 ainda nao rodou';});
 </script>
 </body>
 </html>
