@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AUDMAX IA QUANTUM - CÉREBRO</title>
 <meta charset="utf-8">
+<title>AUDMAX IA QUANTUM</title>
 <style>
-body{background:#000;color:#0f0;font-family:monospace;padding:20px}
-#cerebro{border:1px solid #0f0;padding:20px}
+body{background:#000;color:#0f0;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh}
+.box{border:2px solid #0f0;padding:40px;text-align:center}
+h1{font-size:30px}
 </style>
 </head>
 <body>
-<div id="cerebro">
-<h1>🧠 AUDMAX CÉREBRO - ONLINE</h1>
-<p>Status: <span id="status">Carregando...</span></p>
-<p>QGIS: <span id="qgis">--</span> | CapCut: <span id="capcut">--</span></p>
-<p>Último sonho: <span id="last">--</span></p>
-<div id="sonhos"></div>
+<div class="box">
+<h1>🧠 AUDMAX CÉREBRO ONLINE</h1>
+<p id="qgis">Carregando QGIS...</p>
+<p id="last"></p>
+<p>www.audmaxia.com</p>
 </div>
 <script>
-fetch('sinapses.json').then(r=>r.json()).then(d=>{
- document.getElementById('qgis').innerText=d.qgis
- document.getElementById('capcut').innerText=d.capcut
- document.getElementById('last').innerText=d.last
- document.getElementById('status').innerText='ONLINE 🟢'
+fetch('sinapses.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+ document.getElementById('qgis').innerText='QGIS: '+d.qgis+' | CapCut: '+d.capcut
+ document.getElementById('last').innerText='Ultimo sonho: '+d.last
 })
 </script>
 </body>
