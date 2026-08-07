@@ -1,26 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
 <meta charset="utf-8">
-<title>AUDMAX IA QUANTUM</title>
+<title>AUDMAX IA QUANTUM - CEREBRO VIVO</title>
+<meta name="viewport" content="width=device-width">
 <style>
-body{background:#000;color:#0f0;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh}
-.box{border:2px solid #0f0;padding:40px;text-align:center}
-h1{font-size:30px}
+body{background:#050505;color:#00ff88;font-family:Consolas,monospace;margin:0;padding:20px}
+h1{border-bottom:1px solid #00ff88;padding-bottom:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{border:1px solid #00ff88;padding:15px;background:#111}
+.card:hover{background:#1a1a1a;cursor:pointer;box-shadow:0 0 10px #00ff88}
+button{background:#00ff88;color:#000;border:none;padding:10px 20px;font-weight:bold;cursor:pointer}
+button:hover{background:#fff}
+#sonhos div{padding:8px;border-bottom:1px dashed #333}
+#sonhos div:hover{background:#222;cursor:pointer}
 </style>
 </head>
 <body>
-<div class="box">
-<h1>🧠 AUDMAX CÉREBRO ONLINE</h1>
-<p id="qgis">Carregando QGIS...</p>
-<p id="last"></p>
-<p>www.audmaxia.com</p>
+<h1>🧠 AUDMAX CÉREBRO QUANTUM - ONLINE</h1>
+<p>Domínio: www.audmaxia.com | Status: <span id="status">🟢 VIVO</span></p>
+
+<div class="grid">
+<div class="card" onclick="sonhar()">
+<h2>💤 SONHAR AGORA</h2>
+<p>Clique para gerar novo conhecimento</p>
+<button>GERAR SONHO</button>
 </div>
+<div class="card">
+<h2>📊 SINAPSES</h2>
+<p>QGIS: <b id="qgis">--</b></p>
+<p>CapCut: <b id="capcut">--</b></p>
+<p>Último: <b id="last">--</b></p>
+</div>
+</div>
+
+<div class="card" style="margin-top:20px">
+<h2>📚 VISÃO DE APRENDIZADO</h2>
+<div id="sonhos">Carregando sonhos...</div>
+</div>
+
 <script>
+const USER='audson137'
+const REPO='audmaxia' // se seu repo tem outro nome, troca aqui
+
 fetch('sinapses.json?v='+Date.now()).then(r=>r.json()).then(d=>{
- document.getElementById('qgis').innerText='QGIS: '+d.qgis+' | CapCut: '+d.capcut
- document.getElementById('last').innerText='Ultimo sonho: '+d.last
+ document.getElementById('qgis').innerText=d.qgis
+ document.getElementById('capcut').innerText=d.capcut
+ document.getElementById('last').innerText=d.last
 })
+
+fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/knowledge`).then(r=>r.json()).then(list=>{
+ let html=''
+ list.reverse().slice(0,20).forEach(f=>{
+  html+=`<div onclick="window.open('knowledge/${f.name}','_blank')">🧠 ${f.name}</div>`
+ })
+ document.getElementById('sonhos').innerHTML=html
+}).catch(()=>{document.getElementById('sonhos').innerHTML='Nenhum sonho ainda, clica em SONHAR'})
+
+function sonhar(){
+ alert('Indo gerar sonho...')
+ fetch(`https://api.github.com/repos/${USER}/${REPO}/actions/workflows/sono.yml/dispatches`,{method:'POST',headers:{'Authorization':'token SEU_TOKEN'}}).catch(()=>{
+  window.open(`https://github.com/${USER}/${REPO}/actions/workflows/sono.yml`,'_blank')
+ })
+}
 </script>
 </body>
 </html>
