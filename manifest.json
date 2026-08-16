@@ -1,15 +1,31 @@
 {
-  "name": "AUDMAX IA QUANTUM",
-  "short_name": "AUDMAX IA",
-  "start_url": "/AUDMAX-IA/",
+  "name": "AUDMAX IA QUANTUM v9.1 DEPTH",
+  "short_name": "AUDMAX 4D",
+  "description": "Cérebro Hexagonal 4D - Frontal (assimila) + Pré-Frontal (analisa/aprende/responde) + Guarda + IDA/VOLTA 22 APIs",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a0a4a",
-  "theme_color": "#6d28d9",
+  "background_color": "#050a14",
+  "theme_color": "#22ff88",
+  "orientation": "any",
   "icons": [
     {
-      "src": "ICONE PARA PUBLICAÇÃO.jpg",
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "categories": [
+    "productivity",
+    "education",
+    "ai"
+  ],
+  "lang": "pt-BR"
 }
+
