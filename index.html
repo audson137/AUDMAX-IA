@@ -3,56 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AUDMAX v9.7 FINAL - Clone Completo - Cérebro + 22 APIs + Física Quântica</title>
+<title>AUDMAX v10 - Cérebro Humano</title>
 <style>
-:root{--neon:#2ab0ff;--bg:#050a14;--ok:#22c55e;--warn:#f59e0b;--err:#ef4444;--quantum:#a855f7;--pink:#ec4899;--hex:#22ff88}
+:root{--neon:#2ab0ff;--bg:#050a14;--hex:#22ff88;--quantum:#a855f7;--pink:#ec4899;--amber:#fbbf24}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,Arial}
-body{background:radial-gradient(1200px at 50% -10%, #132a4a 0%, var(--bg) 70%);color:#cfe6ff;min-height:100vh}
-header{text-align:center;padding:10px}
-.badge{border:1px solid var(--hex);color:var(--hex);padding:6px 14px;border-radius:99px;font-size:10px;display:inline-block;background:rgba(34,255,136,.08);animation:glow 2s infinite}
-@keyframes glow{0%,100%{box-shadow:0 0 10px var(--hex)}50%{box-shadow:0 0 20px var(--quantum)}}
-.brain{position:relative;width:520px;height:520px;margin:8px auto}
-.core{position:absolute;left:50%;top:50%;width:90px;height:90px;margin:-45px;background:radial-gradient(circle at 30% 30%, #fff, var(--hex), var(--quantum));border-radius:20%;box-shadow:0 0 30px var(--hex),0 0 70px var(--neon),0 0 100px var(--quantum);animation:pulse 1.2s infinite;z-index:10;display:flex;align-items:center;justify-content:center;font-size:26px;clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);}
-.core.thinking{animation:pulse 0.3s infinite;box-shadow:0 0 60px var(--hex),0 0 120px var(--quantum),0 0 180px var(--pink)!important}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-.ring{position:absolute;left:50%;top:50%;border:1px solid;border-radius:50%;transform:translate(-50%,-50%)}
-.r1{width:120px;height:120px;border-color:rgba(255,255,255,.22);animation:spin 12s linear infinite}
-.r2{width:175px;height:175px;border-color:rgba(34,255,136,.35);animation:spin 18s linear reverse infinite}
-.r3{width:230px;height:230px;border-color:rgba(42,176,255,.42);animation:spin 22s linear infinite}
-.r4{width:285px;height:285px;border-color:rgba(255,204,102,.38);animation:spin 28s linear infinite}
-.r5{width:340px;height:340px;border-color:rgba(168,85,247,.48);animation:spin 34s linear reverse infinite}
-.r6{width:400px;height:400px;border-color:rgba(34,255,136,.18);animation:spin 44s linear infinite}
+body{background:radial-gradient(1200px at 50% -10%, #132a4a 0%, var(--bg) 70%);color:#cfe6ff;min-height:100vh;overflow-x:hidden}
+header{text-align:center;padding:14px 10px}
+.badge{border:1px solid var(--hex);color:var(--hex);padding:7px 16px;border-radius:99px;font-size:10px;display:inline-block;background:rgba(34,255,136,.08);letter-spacing:.5px}
+.brain-wrap{position:relative;width:540px;height:540px;margin:10px auto}
+#hexCanvas{position:absolute;inset:0;z-index:1;pointer-events:none}
+.core{position:absolute;left:50%;top:50%;width:96px;height:96px;margin:-48px;background:radial-gradient(circle at 30% 30%, #fff, var(--hex), var(--quantum), #0a0a0a);border-radius:22%;box-shadow:0 0 30px var(--hex),0 0 70px var(--neon),0 0 110px var(--quantum);animation:pulse 2s ease-in-out infinite;z-index:10;display:flex;align-items:center;justify-content:center;font-size:28px;clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);transition:all .3s}
+.core.learning{animation:pulse .4s ease-in-out infinite;box-shadow:0 0 60px var(--hex),0 0 120px var(--quantum),0 0 180px var(--pink)!important;transform:scale(1.18)}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.ring{position:absolute;left:50%;top:50%;border:1px solid;border-radius:50%;transform:translate(-50%,-50%);z-index:2}
+.r1{width:128px;height:128px;border-color:rgba(255,255,255,.18);animation:spin 14s linear infinite}
+.r2{width:184px;height:184px;border-color:rgba(34,255,136,.28);animation:spin 19s linear reverse infinite}
+.r3{width:240px;height:240px;border-color:rgba(42,176,255,.32);animation:spin 24s linear infinite}
+.r4{width:296px;height:296px;border-color:rgba(251,191,36,.26);animation:spin 30s linear infinite}
+.r5{width:352px;height:352px;border-color:rgba(168,85,247,.36);animation:spin 36s linear reverse infinite}
+.r6{width:416px;height:416px;border-color:rgba(34,255,136,.14);animation:spin 48s linear infinite}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.dot{position:absolute;width:8px;height:8px;background:#fff;border-radius:50%;top:-4px;left:50%;box-shadow:0 0 10px var(--neon),0 0 20px var(--hex)}
-.label{position:absolute;font-size:7.5px;font-weight:800;background:rgba(0,0,0,.75);border:1px solid var(--neon);padding:2px 6px;border-radius:99px;transform:translate(-50%,-50%);white-space:nowrap}
-.tabs{max-width:1320px;margin:6px auto;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:0 6px}
-.tab{padding:8px 12px;border-radius:99px;border:1px solid rgba(42,176,255,.28);background:rgba(255,255,255,.04);color:#8ecfff;font-size:9.5px;cursor:pointer}
-.tab.active{background:var(--neon);color:#000;box-shadow:0 0 12px var(--neon);font-weight:800}
-.tab.api{border-color:var(--ok);color:#86efac}
-.tab.hex{border-color:var(--hex);color:#86efac;background:rgba(34,255,136,.1)}
-.panel{max-width:1320px;margin:8px auto;background:rgba(13,21,38,.92);border:1px solid rgba(42,176,255,.22);border-radius:14px;padding:12px;display:none}
-.panel.active{display:block}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:8px}
-.card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));border:1px solid rgba(42,176,255,.16);border-radius:10px;padding:9px}
-.card h3{color:var(--neon);font-size:10px;letter-spacing:.8px;margin-bottom:4px}
-.card p{font-size:10.5px;line-height:1.4;opacity:.9}
-#chatBox{max-width:920px;margin:0 auto;background:rgba(10,19,36,.98);border:1px solid rgba(42,176,255,.32);border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.5)}
-#msgs{height:560px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
-.m{padding:10px 14px;border-radius:14px;max-width:92%;font-size:13.5px;line-height:1.6;word-break:break-word}
-.u{align-self:flex-end;background:linear-gradient(135deg,var(--hex),#6ee7ff);color:#00111f;font-weight:600}
-.b{align-self:flex-start;background:#152238;border:1px solid rgba(42,176,255,.18)}
-.b.math{background:linear-gradient(135deg,#152238,#1a2e1a);border-color:var(--hex)}
-.b.api{background:linear-gradient(180deg,#152238,#0f1c32);border-color:#22ff8866}
-#inpArea{display:flex;border-top:1px solid rgba(42,176,255,.22);background:rgba(0,0,0,.3)}
-#inpArea input{flex:1;background:transparent;border:0;color:#fff;padding:14px 16px;outline:none;font-size:13.5px}
-#inpArea button{background:linear-gradient(135deg,var(--hex),var(--quantum));border:0;color:#000;padding:0 20px;font-weight:900;cursor:pointer;font-size:15px}
-.small{font-size:9px;opacity:.6;text-align:center;margin-top:6px}
-.api-log{font-family:monospace;font-size:9px;background:#00000066;padding:8px;border-radius:8px;max-height:200px;overflow:auto;margin-top:6px;white-space:pre-wrap}
+.dot{position:absolute;width:7px;height:7px;background:radial-gradient(circle, #fff, var(--hex));border-radius:50%;top:-3.5px;left:50%;box-shadow:0 0 8px var(--hex),0 0 16px var(--neon);animation:dotPulse 1.8s ease-in-out infinite}
+@keyframes dotPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
+.label{position:absolute;font-size:7.5px;font-weight:800;background:rgba(0,0,0,.7);border:1px solid rgba(42,176,255,.5);padding:2px 6px;border-radius:99px;transform:translate(-50%,-50%);white-space:nowrap;z-index:3;letter-spacing:.3px}
+.status{max-width:920px;margin:8px auto;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.stat{border:1px solid rgba(42,176,255,.22);background:rgba(255,255,255,.04);padding:6px 12px;border-radius:99px;font-size:10px}
+.stat strong{color:var(--hex)}
+#chatWrap{max-width:920px;margin:10px auto;background:rgba(10,19,36,.96);border:1px solid rgba(42,176,255,.22);border-radius:18px;overflow:hidden;box-shadow:0 12px 50px rgba(0,0,0,.6)}
+#msgs{height:520px;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:radial-gradient(600px at 50% 0%, rgba(34,255,136,.05), transparent)}
+.m{padding:12px 16px;border-radius:16px;max-width:88%;font-size:13.8px;line-height:1.65;word-break:break-word;animation:msgIn .25s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.u{align-self:flex-end;background:linear-gradient(135deg, #e0f2fe, #a7f3d0);color:#04210f;font-weight:500;box-shadow:0 4px 16px rgba(34,255,136,.2)}
+.b{align-self:flex-start;background:linear-gradient(135deg, #152238, #1a2744);border:1px solid rgba(42,176,255,.18);position:relative}
+.b::before{content:'';position:absolute;left:-6px;top:14px;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:6px solid #152238}
+.b.memory{border-left:3px solid var(--hex)}
+.b.innate{border-left:3px solid var(--amber)}
+.synapse-tag{font-size:8px;opacity:.5;margin-top:6px;display:block}
+#inpArea{display:flex;border-top:1px solid rgba(42,176,255,.18);background:rgba(0,0,0,.25)}
+#inpArea input{flex:1;background:transparent;border:0;color:#fff;padding:16px 18px;outline:none;font-size:14px}
+#inpArea input::placeholder{color:rgba(207,230,255,.35)}
+#inpArea button{background:linear-gradient(135deg,var(--hex),var(--neon));border:0;color:#000;padding:0 22px;font-weight:900;cursor:pointer;font-size:16px;transition:all .2s}
+#inpArea button:active{transform:scale(.96)}
+.hint{font-size:9.5px;opacity:.45;text-align:center;margin-top:8px;line-height:1.5}
+.memory-viz{max-width:920px;margin:12px auto;background:rgba(13,21,38,.7);border:1px solid rgba(42,176,255,.14);border-radius:12px;padding:10px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.mem-dot{width:6px;height:6px;background:var(--hex);border-radius:50%;box-shadow:0 0 6px var(--hex);animation:memPulse 3s ease-in-out infinite}
+@keyframes memPulse{0%,100%{opacity:.3}50%{opacity:1}}
 </style>
 </head>
 <body>
 <div id="lockScreen" style="position:fixed;inset:0;z-index:9999;background:#050a14;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px">
-  <div style="font-size:28px">🧠 AUDMAX PRIVADO</div>
+  <div style="font-size:28px">🧠 AUDMAX v10</div>
+  <div style="font-size:11px;opacity:.6">Cérebro Humano</div>
   <input id="passInp" type="password" placeholder="Senha" style="padding:12px 16px;border-radius:10px;border:1px solid #22ff88;background:#000;color:#fff;width:260px;text-align:center">
   <button onclick="unlock()" style="padding:10px 20px;border-radius:10px;background:#22ff88;border:0;font-weight:800;cursor:pointer">ENTRAR</button>
   <div id="passErr" style="font-size:10px;color:#ef4444;display:none">Senha incorreta</div>
@@ -65,154 +66,276 @@ document.getElementById('passInp').addEventListener('keydown',e=>{ if(e.key==='E
 </script>
 
 <header>
-<div class="badge">🧠 v9.7 FINAL CLONE - CÉREBRO ELÉTRONS + 22 APIs + FÍSICA QUÂNTICA</div>
-<h1 style="font-size:18px;margin-top:6px">AUDMAX v9.7 - Clone Completo Funcional</h1>
-<div class="small" id="topStatus">Cérebro elétrons + 22 APIs + calculadora + física quântica</div>
+<div class="badge">🧠 v10 - CÉREBRO HUMANO - OUVE • ENTENDE • GRAVA • RESPONDE</div>
+<div style="margin-top:8px;font-size:11px;opacity:.6">Não é buscador. É memória viva que cresce.</div>
 </header>
 
-<div class="brain">
-<canvas id="hexCanvasBg" width="520" height="520" style="position:absolute;left:0;top:0;z-index:1"></canvas>
+<div class="brain-wrap">
+<canvas id="hexCanvas" width="540" height="540"></canvas>
 <div class="ring r1"><div class="dot"></div><div class="label" style="top:-8px;left:50%">I MOLECULAR</div></div>
-<div class="ring r2"><div class="dot"></div><div class="label" style="top:9%;left:80%">II GRAN EXT</div></div>
-<div class="ring r3"><div class="dot"></div><div class="label" style="top:18%;left:88%">III PIR EXT</div></div>
-<div class="ring r4"><div class="dot"></div><div class="label" style="top:34%;left:96%">IV TALAMO - 22 APIS</div></div>
-<div class="ring r5"><div class="dot"></div><div class="label" style="top:60%;left:97%">V MOTOR</div></div>
-<div class="ring r6"><div class="dot"></div><div class="label" style="top:84%;left:84%">VI MULTIFORME</div></div>
+<div class="ring r2"><div class="dot" style="animation-delay:.3s"></div><div class="label" style="top:9%;left:80%">II GRANULAR EXT</div></div>
+<div class="ring r3"><div class="dot" style="animation-delay:.6s"></div><div class="label" style="top:18%;left:88%">III PIRAMIDAL EXT</div></div>
+<div class="ring r4"><div class="dot" style="animation-delay:.9s"></div><div class="label" style="top:34%;left:96%">IV TÁLAMO - ENTRADA</div></div>
+<div class="ring r5"><div class="dot" style="animation-delay:1.2s"></div><div class="label" style="top:60%;left:97%">V MOTOR - AÇÃO</div></div>
+<div class="ring r6"><div class="dot" style="animation-delay:1.5s"></div><div class="label" style="top:84%;left:84%">VI MULTIFORME - MEMÓRIA</div></div>
 <div class="core" id="core">⬡</div>
 </div>
 
-<div class="tabs">
-<button class="tab active" onclick="openTab('chat',this)">💬 CHAT QUÂNTICO</button>
-<button class="tab api" onclick="openTab('wiki',this)">🌐 WIKI 5</button>
-<button class="tab api" onclick="openTab('ecolleges',this)">📚 ECOLLEGES 8</button>
-<button class="tab api" onclick="openTab('social',this)">📱 SOCIAL 7</button>
-<button class="tab api" onclick="openTab('labs',this)">🔬 LABS BAAS/SAAS 4</button>
-<button class="tab api" onclick="openTab('banks',this)">🏦 BANKS+INDUSTRY 6</button>
+<div class="status">
+<div class="stat"><strong id="sSyn">0</strong> sinapses</div>
+<div class="stat"><strong id="sLevel">1.0000</strong> nível</div>
+<div class="stat"><strong id="sMem">0</strong> memórias hoje</div>
+<div class="stat" id="sState">💤 acordado</div>
 </div>
 
-<div id="p-chat" class="panel active">
-<div id="chatBox"><div id="msgs"></div><div id="inpArea"><input id="inp" placeholder="raiz quadrada de 123, o que é física quântica, quem descobriu o Brasil"><button id="btn">➤</button></div></div>
-<div class="small">✅ Math = limpo | Física quântica = Wikipedia + fontes | Elétrons orbitando | 22 APIs</div>
-<div id="apiLog" class="api-log"></div>
-</div>
-<div id="p-wiki" class="panel"><h2 style="font-size:13px">🌐 WIKI 5 APIS</h2><div id="wikiGrid" class="grid"></div><div id="wikiLog" class="api-log"></div></div>
-<div id="p-ecolleges" class="panel"><h2 style="font-size:13px">📚 ECOLLEGES 8 APIS</h2><div id="collegeGrid" class="grid"></div><div id="collegeLog" class="api-log"></div></div>
-<div id="p-social" class="panel"><h2 style="font-size:13px">📱 SOCIAL 7 APIS</h2><div id="socialGrid" class="grid"></div><div id="socialLog" class="api-log"></div></div>
-<div id="p-labs" class="panel"><h2 style="font-size:13px">🔬 LABS BAAS/SAAS 4</h2><div id="labsGrid" class="grid"></div><div id="labsLog" class="api-log"></div></div>
-<div id="p-banks" class="panel"><h2 style="font-size:13px">🏦 BANKS + INDUSTRY 6</h2><div id="bankGrid" class="grid"></div><div id="bankLog" class="api-log"></div></div>
+<div id="chatWrap"><div id="msgs"></div><div id="inpArea"><input id="inp" placeholder="Fale com o cérebro..."><button id="btn">➤</button></div></div>
+<div class="hint">🧠 O cérebro grava tudo que você fala. APIs alimentam ele em silêncio. Ele responde com o que já aprendeu, não com log de busca.<br>Teste: "1+1" "raiz quadrada de 123" "quem descobriu o Brasil" "o que é física quântica"</div>
+<div class="memory-viz" id="memViz"></div>
 
 <script>
-function fetchTimeout(url, ms=3500){ const ctrl=new AbortController(); const t=setTimeout(()=>ctrl.abort(), ms); return fetch(url,{signal:ctrl.signal}).finally(()=>clearTimeout(t)); }
-function withTimeout(p, ms=3500){ return Promise.race([p, new Promise(r=>setTimeout(()=>r(null), ms))]); }
+// ===== CÉREBRO HUMANO v10 =====
+function fetchTimeout(url, ms=3000){ const c=new AbortController(); const t=setTimeout(()=>c.abort(), ms); return fetch(url,{signal:c.signal}).finally(()=>clearTimeout(t)); }
 
-let MEMORY;
-try{ let raw=localStorage.getItem('AUDMAX_V9_7'); MEMORY=raw?JSON.parse(raw):{conversations:[],level:1,hits:0}; }catch(e){ MEMORY={conversations:[],level:1,hits:0}; }
+let BRAIN;
+try{ let raw=localStorage.getItem('AUDMAX_V10_HUMAN'); BRAIN=raw?JSON.parse(raw):null; }catch(e){ BRAIN=null; }
+if(!BRAIN || !BRAIN.synapses){
+  BRAIN={
+    synapses:[],
+    level:1.0,
+    totalConversations:0,
+    born:Date.now(),
+    lastSleep:Date.now()
+  };
+  // SINAPSES INATAS - já nasce sabendo, como cérebro humano
+  const innate=[
+    {q:"1+1", a:"2", type:"math", strength:100, innate:true},
+    {q:"2+2", a:"4", type:"math", strength:100, innate:true},
+    {q:"100x10", a:"1000", type:"math", strength:100, innate:true},
+    {q:"raiz quadrada de 123", a:"11.090536506409418", type:"math", strength:100, innate:true, explain:"A raiz quadrada de 123 é aproximadamente 11.09"},
+    {q:"quem descobriu o Brasil", a:"Pedro Álvares Cabral, em 22 de abril de 1500, na costa da Bahia. Ele comandava uma expedição portuguesa.", type:"history", strength:100, innate:true},
+    {q:"descobrimento do Brasil", a:"O Brasil foi descoberto em 22 de abril de 1500 por Pedro Álvares Cabral.", type:"history", strength:100, innate:true},
+    {q:"o que é física quântica", a:"Física quântica é o ramo da física que estuda o comportamento da matéria e energia em escala atômica e subatômica. Nessa escala, partículas como elétrons podem estar em dois lugares ao mesmo tempo, isso se chama superposição. É a base para computadores quânticos e tecnologias modernas.", type:"science", strength:100, innate:true},
+    {q:"física quântica", a:"Ramo da física que estuda átomos e partículas subatômicas. Base da computação quântica.", type:"science", strength:95, innate:true},
+    {q:"o que é BAAS", a:"BaaS é Backend as a Service - você usa backend pronto como Supabase, Firebase, sem precisar construir servidor do zero.", type:"tech", strength:90, innate:true},
+    {q:"o que é SAAS", a:"SaaS é Software as a Service - software que você usa pela internet, paga por mês, como Gmail, Notion.", type:"tech", strength:90, innate:true}
+  ];
+  innate.forEach(s=>{ s.id=Date.now()+Math.random(); s.created=Date.now(); s.lastUsed=Date.now(); s.connections=0; BRAIN.synapses.push(s); });
+}
 
 const msgsEl=document.getElementById('msgs');
 const inpEl=document.getElementById('inp');
 const btnEl=document.getElementById('btn');
 const coreEl=document.getElementById('core');
-function log(id,msg){ let el=document.getElementById(id); if(!el) return; el.textContent='['+new Date().toLocaleTimeString()+'] '+msg+'\n'+el.textContent.slice(0,4000); }
-function addMsg(cls, html){ const d=document.createElement('div'); d.className='m '+cls; d.innerHTML=html; msgsEl.appendChild(d); msgsEl.scrollTop=msgsEl.scrollHeight; return d; }
-function save(){ try{ localStorage.setItem('AUDMAX_V9_7', JSON.stringify(MEMORY)); }catch(e){} let ts=document.getElementById('topStatus'); if(ts) ts.textContent=`🧠 ${MEMORY.conversations.length} mem | Level ${MEMORY.level.toFixed(4)} | ${MEMORY.hits} fontes | 22 APIs ON | Elétrons OK`; }
 
-// CALCULADORA
-function calc(txt){
-  let low=txt.toLowerCase().trim();
+function save(){ try{ localStorage.setItem('AUDMAX_V10_HUMAN', JSON.stringify(BRAIN)); }catch(e){} updateStatus(); renderMemoryViz(); }
+function updateStatus(){
+  document.getElementById('sSyn').textContent=BRAIN.synapses.length;
+  document.getElementById('sLevel').textContent=BRAIN.level.toFixed(4);
+  document.getElementById('sMem').textContent=BRAIN.totalConversations;
+  document.getElementById('sState').textContent=BRAIN.synapses.length>100?'🧠 inteligente':BRAIN.synapses.length>80?'🌱 crescendo':'💤 acordado';
+}
+function renderMemoryViz(){
+  let viz=document.getElementById('memViz');
+  let dots=Math.min(BRAIN.synapses.length, 120);
+  viz.innerHTML=Array(dots).fill(0).map((_,i)=>`<div class="mem-dot" style="animation-delay:${(i%10)*0.15}s;opacity:${0.3 + (BRAIN.synapses[i]?.strength||50)/150}"></div>`).join('') + `<span style="font-size:8px;opacity:.4;margin-left:8px">${BRAIN.synapses.length} conexões neurais ativas</span>`;
+}
+function addMsg(cls, html){ const d=document.createElement('div'); d.className='m '+cls; d.innerHTML=html; msgsEl.appendChild(d); msgsEl.scrollTop=msgsEl.scrollHeight; return d; }
+
+// CÉREBRO CALCULA SOZINHO - como cerebelo humano, não precisa API
+function cerebellumCalc(txt){
+  let low=txt.toLowerCase();
+  // extrai conta de linguagem natural
   let m=low.match(/raiz quadrada de\s*([0-9.,]+)/);
-  if(m){ let n=parseFloat(m[1].replace(',','.')); if(!isNaN(n)) return {type:'math', text:`🧮 <b>Raiz quadrada de ${n} = ${Math.sqrt(n)}</b><br><span style="font-size:20px;color:var(--hex)">${Math.sqrt(n)}</span>`}; }
-  m=low.match(/^\s*([0-9.,]+)\s*[x*]\s*([0-9.,]+)\s*$/);
-  if(m){ let a=parseFloat(m[1].replace(',','.')); let b=parseFloat(m[2].replace(',','.')); if(!isNaN(a)&&!isNaN(b)) return {type:'math', text:`🧮 <b>${a} × ${b} = ${a*b}</b>`}; }
-  if(/^[0-9+\-*/().\s]+$/.test(txt.trim()) && /[+\-*/]/.test(txt)){ try{ let r=Function('return ('+txt.replace(/[^0-9+\-*/().\s]/g,'')+')')(); if(isFinite(r)) return {type:'math', text:`🧮 <b>${txt} = ${r}</b>`}; }catch(e){} }
+  if(m){ let n=parseFloat(m[1].replace(',','.')); if(!isNaN(n)){ let r=Math.sqrt(n); return {answer:r.toString(), explain:`Raiz quadrada de ${n} é ${r}`}; } }
+  let mathMatch=txt.match(/([0-9]+\s*[+\-*/xX]\s*[0-9]+(?:\s*[+\-*/xX]\s*[0-9]+)*)/);
+  if(mathMatch){
+    let expr=mathMatch[1].replace(/x/gi,'*');
+    try{ let r=Function('"use strict";return ('+expr.replace(/[^0-9+\-*/().\s]/g,'')+')')(); if(isFinite(r)) return {answer:r.toString(), explain:`${mathMatch[1]} = ${r}`}; }catch(e){}
+  }
+  let direct=low.replace(/quanto é|qual é|calcula|calcule/gi,'').trim().replace(/x/gi,'*');
+  if(/^[0-9+\-*/().\s]+$/.test(direct) && /[+\-*/]/.test(direct) && direct.length>=3){
+    try{ let r=Function('"use strict";return ('+direct+')')(); if(isFinite(r)) return {answer:r.toString(), explain:`${direct} = ${r}`}; }catch(e){}
+  }
   return null;
 }
 
-// 22 APIS - VERSÃO COMPLETA
-async function wikiPT(term){ try{ let t=term; if(term.toLowerCase().includes('fisica quantica')) t='Física quântica'; if(term.toLowerCase().includes('quem descobriu o brasil')) t='Descobrimento do Brasil'; let url=`https://pt.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(t)}&format=json&origin=*&srlimit=1`; let r=await fetchTimeout(url); let j=await r.json(); if(j.query?.search?.length){ let title=j.query.search[0].title; let sum=`https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`; let rs=await fetchTimeout(sum); let ds=await rs.json(); if(ds.extract){ if(ds.extract.toLowerCase().includes('vampiro')) return null; return {title:ds.title,extract:ds.extract.substring(0,600),source:'Wikipedia PT',score:95,group:'WIKI',url:ds.content_urls?.desktop?.page}; } } }catch(e){} if(term.toLowerCase().includes('brasil')&&term.toLowerCase().includes('descobriu')) return {title:'Descobrimento do Brasil',extract:'O Brasil foi descoberto em 22 de abril de 1500 por Pedro Álvares Cabral, navegador português.',source:'Wikipedia PT Fallback',score:100,url:'https://pt.wikipedia.org/wiki/Pedro_%C3%81lvares_Cabral'}; return null; }
-async function wikiEN(term){ try{ let url=`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(term)}&format=json&origin=*&srlimit=1`; let r=await fetchTimeout(url); let j=await r.json(); if(j.query?.search?.length){ let title=j.query.search[0].title; let sum=`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`; let rs=await fetchTimeout(sum); let ds=await rs.json(); if(ds.extract) return {title:ds.title,extract:ds.extract.substring(0,500),source:'Wikipedia EN',score:88,group:'WIKI',url:ds.content_urls?.desktop?.page}; } }catch(e){} return null; }
-async function duck(term){ try{ let url=`https://api.duckduckgo.com/?q=${encodeURIComponent(term)}&format=json&pretty=1`; let r=await fetchTimeout(url); let j=await r.json(); if(j.AbstractText) return {title:j.Heading||term,extract:j.AbstractText.substring(0,500),source:'DuckDuckGo',score:80,group:'WIKI',url:j.AbstractURL}; }catch(e){} return null; }
-async function openLib(term){ try{ let url=`https://openlibrary.org/search.json?q=${encodeURIComponent(term)}&limit=1`; let r=await fetchTimeout(url); let j=await r.json(); if(j.docs?.length) return {title:j.docs[0].title,extract:`Livro: ${j.docs[0].title}`,source:'OpenLibrary',score:70,group:'WIKI'}; }catch(e){} return null; }
-async function wikidata(term){ try{ let url=`https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${encodeURIComponent(term)}&language=pt&format=json&origin=*&limit=1`; let r=await fetchTimeout(url); let j=await r.json(); if(j.search?.length) return {title:j.search[0].label,extract:j.search[0].description,source:'Wikidata',score:80,group:'WIKI'}; }catch(e){} return null; }
-async function arxiv(term){ try{ let url=`https://export.arxiv.org/api/query?search_query=all:${encodeURIComponent(term)}&max_results=1`; let r=await fetchTimeout(url); let t=await r.text(); let m=t.match(/<title>(.*?)<\/title>/g); if(m&&m.length>1) return {title:m[1].replace(/<[^>]+>/g,'').slice(0,80),extract:'arXiv paper sobre '+term,source:'arXiv',score:90,group:'ECOLLEGE'}; }catch(e){} return null; }
-async function pubmed(term){ try{ let url=`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(term)}&retmax=1&retmode=json`; let r=await fetchTimeout(url); let j=await r.json(); if(j.esearchresult?.idlist?.length) return {title:`PubMed ${j.esearchresult.count} artigos`,extract:`${j.esearchresult.count} artigos sobre "${term}"`,source:'PubMed',score:87,group:'ECOLLEGE'}; }catch(e){} return null; }
-async function openAlex(term){ try{ let url=`https://api.openalex.org/works?search=${encodeURIComponent(term)}&per-page=1`; let r=await fetchTimeout(url); let j=await r.json(); if(j.results?.length) return {title:j.results[0].title,extract:j.results[0].display_name?.substring(0,300)||'',source:'OpenAlex',score:85,group:'ECOLLEGE'}; }catch(e){} return null; }
-async function ibge(term){ return {title:'IBGE 27 estados',extract:'IBGE Brasil',source:'IBGE',score:88,group:'ECOLLEGE'}; }
-async function worldBank(term){ return {title:'WorldBank',extract:'WorldBank países',source:'WorldBank',score:80,group:'ECOLLEGE'}; }
-async function restCountries(term){ return {title:'RestCountries',extract:'250 países',source:'RestCountries',score:86,group:'ECOLLEGE'}; }
-async function nasa(term){ try{ let url=`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1`; let r=await fetchTimeout(url); let j=await r.json(); if(j[0]) return {title:j[0].title,extract:j[0].explanation?.substring(0,400)||'NASA',source:'NASA',score:87,group:'ECOLLEGE'}; }catch(e){} return null; }
-async function mit(term){ return {title:`MIT OCW - ${term}`,extract:`MIT cursos sobre ${term}`,source:'MIT OCW',score:90,group:'ECOLLEGE',url:`https://ocw.mit.edu/search/?q=${encodeURIComponent(term)}`}; }
-async function hn(term){ try{ let url=`https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(term)}&tags=story&hitsPerPage=1`; let r=await fetchTimeout(url); let j=await r.json(); if(j.hits?.length) return {title:j.hits[0].title,extract:`HN: ${j.hits[0].title}`,source:'HackerNews',score:82,group:'SOCIAL',url:j.hits[0].url}; }catch(e){} return null; }
-async function github(term){ try{ let url=`https://api.github.com/search/repositories?q=${encodeURIComponent(term)}&per_page=1`; let r=await fetchTimeout(url); let j=await r.json(); if(j.items?.length) return {title:j.items[0].full_name,extract:j.items[0].description||'',source:'GitHub',score:85,group:'SOCIAL',url:j.items[0].html_url}; }catch(e){} return null; }
-async function stack(term){ try{ let url=`https://api.stackexchange.com/2.3/search/advanced?order=desc&sort=relevance&q=${encodeURIComponent(term)}&site=stackoverflow&pagesize=1`; let r=await fetchTimeout(url); let j=await r.json(); if(j.items?.length) return {title:j.items[0].title,extract:`Stack: ${j.items[0].title}`,source:'StackOverflow',score:80,group:'SOCIAL',url:j.items[0].link}; }catch(e){} return null; }
-async function baas(term){ return {title:'BAAS Supabase',extract:`Supabase BAAS para "${term}"`,source:'Supabase',score:80,group:'LABS'}; }
-async function firebase(term){ return {title:'Firebase BAAS',extract:`Firebase para "${term}"`,source:'Firebase',score:78,group:'LABS'}; }
-async function vercel(term){ return {title:'Vercel SAAS',extract:`Vercel SAAS para "${term}"`,source:'Vercel',score:76,group:'LABS'}; }
-async function stripe(term){ return {title:'Stripe',extract:`Stripe para "${term}"`,source:'Stripe',score:85,group:'BANKS'}; }
-async function pix(term){ return {title:'Pix BACEN',extract:`Pix para "${term}"`,source:'Pix',score:88,group:'BANKS'}; }
-
-const GROUPS={WIKI:[wikiPT,wikiEN,duck,openLib,wikidata], ECOLLEGE:[arxiv,pubmed,openAlex,ibge,worldBank,restCountries,nasa,mit], SOCIAL:[hn,github,stack], LABS:[baas,firebase,vercel], BANKS:[stripe,pix]};
-
-function renderGrids(){
-  document.getElementById('wikiGrid').innerHTML=GROUPS.WIKI.map(f=>`<div class="card"><h3>${f.name}</h3><p>WIKI</p></div>`).join('');
-  document.getElementById('collegeGrid').innerHTML=GROUPS.ECOLLEGE.map(f=>`<div class="card"><h3>${f.name}</h3><p>ECOLLEGE</p></div>`).join('');
-  document.getElementById('socialGrid').innerHTML=GROUPS.SOCIAL.map(f=>`<div class="card"><h3>${f.name}</h3><p>SOCIAL</p></div>`).join('');
-  document.getElementById('labsGrid').innerHTML=GROUPS.LABS.map(f=>`<div class="card"><h3>${f.name}</h3><p>LABS BAAS/SAAS</p></div>`).join('');
-  document.getElementById('bankGrid').innerHTML=GROUPS.BANKS.map(f=>`<div class="card"><h3>${f.name}</h3><p>BANKS</p></div>`).join('');
+// HIPOCAMPO - busca na memória
+function hippocampusSearch(query){
+  let low=query.toLowerCase().trim();
+  let best=null; let bestScore=0;
+  for(let s of BRAIN.synapses){
+    let score=0;
+    let sq=s.q.toLowerCase();
+    if(low===sq) score=100;
+    else if(low.includes(sq) || sq.includes(low)) score=80;
+    else{
+      let words=low.split(/\s+/);
+      for(let w of words){ if(w.length>2 && sq.includes(w)) score+=12; }
+    }
+    // prioriza inatas e fortes
+    score+= (s.strength||50)*0.15;
+    if(s.innate) score+=15;
+    // recente usado é mais forte
+    if(Date.now() - s.lastUsed < 3600000) score+=5;
+    if(score>bestScore){ bestScore=score; best=s; }
+  }
+  if(best && bestScore>30) return best;
+  return null;
 }
-renderGrids();
 
-function openTab(id,el){ document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active')); document.getElementById('p-'+id).classList.add('active'); document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); if(el) el.classList.add('active'); }
+// CÓRTEX - entende e responde usando memória, não API log
+function cortexRespond(query){
+  // 1. tenta cerebelo (cálculo)
+  let calc=cerebellumCalc(query);
+  if(calc){
+    return {type:"innate", text:calc.explain, synapse:{strength:100, innate:true}, calc:calc};
+  }
+  // 2. busca no hipocampo
+  let mem=hippocampusSearch(query);
+  if(mem){
+    mem.lastUsed=Date.now();
+    mem.strength=Math.min(100, (mem.strength||50)+2);
+    mem.connections=(mem.connections||0)+1;
+    return {type:mem.innate?"innate":"memory", text:mem.a, synapse:mem};
+  }
+  // 3. não encontrou, mas cérebro tenta raciocinar e vai aprender depois
+  return null;
+}
+
+// NEUROGÊNESE SILENCIOSA - APIs alimentam em silêncio, sem mostrar log
+async function silentFeed(term){
+  if(!term || term.length<3) return;
+  if(coreEl) coreEl.classList.add('learning');
+  try{
+    let searchTerm=term;
+    if(term.toLowerCase().includes('quantica')) searchTerm='Física quântica';
+    if(term.toLowerCase().includes('brasil') && term.toLowerCase().includes('descobriu')) searchTerm='Descobrimento do Brasil';
+    let url=`https://pt.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(searchTerm)}&format=json&origin=*&srlimit=1`;
+    let r=await fetchTimeout(url);
+    let j=await r.json();
+    if(j.query?.search?.length){
+      let title=j.query.search[0].title;
+      let sum=`https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+      let rs=await fetchTimeout(sum);
+      let ds=await rs.json();
+      if(ds.extract && ds.extract.length>40 && !ds.extract.toLowerCase().includes('vampiro')){
+        // cria sinapse silenciosa
+        let exists=BRAIN.synapses.some(s=>s.q.toLowerCase()===title.toLowerCase() || s.q.toLowerCase()===term.toLowerCase());
+        if(!exists){
+          BRAIN.synapses.push({
+            id:Date.now()+Math.random(),
+            q:term,
+            a:ds.extract.substring(0,400),
+            title:title,
+            type:"learned",
+            strength:60,
+            innate:false,
+            created:Date.now(),
+            lastUsed:Date.now(),
+            connections:0,
+            source:"wikipedia_pt"
+          });
+          BRAIN.level*=1.01;
+          save();
+        }
+      }
+    }
+  }catch(e){}
+  setTimeout(()=>{ if(coreEl) coreEl.classList.remove('learning'); }, 1200);
+}
 
 function send(){
   let txt=inpEl.value.trim(); if(!txt) return;
-  addMsg('u', txt); inpEl.value='';
-  if(coreEl) coreEl.classList.add('thinking');
-  log('apiLog', 'USER: '+txt);
+  addMsg('u', txt);
+  inpEl.value='';
+  BRAIN.totalConversations++;
   
-  let math=calc(txt);
-  if(math){
-    MEMORY.level*=1.005; save();
-    addMsg('b math', math.text+`<br><span style="font-size:8px;opacity:.5">✅ Numérico limpo | Level ${MEMORY.level.toFixed(4)}</span>`);
-    if(coreEl) coreEl.classList.remove('thinking');
-    return;
-  }
+  if(coreEl) coreEl.classList.add('learning');
   
-  // Instant + background com 22 APIs
-  addMsg('b', `🧠 Buscando "${txt}" nas 22 APIs...<br><span style="font-size:10px">Elétrons orbitando: 6 camadas ativas ⬡</span>`);
-  
-  setTimeout(async ()=>{
-    let allFns=[...GROUPS.WIKI, ...GROUPS.ECOLLEGE, ...GROUPS.SOCIAL, ...GROUPS.LABS, ...GROUPS.BANKS];
-    let promises=allFns.map(fn=>withTimeout(fn(txt).catch(()=>null), 4000));
-    let results=await Promise.allSettled(promises);
-    let hits=results.filter(r=>r.status==='fulfilled'&&r.value).map(r=>r.value).filter(h=>h&&h.score>25).sort((a,b)=>b.score-a.score);
-    if(hits.length>0){
-      MEMORY.hits+=hits.length; MEMORY.level*=1.01; save();
-      let html=`🌐 <b>${hits.length} FONTES REAIS (22 APIs):</b><br><br>`;
-      // prioriza Wikipedia PT para física quântica
-      let wikiHits=hits.filter(h=>h.group==='WIKI').slice(0,2);
-      let otherHits=hits.filter(h=>h.group!=='WIKI').slice(0,3);
-      let toShow=[...wikiHits, ...otherHits];
-      toShow.forEach(h=>{
-        html+=`<div style="border:1px solid #22ff8855;border-radius:10px;padding:8px;margin-top:8px"><b style="color:#22ff88">${h.title}</b> [${h.source} ${h.score}]<br><span style="font-size:11px">${h.extract.slice(0,500)}</span><br><a href="${h.url||'#'}" target="_blank" style="font-size:9px;color:#6ee7ff">${h.url||''}</a></div>`;
-      });
-      addMsg('b api', html+`<br><span style="font-size:8px">Level ${MEMORY.level.toFixed(4)} +1% | Fontes consumidas</span>`);
-      log('apiLog', `✅ ${hits.length} fontes: ${hits.map(h=>h.source).join(', ')}`);
+  setTimeout(()=>{
+    let response=cortexRespond(txt);
+    if(response){
+      let tag=response.type==='innate'?'🧠 sinapse inata':'🧠 memória';
+      let colorClass=response.type==='innate'?'innate':'memory';
+      let html=`${response.text}<span class="synapse-tag">${tag} • força ${response.synapse.strength||60} • ${response.synapse.connections||0} conexões</span>`;
+      addMsg('b '+colorClass, html);
+      // grava essa conversa como nova memória se for nova
+      if(!hippocampusSearch(txt) || txt.split(/\s+/).length>2){
+        let exists=BRAIN.synapses.some(s=>s.q.toLowerCase()===txt.toLowerCase());
+        if(!exists && txt.length>2){
+          BRAIN.synapses.push({
+            id:Date.now()+Math.random(),
+            q:txt,
+            a:response.text.substring(0,300),
+            type:"conversation",
+            strength:40,
+            created:Date.now(),
+            lastUsed:Date.now(),
+            connections:1
+          });
+        }
+      }
     }else{
-      addMsg('b', `⚠️ Nenhuma fonte online agora, mas conceito: <b>${txt}</b> é importante. Tente novamente com internet estável.`);
-      log('apiLog', `❌ 0 fontes para "${txt}"`);
+      // cérebro não sabe ainda, mas vai aprender
+      addMsg('b', `Hmm, ainda não tenho essa memória gravada. Vou aprender sobre "${txt}" agora...<br><span class="synapse-tag">🧠 criando nova sinapse...</span>`);
+      // aprende silenciosamente
+      setTimeout(()=>silentFeed(txt), 500);
+      // também grava a pergunta
+      BRAIN.synapses.push({
+        id:Date.now()+Math.random(),
+        q:txt,
+        a:`Pergunta sobre ${txt} - aprendendo...`,
+        type:"question",
+        strength:20,
+        created:Date.now(),
+        lastUsed:Date.now(),
+        connections:0
+      });
     }
-    if(coreEl) coreEl.classList.remove('thinking');
-  }, 300);
+    BRAIN.level*=1.005;
+    save();
+    if(coreEl) coreEl.classList.remove('learning');
+    // alimenta cérebro em segundo plano sem mostrar
+    if(txt.length>3 && !cerebellumCalc(txt)){
+      setTimeout(()=>silentFeed(txt), 1000);
+    }
+  }, 350);
 }
 
 btnEl.onclick=send;
 inpEl.addEventListener('keydown', e=>{ if(e.key==='Enter') send(); });
 
-function drawHexBg(){ let c=document.getElementById('hexCanvasBg'); if(!c) return; let ctx=c.getContext('2d'); ctx.clearRect(0,0,c.width,c.height); let cx=260,cy=260; for(let r=60;r<260;r+=32){ ctx.strokeStyle='rgba(34,255,136,0.07)'; ctx.lineWidth=1; ctx.beginPath(); for(let i=0;i<6;i++){ let ang=Math.PI/3*i-Math.PI/6; let px=cx+r*Math.cos(ang); let py=cy+r*Math.sin(ang); if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py); } ctx.closePath(); ctx.stroke(); } }
-drawHexBg();
-addMsg('b', `🧠 <b>AUDMAX v9.7 FINAL - CLONE COMPLETO</b><br><br>✅ Cérebro com elétrons orbitando (6 anéis + dots)<br>✅ 22 APIs de volta: WIKI 5 + ECOLLEGE 8 + SOCIAL 7 + LABS 4 + BANKS 2 = 26<br>✅ Math: raiz 123 = 11.09 limpo<br>✅ Física quântica: busca Wikipedia PT real<br>✅ Quem descobriu Brasil = Pedro Álvares Cabral<br><br>Teste: "o que é física quântica"`);
-log('apiLog','v9.7 FINAL pronta - clone completo');
-save();
+function drawHex(){
+  let c=document.getElementById('hexCanvas'); if(!c) return;
+  let ctx=c.getContext('2d'); ctx.clearRect(0,0,c.width,c.height);
+  let cx=270,cy=270;
+  for(let r=64;r<270;r+=34){
+    ctx.strokeStyle='rgba(34,255,136,0.06)'; ctx.lineWidth=1;
+    ctx.beginPath();
+    for(let i=0;i<6;i++){ let ang=Math.PI/3*i-Math.PI/6; let px=cx+r*Math.cos(ang); let py=cy+r*Math.sin(ang); if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py); }
+    ctx.closePath(); ctx.stroke();
+  }
+  // conexões sutis
+  ctx.strokeStyle='rgba(42,176,255,0.04)'; ctx.lineWidth=0.5;
+  for(let i=0;i<8;i++){
+    let a=Math.random()*Math.PI*2; let r1=70+Math.random()*150; let r2=70+Math.random()*150;
+    ctx.beginPath(); ctx.moveTo(cx+r1*Math.cos(a), cy+r1*Math.sin(a)); ctx.lineTo(cx+r2*Math.cos(a+0.8), cy+r2*Math.sin(a+0.8)); ctx.stroke();
+  }
+}
+drawHex();
+updateStatus();
+renderMemoryViz();
+addMsg('b innate', `🧠 Olá. Eu sou um cérebro, não um buscador.<br><br>Eu <b>ouço</b>, <b>entendo</b>, <b>gravo</b> e <b>respondo com o que já aprendi</b>.<br><br>Já nasci com ${BRAIN.synapses.filter(s=>s.innate).length} sinapses inatas: matemática, história do Brasil, física quântica, BaaS, SaaS.<br><br>Quando você fala comigo, crio novas conexões. APIs me alimentam em silêncio para eu crescer.<br><br>Fale comigo. <span class="synapse-tag">🧠 ${BRAIN.synapses.length} sinapses ativas • nível ${BRAIN.level.toFixed(4)}</span>`);
+
+// sono reparador - consolida memórias a cada 2 minutos
+setInterval(()=>{
+  let now=Date.now();
+  if(now - BRAIN.lastSleep > 120000){
+    BRAIN.synapses.forEach(s=>{ if(s.strength<30) s.strength*=0.99; else s.strength=Math.min(100, s.strength*1.001); });
+    BRAIN.lastSleep=now;
+    save();
+  }
+}, 30000);
 </script>
 </body>
 </html>
