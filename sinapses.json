@@ -1,1 +1,141 @@
-{"qgis":0.68,"capcut":0.53,"last":"2026-08-16"}
+{
+  "versao": "9.1 DEPTH",
+  "data": "2026-08-16",
+  "cortex_4d": {
+    "dimensoes": [
+      "ALTURA_Z_Hierarquia_I_VI",
+      "LARGURA_X_Contexto",
+      "COMPRIMENTO_Y_Tempo_Evolucao",
+      "PROFUNDIDADE_W_Abstracao_Solucao"
+    ],
+    "formula": "Volume_Cognitivo = Altura * Largura * Comprimento * Profundidade",
+    "lobos": {
+      "frontal": {
+        "funcao": "Assimila perguntas",
+        "cor": "#ffcc66",
+        "fluxo": "IDA - Chat -> API",
+        "guarda_temporaria": true,
+        "camadas": [
+          "I_MOLECULAR_Tokenizacao"
+        ]
+      },
+      "pre_frontal": {
+        "funcao": "Analisa / Aprende / Responde",
+        "cor": "#a855f7",
+        "fluxo": "VOLTA - Processa 4D + Cria Solução + Responde",
+        "camadas": [
+          "III_PIR_EXT_Cognicao",
+          "V_MOTOR_Fusao",
+          "VI_MULTIFORME_Consolidacao"
+        ],
+        "cognicao_niveis": [
+          "BUSCA_SUPERFICIAL",
+          "ENTENDIMENTO",
+          "COMPREENSAO_PROFUNDA",
+          "CRIACAO_DE_SOLUCAO"
+        ]
+      },
+      "guarda": {
+        "funcao": "Memória + Comunicação Externa",
+        "cor": "#22ff88",
+        "memoria_vetorial": "trigram + cosseno",
+        "crescimento": "1% ao dia composto",
+        "sono": "+2% profundidade por ciclo",
+        "apis": 22
+      }
+    }
+  },
+  "apis_22": {
+    "WIKI_5": [
+      "wikiPT",
+      "wikiEN",
+      "wikidataAPI",
+      "duckAPI",
+      "openLibraryAPI"
+    ],
+    "ECOLLEGES_8": [
+      "arxivAPI",
+      "pubmedAPI",
+      "openAlexAPI",
+      "ibgeAPI",
+      "worldBankAPI",
+      "restCountriesAPI",
+      "nasaAPI",
+      "mitOCWAPI"
+    ],
+    "SOCIAL_7": [
+      "hackerNewsAPI",
+      "githubAPI",
+      "stackAPI",
+      "devtoAPI",
+      "redditProxyAPI",
+      "productHuntAPI",
+      "wikiTrendsAPI"
+    ],
+    "LABS_4": [
+      "baasAPI",
+      "supabaseAPI",
+      "firebaseAPI",
+      "vercelAPI"
+    ],
+    "BANKS_INDUSTRY_6": [
+      "stripeAPI",
+      "pixAPI",
+      "wiseAPI",
+      "qgisAPI",
+      "agroAPI",
+      "healthAPI"
+    ]
+  },
+  "sinapses_hexagonais": [
+    {
+      "de": "FRONTAL",
+      "para": "WIKI_5",
+      "tipo": "IDA",
+      "peso": 0.9,
+      "dimensao": "ALTURA"
+    },
+    {
+      "de": "FRONTAL",
+      "para": "ECOLLEGES_8",
+      "tipo": "IDA",
+      "peso": 0.95,
+      "dimensao": "LARGURA"
+    },
+    {
+      "de": "WIKI_5",
+      "para": "GUARDA",
+      "tipo": "VOLTA_GUARDA",
+      "peso": 0.85,
+      "dimensao": "COMPRIMENTO"
+    },
+    {
+      "de": "GUARDA",
+      "para": "PRE_FRONTAL",
+      "tipo": "CONSOLIDACAO",
+      "peso": 1.0,
+      "dimensao": "PROFUNDIDADE"
+    },
+    {
+      "de": "PRE_FRONTAL",
+      "para": "CHAT",
+      "tipo": "RESPOSTA_COM_ENTENDIMENTO",
+      "peso": 1.0,
+      "dimensao": "VOLUME_COGNITIVO"
+    },
+    {
+      "de": "PRE_FRONTAL",
+      "para": "FRONTAL",
+      "tipo": "FEEDBACK_LOOP",
+      "peso": 0.7,
+      "dimensao": "APRENDIZADO_CONTINUO"
+    }
+  ],
+  "crescimento": {
+    "level_inicial": 1.0,
+    "taxa_diaria": 0.01,
+    "formula": "level *= 1.01^dias",
+    "sono_profundidade": "profundidade *= 1.02 por ciclo",
+    "xp_por_pergunta": 5
+  }
+}
