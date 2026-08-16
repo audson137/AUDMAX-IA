@@ -1,5 +1,3 @@
-. main.py
-
 """
 AUDMAX IA QUANTUM v9.1 DEPTH - Backend Python
 Cérebro Hexagonal 4D - Frontal + Pré-Frontal
