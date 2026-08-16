@@ -1,4 +1,32 @@
-{
-  "cleanUrls": true,
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
-}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ativação Quântica</title>
+<style>
+  body { margin:0; background:#000; color:#fff; display:flex; align-items:center; justify-content:center; height:100vh; font-family: sans-serif; overflow:hidden; }
+  .quantum { font-size:3rem; text-align:center; animation: glow 2s infinite alternate; }
+  @keyframes glow { from { text-shadow: 0 0 10px #00ffff; } to { text-shadow: 0 0 30px #ff00ff, 0 0 50px #00ffff; } }
+  canvas { position:fixed; top:0; left:0; z-index:-1; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="quantum">CAMPO QUÂNTICO ATIVADO<br><small style="font-size:1rem">frequência 432Hz</small></div>
+<script>
+const c=document.getElementById('c'),x=c.getContext('2d');
+function r(){c.width=innerWidth;c.height=innerHeight}
+r();window.onresize=r;
+let t=0;
+function draw(){
+ x.fillStyle='rgba(0,0,0,0.1)';x.fillRect(0,0,c.width,c.height);
+ for(let i=0;i<150;i++){
+  x.beginPath();x.arc(Math.sin(i+t)*c.width/2+c.width/2, Math.cos(i*0.7+t)*c.height/2+c.height/2,1.5,0,7);
+  x.fillStyle=hsl(${180+t*50+i}% ,100%,50%);x.fill();
+ }
+ t+=0.005;requestAnimationFrame(draw)
+}draw();
+</script>
+</body>
+</html>
