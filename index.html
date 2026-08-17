@@ -2,402 +2,3036 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AUDMAX v11 - Cérebro que Cresce</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#22ff88">
+<meta name="description" content="AUDMAX IA QUANTUM - Cérebro vivo com memória, sinapses, motores cognitivos e processamento IDA/VOLTA">
+<link rel="manifest" href="manifest.json">
+<title>AUDMAX IA QUANTUM — Cérebro Vivo</title>
+
 <style>
-:root{--neon:#2ab0ff;--bg:#050a14;--hex:#22ff88;--quantum:#a855f7;--pink:#ec4899;--amber:#fbbf24}
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,Arial}
-body{background:radial-gradient(1200px at 50% -10%, #132a4a 0%, var(--bg) 70%);color:#cfe6ff;min-height:100vh}
-header{text-align:center;padding:14px}
-.badge{border:1px solid var(--hex);color:var(--hex);padding:7px 16px;border-radius:99px;font-size:10px;display:inline-block;background:rgba(34,255,136,.08)}
-.brain-wrap{position:relative;width:560px;height:560px;margin:10px auto}
-#hexCanvas{position:absolute;inset:0;z-index:1;pointer-events:none}
-.core{position:absolute;left:50%;top:50%;width:100px;height:100px;margin:-50px;background:radial-gradient(circle at 30% 30%, #fff, var(--hex), var(--quantum), #000);border-radius:24%;box-shadow:0 0 30px var(--hex),0 0 70px var(--neon);animation:pulse 2s ease-in-out infinite;z-index:10;display:flex;align-items:center;justify-content:center;font-size:30px;clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);transition:all .3s}
-.core.thinking{box-shadow:0 0 60px var(--hex),0 0 120px var(--quantum),0 0 180px var(--pink)!important;transform:scale(1.2);animation:pulse .5s infinite}
-.core.growing{box-shadow:0 0 80px var(--amber),0 0 150px var(--hex)!important}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
-.ring{position:absolute;left:50%;top:50%;border:1px solid;border-radius:50%;transform:translate(-50%,-50%);z-index:2}
+:root{
+  --bg:#050a14;
+  --panel:#0b1424;
+  --panel2:#101d31;
+  --neon:#2ab0ff;
+  --green:#22ff88;
+  --quantum:#a855f7;
+  --pink:#ec4899;
+  --amber:#fbbf24;
+  --cyan:#22d3ee;
+  --text:#d8ecff;
+  --muted:#7d94ad;
+  --danger:#ef4444;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(900px at 50% -10%,#17365d 0%,transparent 65%),
+    radial-gradient(700px at 10% 50%,rgba(34,255,136,.05),transparent 70%),
+    var(--bg);
+  color:var(--text);
+}
+
+/* =========================
+   BLOQUEIO
+========================= */
+
+#lockScreen{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:#03070f;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:14px;
+}
+
+.lock-title{
+  font-size:30px;
+  font-weight:900;
+  text-shadow:0 0 25px var(--green);
+}
+
+.lock-sub{
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:2px;
+}
+
+#passInp{
+  width:280px;
+  padding:13px 16px;
+  border-radius:12px;
+  border:1px solid var(--green);
+  background:#000;
+  color:#fff;
+  outline:none;
+  text-align:center;
+}
+
+#unlockBtn{
+  padding:11px 25px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--green),var(--neon));
+  color:#00150b;
+  font-weight:900;
+  cursor:pointer;
+}
+
+#passErr{
+  display:none;
+  color:var(--danger);
+  font-size:10px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  text-align:center;
+  padding:15px 10px 5px;
+}
+
+.badge{
+  display:inline-block;
+  padding:7px 16px;
+  border-radius:999px;
+  border:1px solid var(--green);
+  background:rgba(34,255,136,.07);
+  color:var(--green);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+.subtitle{
+  margin-top:8px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+/* =========================
+   CÉREBRO
+========================= */
+
+.brain-wrap{
+  position:relative;
+  width:min(560px,96vw);
+  height:min(560px,96vw);
+  margin:8px auto;
+}
+
+#hexCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+  pointer-events:none;
+}
+
+.core{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:100px;
+  height:100px;
+  margin:-50px;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(circle at 30% 25%,
+      #fff 0%,
+      var(--green) 20%,
+      var(--quantum) 58%,
+      #000 100%);
+
+  clip-path:polygon(
+    25% 0%,
+    75% 0%,
+    100% 50%,
+    75% 100%,
+    25% 100%,
+    0% 50%
+  );
+
+  box-shadow:
+    0 0 35px var(--green),
+    0 0 80px var(--neon);
+
+  animation:pulse 2s ease-in-out infinite;
+  transition:.3s;
+}
+
+.core.thinking{
+  box-shadow:
+    0 0 60px var(--green),
+    0 0 120px var(--quantum),
+    0 0 180px var(--pink);
+  animation:pulse .5s infinite;
+}
+
+.core.growing{
+  box-shadow:
+    0 0 80px var(--amber),
+    0 0 160px var(--green);
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.07)}
+}
+
+.ring{
+  position:absolute;
+  left:50%;
+  top:50%;
+  border:1px solid;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+
 .r1{width:132px;height:132px;border-color:rgba(255,255,255,.15);animation:spin 16s linear infinite}
 .r2{width:192px;height:192px;border-color:rgba(34,255,136,.25);animation:spin 21s linear reverse infinite}
 .r3{width:252px;height:252px;border-color:rgba(42,176,255,.28);animation:spin 26s linear infinite}
 .r4{width:312px;height:312px;border-color:rgba(251,191,36,.22);animation:spin 32s linear infinite}
 .r5{width:372px;height:372px;border-color:rgba(168,85,247,.32);animation:spin 38s linear reverse infinite}
 .r6{width:436px;height:436px;border-color:rgba(34,255,136,.12);animation:spin 50s linear infinite}
-@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.dot{position:absolute;width:8px;height:8px;background:radial-gradient(circle,#fff,var(--hex));border-radius:50%;top:-4px;left:50%;box-shadow:0 0 10px var(--hex),0 0 20px var(--neon);animation:dotPulse 2s ease-in-out infinite}
-.neuro-transmitter{position:absolute;width:10px;height:10px;background:radial-gradient(circle,#fff,var(--amber));border-radius:50%;top:-5px;left:50%;box-shadow:0 0 12px var(--amber),0 0 24px #ff8c00;z-index:4}
-@keyframes dotPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
-.label{position:absolute;font-size:7.5px;font-weight:800;background:rgba(0,0,0,.7);border:1px solid rgba(42,176,255,.5);padding:2px 6px;border-radius:99px;transform:translate(-50%,-50%);white-space:nowrap;z-index:3}
-.status{max-width:960px;margin:8px auto;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.stat{border:1px solid rgba(42,176,255,.22);background:rgba(255,255,255,.05);padding:6px 14px;border-radius:99px;font-size:10px}
-.stat strong{color:var(--hex)}
-.transmitters{max-width:960px;margin:8px auto;display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
-.tx{border:1px solid rgba(251,191,36,.3);background:rgba(251,191,36,.08);padding:4px 10px;border-radius:99px;font-size:8.5px;display:flex;align-items:center;gap:4px}
-.tx.active{border-color:var(--amber);background:rgba(251,191,36,.2);box-shadow:0 0 10px rgba(251,191,36,.4);animation:txPulse .6s ease infinite}
-@keyframes txPulse{0%,100%{opacity:.7}50%{opacity:1}}
-#chatWrap{max-width:960px;margin:10px auto;background:rgba(10,19,36,.96);border:1px solid rgba(42,176,255,.22);border-radius:18px;overflow:hidden;box-shadow:0 12px 50px rgba(0,0,0,.6)}
-#msgs{height:560px;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:radial-gradient(600px at 50% 0%, rgba(34,255,136,.04), transparent)}
-.m{padding:12px 16px;border-radius:16px;max-width:88%;font-size:13.8px;line-height:1.65;word-break:break-word;animation:msgIn .25s ease}
-@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.u{align-self:flex-end;background:linear-gradient(135deg, #e0f2fe, #a7f3d0);color:#04210f;font-weight:500}
-.b{align-self:flex-start;background:linear-gradient(135deg, #152238, #1a2744);border:1px solid rgba(42,176,255,.18);position:relative}
-.b.from-memory{border-left:3px solid var(--hex)}
-.b.from-apis{border-left:3px solid var(--amber)}
-.b.growing{border-left:3px solid var(--pink);animation:growGlow 1s ease}
-@keyframes growGlow{0%{box-shadow:0 0 0 rgba(236,72,153,0)}50%{box-shadow:0 0 20px rgba(236,72,153,.5)}100%{box-shadow:0 0 0 rgba(236,72,153,0)}}
-.synapse-tag{font-size:8.5px;opacity:.55;margin-top:6px;display:block;line-height:1.4}
-#inpArea{display:flex;border-top:1px solid rgba(42,176,255,.18);background:rgba(0,0,0,.25)}
-#inpArea input{flex:1;background:transparent;border:0;color:#fff;padding:16px 18px;outline:none;font-size:14px}
-#inpArea button{background:linear-gradient(135deg,var(--hex),var(--neon));border:0;color:#000;padding:0 22px;font-weight:900;cursor:pointer;font-size:16px}
-.flow{max-width:960px;margin:10px auto;background:rgba(0,0,0,.3);border:1px solid rgba(42,176,255,.12);border-radius:12px;padding:10px 14px;font-size:9.5px;opacity:.7;display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}
-.arrow{color:var(--amber);font-weight:800}
+
+@keyframes spin{
+  to{transform:translate(-50%,-50%) rotate(360deg)}
+}
+
+.dot{
+  position:absolute;
+  top:-4px;
+  left:50%;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff,var(--green));
+  box-shadow:0 0 12px var(--green),0 0 24px var(--neon);
+}
+
+.neuro{
+  position:absolute;
+  top:-5px;
+  left:50%;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff,var(--amber));
+  box-shadow:0 0 15px var(--amber);
+  display:none;
+  z-index:20;
+}
+
+.label{
+  position:absolute;
+  font-size:7px;
+  font-weight:800;
+  white-space:nowrap;
+  padding:3px 6px;
+  border-radius:999px;
+  border:1px solid rgba(42,176,255,.35);
+  background:rgba(0,0,0,.75);
+  transform:translate(-50%,-50%);
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+  max-width:1000px;
+  margin:5px auto;
+  padding:0 8px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.stat{
+  padding:7px 12px;
+  border:1px solid rgba(42,176,255,.22);
+  border-radius:999px;
+  background:rgba(255,255,255,.035);
+  font-size:10px;
+}
+
+.stat strong{
+  color:var(--green);
+}
+
+#stateText{
+  color:var(--cyan);
+}
+
+/* =========================
+   TRANSMISSORES
+========================= */
+
+.transmitters{
+  max-width:1000px;
+  margin:8px auto;
+  padding:0 8px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.tx{
+  padding:5px 9px;
+  border-radius:999px;
+  border:1px solid rgba(251,191,36,.25);
+  background:rgba(251,191,36,.05);
+  font-size:8px;
+  transition:.2s;
+}
+
+.tx.active{
+  border-color:var(--amber);
+  background:rgba(251,191,36,.18);
+  box-shadow:0 0 14px rgba(251,191,36,.4);
+  transform:scale(1.05);
+}
+
+/* =========================
+   FLUXO
+========================= */
+
+.flow{
+  max-width:1000px;
+  margin:10px auto;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid rgba(42,176,255,.15);
+  background:rgba(0,0,0,.3);
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  font-size:9px;
+}
+
+.arrow{
+  color:var(--amber);
+  font-weight:900;
+}
+
+/* =========================
+   CHAT
+========================= */
+
+#chatWrap{
+  max-width:1000px;
+  margin:10px auto 20px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(42,176,255,.25);
+  background:rgba(8,16,30,.97);
+  box-shadow:0 15px 60px rgba(0,0,0,.55);
+}
+
+#msgs{
+  height:560px;
+  overflow-y:auto;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.m{
+  max-width:90%;
+  padding:12px 16px;
+  border-radius:16px;
+  font-size:13.5px;
+  line-height:1.65;
+  word-break:break-word;
+}
+
+.u{
+  align-self:flex-end;
+  color:#032015;
+  background:linear-gradient(135deg,#e0f2fe,#a7f3d0);
+}
+
+.b{
+  align-self:flex-start;
+  background:linear-gradient(135deg,#142238,#1a2945);
+  border:1px solid rgba(42,176,255,.18);
+}
+
+.b.memory{
+  border-left:3px solid var(--green);
+}
+
+.b.api{
+  border-left:3px solid var(--amber);
+}
+
+.b.learning{
+  border-left:3px solid var(--pink);
+}
+
+.b.engine{
+  border-left:3px solid var(--cyan);
+}
+
+.synapse-tag{
+  display:block;
+  margin-top:7px;
+  font-size:8px;
+  line-height:1.5;
+  opacity:.55;
+}
+
+#inputArea{
+  display:flex;
+  border-top:1px solid rgba(42,176,255,.18);
+  background:rgba(0,0,0,.3);
+}
+
+#inp{
+  flex:1;
+  min-width:0;
+  padding:17px;
+  border:0;
+  outline:none;
+  background:transparent;
+  color:#fff;
+  font-size:14px;
+}
+
+#sendBtn{
+  width:70px;
+  border:0;
+  cursor:pointer;
+  background:linear-gradient(135deg,var(--green),var(--neon));
+  font-size:20px;
+  font-weight:900;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+
+.footer{
+  text-align:center;
+  max-width:1000px;
+  margin:auto;
+  padding:5px 15px 25px;
+  color:var(--muted);
+  font-size:8px;
+}
 </style>
 </head>
+
 <body>
-<div id="lockScreen" style="position:fixed;inset:0;z-index:9999;background:#050a14;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px">
-  <div style="font-size:28px">🧠 AUDMAX v11</div>
-  <div style="font-size:11px;opacity:.6">CÉREBRO QUE CRESCE</div>
-  <input id="passInp" type="password" placeholder="Senha" style="padding:12px 16px;border-radius:10px;border:1px solid #22ff88;background:#000;color:#fff;width:260px;text-align:center">
-  <button onclick="unlock()" style="padding:10px 20px;border-radius:10px;background:#22ff88;border:0;font-weight:800;cursor:pointer">ENTRAR</button>
-  <div id="passErr" style="font-size:10px;color:#ef4444;display:none">Senha incorreta</div>
+
+<!-- =========================
+     BLOQUEIO
+========================= -->
+
+<div id="lockScreen">
+
+  <div class="lock-title">🧠 AUDMAX IA QUANTUM</div>
+
+  <div class="lock-sub">
+    CÉREBRO VIVO • IDA / VOLTA • APRENDIZADO CONTÍNUO
+  </div>
+
+  <input
+    id="passInp"
+    type="password"
+    placeholder="Senha"
+    autocomplete="off"
+  >
+
+  <button id="unlockBtn">
+    ENTRAR
+  </button>
+
+  <div id="passErr">
+    Senha incorreta
+  </div>
+
 </div>
-<script>
-const SENHA="audmax2026";
-function unlock(){ if(document.getElementById('passInp').value===SENHA){ document.getElementById('lockScreen').style.display='none'; localStorage.setItem('AUDMAX_UNLOCK','1'); } else document.getElementById('passErr').style.display='block'; }
-if(localStorage.getItem('AUDMAX_UNLOCK')==='1') document.getElementById('lockScreen').style.display='none';
-document.getElementById('passInp').addEventListener('keydown',e=>{ if(e.key==='Enter') unlock(); });
-</script>
 
 <header>
-<div class="badge">🧠 v11 - CÉREBRO QUE CRESCE - APIS = NEUROTRANSMISSORES</div>
-<div style="margin-top:8px;font-size:10px;opacity:.6">PERGUNTA → NEUROTRANSMISSOR → CÉREBRO TEM? SIM RESPONDE / NÃO BUSCA APIS → TRAZ → GRAVA → CRESCE</div>
+
+  <div class="badge">
+    🧠 AUDMAX IA QUANTUM — CÉREBRO VIVO
+  </div>
+
+  <div class="subtitle">
+    PERGUNTA → MEMÓRIA → CÉREBRO → APIS → FUSÃO → PROCESSAMENTO → MEMÓRIA → RESPOSTA
+  </div>
+
 </header>
 
+<!-- =========================
+     CÉREBRO
+========================= -->
+
 <div class="brain-wrap">
-<canvas id="hexCanvas" width="560" height="560"></canvas>
-<div class="ring r1"><div class="dot"></div><div class="neuro-transmitter" id="nt1" style="display:none"></div><div class="label" style="top:-8px;left:50%">I MOLECULAR - ENTRADA</div></div>
-<div class="ring r2"><div class="dot" style="animation-delay:.3s"></div><div class="neuro-transmitter" id="nt2" style="display:none"></div><div class="label" style="top:9%;left:80%">II GRANULAR EXT - SOCIAL</div></div>
-<div class="ring r3"><div class="dot" style="animation-delay:.6s"></div><div class="neuro-transmitter" id="nt3" style="display:none"></div><div class="label" style="top:18%;left:88%">III PIRAMIDAL EXT - COLLEGE</div></div>
-<div class="ring r4"><div class="dot" style="animation-delay:.9s"></div><div class="neuro-transmitter" id="nt4" style="display:none"></div><div class="label" style="top:34%;left:96%">IV TÁLAMO - BAAS / SAAS / BANCOS</div></div>
-<div class="ring r5"><div class="dot" style="animation-delay:1.2s"></div><div class="neuro-transmitter" id="nt5" style="display:none"></div><div class="label" style="top:60%;left:97%">V MOTOR - LABORATÓRIOS</div></div>
-<div class="ring r6"><div class="dot" style="animation-delay:1.5s"></div><div class="neuro-transmitter" id="nt6" style="display:none"></div><div class="label" style="top:84%;left:84%">VI MULTIFORME - MEMÓRIA CRESCENTE</div></div>
-<div class="core" id="core">⬡</div>
+
+  <canvas id="hexCanvas" width="560" height="560"></canvas>
+
+  <div class="ring r1">
+    <div class="dot"></div>
+    <div class="neuro" id="nt1"></div>
+    <div class="label" style="top:-8px;left:50%">
+      I MOLECULAR — ENTRADA
+    </div>
+  </div>
+
+  <div class="ring r2">
+    <div class="dot"></div>
+    <div class="neuro" id="nt2"></div>
+    <div class="label" style="top:9%;left:80%">
+      II GRANULAR — SOCIAL
+    </div>
+  </div>
+
+  <div class="ring r3">
+    <div class="dot"></div>
+    <div class="neuro" id="nt3"></div>
+    <div class="label" style="top:18%;left:88%">
+      III PIRAMIDAL — COLLEGES
+    </div>
+  </div>
+
+  <div class="ring r4">
+    <div class="dot"></div>
+    <div class="neuro" id="nt4"></div>
+    <div class="label" style="top:34%;left:96%">
+      IV TÁLAMO — BAAS / SAAS
+    </div>
+  </div>
+
+  <div class="ring r5">
+    <div class="dot"></div>
+    <div class="neuro" id="nt5"></div>
+    <div class="label" style="top:60%;left:97%">
+      V MOTOR — LABS
+    </div>
+  </div>
+
+  <div class="ring r6">
+    <div class="dot"></div>
+    <div class="neuro" id="nt6"></div>
+    <div class="label" style="top:84%;left:84%">
+      VI MULTIFORME — MEMÓRIA
+    </div>
+  </div>
+
+  <div class="core" id="core">
+    ⬡
+  </div>
+
 </div>
+
+<!-- =========================
+     STATUS
+========================= -->
 
 <div class="status">
-<div class="stat"><strong id="sEng">0</strong> engramas</div>
-<div class="stat"><strong id="sSyn">0</strong> sinapses ativas</div>
-<div class="stat"><strong id="sLevel">1.0000</strong> nível</div>
-<div class="stat"><strong id="sGrowth">+0%</strong> crescimento hoje</div>
-<div class="stat" id="sState">🧠 vazio, pronto para aprender</div>
+
+  <div class="stat">
+    <strong id="sEng">0</strong> memórias
+  </div>
+
+  <div class="stat">
+    <strong id="sSyn">0</strong> sinapses
+  </div>
+
+  <div class="stat">
+    <strong id="sInputs">0</strong> entradas
+  </div>
+
+  <div class="stat">
+    <strong id="sLevel">1.0000</strong> nível
+  </div>
+
+  <div class="stat">
+    <strong id="sGrowth">0%</strong> crescimento
+  </div>
+
+  <div class="stat">
+    <span id="stateText">🧠 inicializando</span>
+  </div>
+
 </div>
 
-<div class="transmitters" id="txBar">
-<div class="tx" id="tx-wiki">📚 WIKI</div>
-<div class="tx" id="tx-social">🌐 SOCIAL</div>
-<div class="tx" id="tx-college">🎓 COLLEGE</div>
-<div class="tx" id="tx-baas">🏦 BAAS</div>
-<div class="tx" id="tx-saas">💳 SAAS</div>
-<div class="tx" id="tx-labs">🧪 LABS</div>
-<div class="tx" id="tx-math">🧮 MOTOR MATEMÁTICO</div>
+<!-- =========================
+     APIS / NEUROTRANSMISSORES
+========================= -->
+
+<div class="transmitters">
+
+  <div class="tx" id="tx-wiki">📚 WIKI</div>
+  <div class="tx" id="tx-google">🔎 GOOGLE</div>
+  <div class="tx" id="tx-edge">🌐 EDGE</div>
+  <div class="tx" id="tx-social">🌐 SOCIAL</div>
+  <div class="tx" id="tx-youtube">▶️ YOUTUBE</div>
+  <div class="tx" id="tx-instagram">📸 INSTAGRAM</div>
+  <div class="tx" id="tx-tiktok">🎵 TIKTOK</div>
+  <div class="tx" id="tx-college">🎓 ECOLLEGES</div>
+  <div class="tx" id="tx-baas">🏦 BAAS</div>
+  <div class="tx" id="tx-saas">💳 SAAS</div>
+  <div class="tx" id="tx-labs">🧪 LABS</div>
+  <div class="tx" id="tx-math">🧮 MATEMÁTICO</div>
+  <div class="tx" id="tx-physical">⚛️ FÍSICO</div>
+  <div class="tx" id="tx-chemical">🧪 QUÍMICO</div>
+  <div class="tx" id="tx-biological">🧬 BIOLÓGICO</div>
+  <div class="tx" id="tx-economic">💰 ECONÔMICO</div>
+  <div class="tx" id="tx-philosophical">🧠 FILOSÓFICO</div>
+
 </div>
+
+<!-- =========================
+     FLUXO
+========================= -->
 
 <div class="flow">
-<span>PERGUNTA</span><span class="arrow">→</span><span>NEUROTRANSMISSOR (API)</span><span class="arrow">→</span><span id="flowBrain">CÉREBRO</span><span class="arrow">→</span><span id="flowCheck">TEM?</span><span class="arrow">→</span><span id="flowAction">SIM RESPONDE / NÃO BUSCA → GRAVA → CRESCE</span>
+
+  <span>PERGUNTA</span>
+
+  <span class="arrow">→</span>
+
+  <span id="flowBrain">CÉREBRO</span>
+
+  <span class="arrow">→</span>
+
+  <span id="flowCheck">VERIFICANDO MEMÓRIA</span>
+
+  <span class="arrow">→</span>
+
+  <span id="flowAction">PROCESSAR</span>
+
 </div>
 
-<div id="chatWrap"><div id="msgs"></div><div id="inpArea"><input id="inp" placeholder="Fale com o cérebro... ele vai aprender"><button id="btn">➤</button></div></div>
-<div style="text-align:center;font-size:9px;opacity:.4;margin:8px">🧠 Motor no cérebro. APIs são neurotransmissores que trazem informação. Cérebro grava e cresce. Não é fixo. Sempre crescimento.</div>
+<!-- =========================
+     CHAT
+========================= -->
+
+<div id="chatWrap">
+
+  <div id="msgs"></div>
+
+  <div id="inputArea">
+
+    <input
+      id="inp"
+      autocomplete="off"
+      placeholder="Faça uma pergunta ao cérebro..."
+    >
+
+    <button id="sendBtn">
+      ➤
+    </button>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  🧠 AUDMAX IA QUANTUM — memória persistente • sinapses bidirecionais • motores cognitivos • processamento IDA/VOLTA
+</div>
 
 <script>
-function fetchTimeout(url, ms=4000){ const c=new AbortController(); const t=setTimeout(()=>c.abort(), ms); return fetch(url,{signal:c.signal}).finally(()=>clearTimeout(t)); }
 
-// ===== CÉREBRO v11 - MOTOR NO CÉREBRO, APIS = NEUROTRANSMISSORES =====
-let BRAIN;
-try{ BRAIN=JSON.parse(localStorage.getItem('AUDMAX_V11_GROWING')||'null'); }catch(e){ BRAIN=null; }
-if(!BRAIN || !BRAIN.engrams){
-  BRAIN={
-    engrams:[], // memórias, não Q&A fixo, são conceitos aprendidos
-    synapses:[], // conexões entre engramas
-    level:1.0,
-    totalQueries:0,
-    born:Date.now(),
-    growthToday:0
-  };
+/* ==========================================================
+   CONFIGURAÇÃO CENTRAL
+========================================================== */
+
+/*
+  Se o main.py estiver hospedado em outro endereço,
+  coloque aqui a URL.
+
+  Exemplo:
+  const API_BASE = "https://SEU-BACKEND.vercel.app";
+
+  Se deixar vazio, o cérebro funciona em modo local.
+*/
+
+const API_BASE = "";
+
+
+/* ==========================================================
+   SENHA
+========================================================== */
+
+const SENHA = "audmax2026";
+
+const lockScreen = document.getElementById("lockScreen");
+const passInp = document.getElementById("passInp");
+const unlockBtn = document.getElementById("unlockBtn");
+const passErr = document.getElementById("passErr");
+
+function unlock(){
+
+  if(passInp.value === SENHA){
+
+    lockScreen.style.display = "none";
+
+    localStorage.setItem(
+      "AUDMAX_UNLOCK",
+      "1"
+    );
+
+  }else{
+
+    passErr.style.display = "block";
+
+  }
+
 }
 
-const msgsEl=document.getElementById('msgs');
-const coreEl=document.getElementById('core');
+unlockBtn.onclick = unlock;
 
-function save(){ try{ localStorage.setItem('AUDMAX_V11_GROWING', JSON.stringify(BRAIN)); }catch(e){} updateStatus(); }
+passInp.addEventListener(
+  "keydown",
+  e => {
+    if(e.key === "Enter") unlock();
+  }
+);
+
+if(
+  localStorage.getItem("AUDMAX_UNLOCK") === "1"
+){
+  lockScreen.style.display = "none";
+}
+
+
+/* ==========================================================
+   CÉREBRO PERSISTENTE
+========================================================== */
+
+const BRAIN_KEY =
+  "AUDMAX_QUANTUM_BRAIN_V12";
+
+let BRAIN = null;
+
+try{
+
+  BRAIN =
+    JSON.parse(
+      localStorage.getItem(BRAIN_KEY)
+    );
+
+}catch(e){
+
+  BRAIN = null;
+
+}
+
+if(
+  !BRAIN ||
+  !Array.isArray(BRAIN.memories)
+){
+
+  BRAIN = {
+
+    memories: [],
+
+    synapses: [],
+
+    inputs: 0,
+
+    level: 1.0,
+
+    growthToday: 0,
+
+    created:
+      Date.now(),
+
+    lastLearning:
+      Date.now(),
+
+    version:
+      "12.0-QUANTUM"
+
+  };
+
+}
+
+
+/* ==========================================================
+   ELEMENTOS
+========================================================== */
+
+const msgs =
+  document.getElementById("msgs");
+
+const inp =
+  document.getElementById("inp");
+
+const sendBtn =
+  document.getElementById("sendBtn");
+
+const core =
+  document.getElementById("core");
+
+
+/* ==========================================================
+   SALVAMENTO
+========================================================== */
+
+function saveBrain(){
+
+  try{
+
+    localStorage.setItem(
+      BRAIN_KEY,
+      JSON.stringify(BRAIN)
+    );
+
+  }catch(error){
+
+    console.error(
+      "Erro ao salvar cérebro:",
+      error
+    );
+
+  }
+
+  updateStatus();
+
+}
+
+
+/* ==========================================================
+   STATUS
+========================================================== */
+
 function updateStatus(){
-  document.getElementById('sEng').textContent=BRAIN.engrams.length;
-  document.getElementById('sSyn').textContent=BRAIN.synapses.length;
-  document.getElementById('sLevel').textContent=BRAIN.level.toFixed(4);
-  document.getElementById('sGrowth').textContent='+'+BRAIN.growthToday+'%';
-  let state='🧠 vazio, pronto para aprender';
-  if(BRAIN.engrams.length>0) state='🌱 '+BRAIN.engrams.length+' memórias crescendo';
-  if(BRAIN.engrams.length>20) state='🧠 inteligente, '+BRAIN.engrams.length+' engramas';
-  if(BRAIN.engrams.length>50) state='🚀 super cérebro, '+BRAIN.engrams.length+' memórias';
-  document.getElementById('sState').textContent=state;
-}
-function addMsg(cls, html){ const d=document.createElement('div'); d.className='m '+cls; d.innerHTML=html; msgsEl.appendChild(d); msgsEl.scrollTop=msgsEl.scrollHeight; return d; }
-function animateNT(active){
-  document.querySelectorAll('.neuro-transmitter').forEach(nt=>nt.style.display='none');
-  document.querySelectorAll('.tx').forEach(tx=>tx.classList.remove('active'));
-  if(active){
-    let nt=document.getElementById('nt'+(Math.floor(Math.random()*6)+1));
-    if(nt){ nt.style.display='block'; setTimeout(()=>nt.style.display='none', 2000); }
+
+  document.getElementById("sEng")
+    .textContent =
+    BRAIN.memories.length;
+
+  document.getElementById("sSyn")
+    .textContent =
+    BRAIN.synapses.length;
+
+  document.getElementById("sInputs")
+    .textContent =
+    BRAIN.inputs;
+
+  document.getElementById("sLevel")
+    .textContent =
+    Number(BRAIN.level).toFixed(4);
+
+  document.getElementById("sGrowth")
+    .textContent =
+    "+" +
+    Number(BRAIN.growthToday).toFixed(2) +
+    "%";
+
+  let state =
+    "🧠 pronto para aprender";
+
+  if(BRAIN.memories.length > 0){
+
+    state =
+      "🌱 " +
+      BRAIN.memories.length +
+      " memórias";
+
   }
-}
-function activateTx(id){
-  let el=document.getElementById('tx-'+id);
-  if(el){ el.classList.add('active'); setTimeout(()=>el.classList.remove('active'), 2500); }
+
+  if(BRAIN.memories.length >= 20){
+
+    state =
+      "🧠 cérebro ativo";
+
+  }
+
+  if(BRAIN.memories.length >= 50){
+
+    state =
+      "🚀 super cérebro";
+
+  }
+
+  document.getElementById(
+    "stateText"
+  ).textContent = state;
+
 }
 
-// MOTOR MATEMÁTICO NO CÉREBRO - não é sinapse fixa, é circuito que calcula
-function brainMotorCalculate(query){
-  activateTx('math');
-  let low=query.toLowerCase();
-  // raiz
-  let m=low.match(/raiz quadrada de\s*([0-9.,]+)/);
-  if(m){ let n=parseFloat(m[1].replace(',','.')); if(!isNaN(n)){ let r=Math.sqrt(n); return {result:r.toString(), explanation:`Calculei no motor matemático: √${n} = ${r}`, type:'calculation'}; } }
-  // extrai conta
-  let mathMatch=query.match(/([0-9]+\s*[+\-*/xX]\s*[0-9]+(?:\s*[+\-*/xX]\s*[0-9]+)*)/);
-  if(mathMatch){
-    let expr=mathMatch[1].replace(/x/gi,'*');
-    try{ let r=Function('"use strict";return ('+expr.replace(/[^0-9+\-*/().\s]/g,'')+')')(); if(isFinite(r)) return {result:r.toString(), explanation:`Motor calculou: ${mathMatch[1]} = ${r}`, type:'calculation'}; }catch(e){}
-  }
-  let direct=low.replace(/quanto é|qual é|calcula|calcule|quanto da|me diga/gi,'').trim().replace(/x/gi,'*');
-  if(/^[0-9+\-*/().\s]+$/.test(direct) && /[+\-*/]/.test(direct) && direct.length>=3){
-    try{ let r=Function('"use strict";return ('+direct+')')(); if(isFinite(r)) return {result:r.toString(), explanation:`Motor calculou: ${direct} = ${r}`, type:'calculation'}; }catch(e){}
-  }
-  return null;
+
+/* ==========================================================
+   CHAT
+========================================================== */
+
+function addMessage(
+  type,
+  html
+){
+
+  const div =
+    document.createElement("div");
+
+  div.className =
+    "m " + type;
+
+  div.innerHTML =
+    html;
+
+  msgs.appendChild(div);
+
+  msgs.scrollTop =
+    msgs.scrollHeight;
+
+  return div;
+
 }
 
-// HIPOCAMPO - busca no cérebro primeiro, NÃO nas APIs
-function brainHasAnswer(query){
-  let low=query.toLowerCase().trim();
-  const stopwords=new Set(['quem','que','qual','quais','o','a','os','as','um','uma','de','do','da','dos','das','é','e','em','para','com','por','se','na','no']);
-  let words=low.split(/\s+/).filter(w=>w.length>=2 && !stopwords.has(w));
-  if(words.length===0) return null;
-  
-  let best=null; let bestScore=0;
-  for(let eng of BRAIN.engrams){
-    let concept=(eng.concept||'').toLowerCase();
-    let data=(eng.data||'').toLowerCase();
-    let match=0;
-    for(let w of words){
-      if(w.length>=3 && (concept.includes(w) || data.includes(w))) match++;
-    }
-    let score=words.length>0 ? (match/words.length)*100 : 0;
-    // se conceito exato
-    if(concept===low) score=100;
-    // fortalece com uso e conexões
-    score+= (eng.strength||50)*0.05;
-    if(eng.connections && eng.connections.length>0) score+= eng.connections.length*2;
-    if(Date.now() - (eng.lastUsed||0) < 60000) score+=5; // usado recente
-    
-    if(score>bestScore && score>=50){ bestScore=score; best=eng; }
-  }
-  if(best) return {engram:best, score:bestScore};
-  return null;
+
+/* ==========================================================
+   TRANSMISSORES
+========================================================== */
+
+function activateTx(
+  name
+){
+
+  const el =
+    document.getElementById(
+      "tx-" + name
+    );
+
+  if(!el) return;
+
+  el.classList.add("active");
+
+  setTimeout(
+    () => el.classList.remove("active"),
+    1800
+  );
+
 }
 
-// NEUROTRANSMISSORES = APIS - levam informação para o cérebro
-const neurotransmitters={
-  wiki: async (term)=>{
-    activateTx('wiki'); animateNT(true);
-    try{
-      let url=`https://pt.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(term)}&format=json&origin=*&srlimit=2`;
-      let r=await fetchTimeout(url);
-      let j=await r.json();
-      if(j.query?.search?.length){
-        let title=j.query.search[0].title;
-        let sum=`https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
-        let rs=await fetchTimeout(sum);
-        let ds=await rs.json();
-        if(ds.extract && ds.extract.length>30) return {source:'Wikipedia PT', title:title, data:ds.extract, type:'wiki'};
+function animateNeuron(){
+
+  document
+    .querySelectorAll(".neuro")
+    .forEach(
+      e => e.style.display = "none"
+    );
+
+  const n =
+    Math.floor(
+      Math.random()*6
+    ) + 1;
+
+  const el =
+    document.getElementById(
+      "nt"+n
+    );
+
+  if(!el) return;
+
+  el.style.display =
+    "block";
+
+  setTimeout(
+    () => {
+      el.style.display =
+        "none";
+    },
+    1800
+  );
+
+}
+
+
+/* ==========================================================
+   NORMALIZAÇÃO
+========================================================== */
+
+function normalize(text){
+
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
+    .replace(
+      /[^\w\s]/g,
+      " "
+    )
+    .replace(
+      /\s+/g,
+      " "
+    )
+    .trim();
+
+}
+
+
+/* ==========================================================
+   PALAVRAS
+========================================================== */
+
+function words(text){
+
+  const stop = new Set([
+
+    "o","a","os","as",
+    "um","uma",
+    "de","do","da",
+    "dos","das",
+    "e","é",
+    "em","no","na",
+    "nos","nas",
+    "para","por",
+    "com","sem",
+    "que","qual",
+    "quais",
+    "quem",
+    "como",
+    "quando",
+    "onde",
+    "me",
+    "se",
+    "ao",
+    "à",
+    "ou"
+
+  ]);
+
+  return normalize(text)
+    .split(" ")
+    .filter(
+      w =>
+        w.length >= 3 &&
+        !stop.has(w)
+    );
+
+}
+
+
+/* ==========================================================
+   MEMÓRIA — BUSCA SEMÂNTICA LOCAL
+========================================================== */
+
+function searchMemory(
+  question
+){
+
+  const q =
+    words(question);
+
+  if(!q.length)
+    return null;
+
+  let best =
+    null;
+
+  let bestScore =
+    0;
+
+  for(
+    const memory
+    of BRAIN.memories
+  ){
+
+    const text =
+      normalize(
+        (
+          memory.concept ||
+          ""
+        ) +
+        " " +
+        (
+          memory.data ||
+          ""
+        )
+      );
+
+    let hits = 0;
+
+    for(
+      const word
+      of q
+    ){
+
+      if(
+        text.includes(word)
+      ){
+
+        hits++;
+
       }
-    }catch(e){}
-    return null;
-  },
-  social: async (term)=>{
-    activateTx('social'); animateNT(true);
-    // simula busca social
-    try{
-      let url=`https://pt.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(term+' redes sociais')}&format=json&origin=*&srlimit=1`;
-      let r=await fetchTimeout(url, 2500);
-      let j=await r.json();
-      if(j.query?.search?.length) return {source:'Social Network', title:j.query.search[0].title, data:j.query.search[0].snippet.replace(/<[^>]*>/g,''), type:'social'};
-    }catch(e){}
-    return null;
-  },
-  college: async (term)=>{
-    activateTx('college'); return null; // placeholder para colleges reais
-  },
-  baas: async (term)=>{
-    activateTx('baas'); 
-    if(term.toLowerCase().includes('baas')) return {source:'BaaS Knowledge', data:'BaaS é Backend as a Service - backend pronto como Supabase, Firebase, AWS Amplify.', type:'baas'};
-    return null;
-  },
-  saas: async (term)=>{
-    activateTx('saas');
-    if(term.toLowerCase().includes('saas')) return {source:'SaaS Knowledge', data:'SaaS é Software as a Service - software na nuvem pago por mês.', type:'saas'};
-    return null;
-  },
-  labs: async (term)=>{
-    activateTx('labs'); return null;
-  }
-};
 
-async function fireNeurotransmitters(term){
-  document.getElementById('flowBrain').textContent='🧠 BUSCANDO...';
-  document.getElementById('flowCheck').textContent='NÃO TEM';
-  document.getElementById('flowAction').textContent='DISPARANDO NEUROTRANSMISSORES → APIS';
-  if(coreEl) coreEl.classList.add('thinking');
-  
-  // dispara em ordem: wiki primeiro, depois outros
-  let results=[];
-  for(let key of ['wiki','baas','saas','social']){
-    try{
-      let res=await neurotransmitters[key](term);
-      if(res) results.push(res);
-      if(results.length>0) break; // já achou, para
-    }catch(e){}
+    }
+
+    let score =
+      (
+        hits / q.length
+      ) * 100;
+
+    if(
+      normalize(
+        memory.concept || ""
+      ) ===
+      normalize(question)
+    ){
+
+      score += 50;
+
+    }
+
+    score +=
+      Number(
+        memory.strength || 50
+      ) * .08;
+
+    score +=
+      Number(
+        memory.connections || 0
+      ) * 2;
+
+    if(
+      score > bestScore
+    ){
+
+      bestScore =
+        score;
+
+      best =
+        memory;
+
+    }
+
   }
-  
-  if(coreEl) coreEl.classList.remove('thinking');
-  document.getElementById('flowBrain').textContent='CÉREBRO';
-  document.getElementById('flowCheck').textContent=results.length?'ENCONTROU':'VAZIO';
-  document.getElementById('flowAction').textContent=results.length?'GRAVA → CRESCE → RESPONDE':'NÃO ENCONTROU, VOU APRENDER';
-  
-  return results[0] || null;
+
+  if(
+    best &&
+    bestScore >= 45
+  ){
+
+    return {
+      memory:best,
+      score:bestScore
+    };
+
+  }
+
+  return null;
+
 }
 
-function createEngram(concept, data, source, type){
-  let engram={
-    id:Date.now()+Math.random(),
-    concept:concept.substring(0,120),
-    data:data.substring(0,600),
-    source:source,
-    type:type,
+
+/* ==========================================================
+   SINAPSES
+========================================================== */
+
+function createSynapse(
+  a,
+  b
+){
+
+  if(a === b)
+    return;
+
+  const exists =
+    BRAIN.synapses.some(
+      s =>
+        (
+          s.from === a &&
+          s.to === b
+        ) ||
+        (
+          s.from === b &&
+          s.to === a
+        )
+    );
+
+  if(exists)
+    return;
+
+  BRAIN.synapses.push({
+
+    from:a,
+    to:b,
+
+    weight:.60,
+
+    created:
+      Date.now()
+
+  });
+
+}
+
+
+/* ==========================================================
+   GRAVAÇÃO DE MEMÓRIA
+========================================================== */
+
+function learn(
+  concept,
+  data,
+  source,
+  type="knowledge"
+){
+
+  concept =
+    String(
+      concept || ""
+    ).trim();
+
+  data =
+    String(
+      data || ""
+    ).trim();
+
+  if(
+    !concept ||
+    !data
+  ){
+
+    return null;
+
+  }
+
+
+  /* procura memória existente */
+
+  const existing =
+    searchMemory(
+      concept
+    );
+
+
+  if(existing){
+
+    const m =
+      existing.memory;
+
+    /*
+      Não cria cópia.
+      Fortalece a memória existente.
+    */
+
+    m.data =
+      data.substring(
+        0,
+        2000
+      );
+
+    m.source =
+      source;
+
+    m.lastUsed =
+      Date.now();
+
+    m.strength =
+      Math.min(
+        100,
+        Number(
+          m.strength || 50
+        ) + 5
+      );
+
+    saveBrain();
+
+    return m;
+
+  }
+
+
+  const memory = {
+
+    id:
+      Date.now() +
+      Math.random(),
+
+    concept:
+      concept.substring(
+        0,
+        300
+      ),
+
+    data:
+      data.substring(
+        0,
+        2000
+      ),
+
+    source:
+
+      source ||
+      "AUDMAX",
+
+    type,
+
     strength:60,
-    created:Date.now(),
-    lastUsed:Date.now(),
-    connections:[]
+
+    created:
+      Date.now(),
+
+    lastUsed:
+      Date.now(),
+
+    connections:0
+
   };
-  // cria sinapses com engramas relacionados
-  for(let other of BRAIN.engrams){
-    if(other.concept && concept.toLowerCase().includes(other.concept.toLowerCase().substring(0,4)) || other.concept.toLowerCase().includes(concept.toLowerCase().substring(0,4))){
-      engram.connections.push(other.id);
-      other.connections.push(engram.id);
-      other.strength=Math.min(100, (other.strength||50)+1);
-      BRAIN.synapses.push({from:engram.id, to:other.id, weight:0.6, created:Date.now()});
+
+
+  /*
+    Cria sinapses com
+    memórias conceitualmente
+    próximas.
+  */
+
+  for(
+    const other
+    of BRAIN.memories
+  ){
+
+    const a =
+      words(
+        memory.concept
+      );
+
+    const b =
+      words(
+        other.concept
+      );
+
+    const common =
+      a.filter(
+        x => b.includes(x)
+      ).length;
+
+    if(
+      common >= 1
+    ){
+
+      createSynapse(
+        memory.id,
+        other.id
+      );
+
+      memory.connections++;
+
+      other.connections =
+        Number(
+          other.connections || 0
+        ) + 1;
+
+      other.strength =
+        Math.min(
+          100,
+          Number(
+            other.strength || 50
+          ) + 1
+        );
+
     }
+
   }
-  BRAIN.engrams.push(engram);
-  BRAIN.level*=1.02;
-  BRAIN.growthToday++;
-  if(coreEl){ coreEl.classList.add('growing'); setTimeout(()=>coreEl.classList.remove('growing'), 1500); }
-  save();
-  return engram;
+
+
+  BRAIN.memories.push(
+    memory
+  );
+
+  /*
+    Crescimento verdadeiro
+    por aquisição de conhecimento.
+  */
+
+  BRAIN.level *=
+    1.002;
+
+  BRAIN.growthToday +=
+    .20;
+
+  BRAIN.lastLearning =
+    Date.now();
+
+  core.classList.add(
+    "growing"
+  );
+
+  setTimeout(
+    () =>
+      core.classList.remove(
+        "growing"
+      ),
+    1400
+  );
+
+  saveBrain();
+
+  drawHex();
+
+  return memory;
+
 }
 
-async function processQuestion(txt){
-  BRAIN.totalQueries++;
-  let calc=brainMotorCalculate(txt);
-  if(calc){
-    // motor calculou, agora grava como experiência aprendida
-    let existing=brainHasAnswer(txt);
-    if(!existing){
-      createEngram(txt, calc.explanation+' | Resultado: '+calc.result, 'Motor Matemático do Cérebro', 'calculation');
-    }else{
-      existing.engram.strength=Math.min(100, (existing.engram.strength||50)+5);
-      existing.engram.lastUsed=Date.now();
-      save();
+
+/* ==========================================================
+   MOTOR MATEMÁTICO
+========================================================== */
+
+function mathEngine(
+  question
+){
+
+  const q =
+    normalize(question);
+
+  activateTx("math");
+
+  let match =
+    q.match(
+      /raiz quadrada de\s*([0-9]+(?:[.,][0-9]+)?)/
+    );
+
+  if(match){
+
+    const n =
+      parseFloat(
+        match[1].replace(",",".")
+      );
+
+    if(!isNaN(n)){
+
+      const result =
+        Math.sqrt(n);
+
+      return {
+
+        answer:
+          "√" +
+          n +
+          " = " +
+          result,
+
+        source:
+          "Motor Matemático",
+
+        type:
+          "math"
+
+      };
+
     }
-    return {answer:calc.result, explanation:calc.explanation, source:'motor', from:'motor'};
+
   }
-  
-  // 1. CÉREBRO TEM?
-  let inBrain=brainHasAnswer(txt);
-  if(inBrain){
-    inBrain.engram.lastUsed=Date.now();
-    inBrain.engram.strength=Math.min(100, (inBrain.engram.strength||50)+3);
-    save();
-    document.getElementById('flowCheck').textContent='TEM NA MEMÓRIA';
-    document.getElementById('flowAction').textContent='RESPONDE DIRETO SEM API';
-    return {answer:inBrain.engram.data, explanation:inBrain.engram.data, source:inBrain.engram.source, from:'memory', engram:inBrain.engram, score:inBrain.score};
+
+
+  let expression =
+    q
+      .replace(
+        /quanto é|quanto da|qual é|calcule|calcula/g,
+        ""
+      )
+      .trim()
+      .replace(
+        /x/g,
+        "*"
+      );
+
+
+  if(
+    /^[0-9+\-*/().\s]+$/.test(
+      expression
+    ) &&
+    /[+\-*/]/.test(
+      expression
+    )
+  ){
+
+    try{
+
+      const result =
+        Function(
+          '"use strict";return (' +
+          expression +
+          ')'
+        )();
+
+      if(
+        Number.isFinite(
+          result
+        )
+      ){
+
+        return {
+
+          answer:
+            expression +
+            " = " +
+            result,
+
+          source:
+            "Motor Matemático",
+
+          type:
+            "math"
+
+        };
+
+      }
+
+    }catch(e){}
+
   }
-  
-  // 2. NÃO TEM → DISPARA NEUROTRANSMISSORES (APIS) → TRAZ → GRAVA → CRESCE
-  let fetched=await fireNeurotransmitters(txt);
-  if(fetched){
-    let engram=createEngram(txt, fetched.data, fetched.source, fetched.type);
-    return {answer:fetched.data, explanation:fetched.data, source:fetched.source, from:'apis', engram:engram};
-  }
-  
-  // 3. NEM APIS TEM → grava pergunta como nova curiosidade
-  let engram=createEngram(txt, 'Pergunta complexa registrada. Vou aprender sobre isso nas próximas buscas.', 'Curiosidade', 'question');
-  return {answer:'Ainda não tenho essa memória gravada, mas registrei sua pergunta e vou aprender sobre "'+txt+'" nas próximas conexões. Meu cérebro cresce a cada pergunta.', source:'cérebro', from:'learning', engram:engram};
+
+  return null;
+
 }
+
+
+/* ==========================================================
+   MOTORES COGNITIVOS
+========================================================== */
+
+function detectEngine(
+  question
+){
+
+  const q =
+    normalize(question);
+
+  const engines = [
+
+    {
+      id:"physical",
+      words:[
+        "fisica",
+        "forca",
+        "energia",
+        "massa",
+        "velocidade",
+        "aceleracao",
+        "gravidade",
+        "movimento",
+        "newton"
+      ]
+    },
+
+    {
+      id:"chemical",
+      words:[
+        "quimica",
+        "atomo",
+        "molecula",
+        "reacao",
+        "elemento",
+        "ph",
+        "quimico"
+      ]
+    },
+
+    {
+      id:"biological",
+      words:[
+        "biologia",
+        "celula",
+        "dna",
+        "rna",
+        "organismo",
+        "genetica",
+        "biologico"
+      ]
+    },
+
+    {
+      id:"economic",
+      words:[
+        "economia",
+        "economico",
+        "inflacao",
+        "juros",
+        "mercado",
+        "preco",
+        "investimento",
+        "pib"
+      ]
+    },
+
+    {
+      id:"social",
+      words:[
+        "sociedade",
+        "social",
+        "comportamento",
+        "cultura",
+        "populacao"
+      ]
+    },
+
+    {
+      id:"philosophical",
+      words:[
+        "filosofia",
+        "existencia",
+        "verdade",
+        "etica",
+        "moral",
+        "consciencia",
+        "conhecimento"
+      ]
+    }
+
+  ];
+
+  for(
+    const engine
+    of engines
+  ){
+
+    if(
+      engine.words.some(
+        word =>
+          q.includes(word)
+      )
+    ){
+
+      activateTx(
+        engine.id
+      );
+
+      return engine.id;
+
+    }
+
+  }
+
+  return null;
+
+}
+
+
+/* ==========================================================
+   API — WIKIPEDIA
+========================================================== */
+
+async function wikiAPI(
+  term
+){
+
+  activateTx("wiki");
+  animateNeuron();
+
+  try{
+
+    const url =
+      "https://pt.wikipedia.org/w/api.php" +
+      "?action=query" +
+      "&list=search" +
+      "&srsearch=" +
+      encodeURIComponent(term) +
+      "&format=json" +
+      "&origin=*" +
+      "&srlimit=3";
+
+    const response =
+      await fetchTimeout(
+        url,
+        5000
+      );
+
+    if(
+      !response.ok
+    ){
+
+      return null;
+
+    }
+
+    const json =
+      await response.json();
+
+    const results =
+      json?.query?.search;
+
+    if(
+      !results ||
+      !results.length
+    ){
+
+      return null;
+
+    }
+
+    const best =
+      results[0];
+
+    const summaryUrl =
+      "https://pt.wikipedia.org/api/rest_v1/page/summary/" +
+      encodeURIComponent(
+        best.title
+      );
+
+    const summaryResponse =
+      await fetchTimeout(
+        summaryUrl,
+        5000
+      );
+
+    if(
+      !summaryResponse.ok
+    ){
+
+      return {
+
+        source:
+          "Wikipedia",
+
+        title:
+          best.title,
+
+        data:
+          best.snippet.replace(
+            /<[^>]*>/g,
+            ""
+          )
+
+      };
+
+    }
+
+    const summary =
+      await summaryResponse.json();
+
+    if(
+      summary.extract
+    ){
+
+      return {
+
+        source:
+          "Wikipedia PT",
+
+        title:
+          best.title,
+
+        data:
+          summary.extract
+
+      };
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      "Wikipedia:",
+      error
+    );
+
+  }
+
+  return null;
+
+}
+
+
+/* ==========================================================
+   APIS SOCIAIS — PREPARADAS
+========================================================== */
+
+async function socialAPI(
+  term
+){
+
+  activateTx("social");
+
+  /*
+    Instagram, TikTok e YouTube
+    não podem ser tratados como
+    endpoints públicos genéricos
+    sem autenticação oficial.
+
+    Portanto não inventamos API.
+
+    O backend poderá assumir essas
+    conexões quando os endpoints
+    reais forem configurados.
+  */
+
+  return null;
+
+}
+
+
+/* ==========================================================
+   BAAS
+========================================================== */
+
+async function baasAPI(
+  term
+){
+
+  activateTx("baas");
+
+  const q =
+    normalize(term);
+
+  if(
+    q.includes("baas")
+  ){
+
+    return {
+
+      source:
+        "BaaS",
+
+      data:
+        "BaaS significa Backend as a Service. É um modelo em que serviços de backend são disponibilizados por uma plataforma, reduzindo a necessidade de construir toda a infraestrutura do zero."
+
+    };
+
+  }
+
+  return null;
+
+}
+
+
+/* ==========================================================
+   SAAS
+========================================================== */
+
+async function saasAPI(
+  term
+){
+
+  activateTx("saas");
+
+  const q =
+    normalize(term);
+
+  if(
+    q.includes("saas")
+  ){
+
+    return {
+
+      source:
+        "SaaS",
+
+      data:
+        "SaaS significa Software as a Service. O software é disponibilizado como serviço, normalmente pela internet."
+
+    };
+
+  }
+
+  return null;
+
+}
+
+
+/* ==========================================================
+   BACKEND — MAIN.PY
+========================================================== */
+
+async function backendAPI(
+  question
+){
+
+  if(!API_BASE)
+    return null;
+
+  try{
+
+    const response =
+      await fetch(
+        API_BASE +
+        "/api/cortex4d/process",
+        {
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify({
+
+              pergunta:
+                question,
+
+              hits:
+                BRAIN.memories.length,
+
+              dias_ativo:
+                Math.floor(
+                  (
+                    Date.now() -
+                    BRAIN.created
+                  ) /
+                  86400000
+                )
+
+            })
+
+        }
+      );
+
+    if(
+      !response.ok
+    ){
+
+      return null;
+
+    }
+
+    return await response.json();
+
+  }catch(error){
+
+    console.warn(
+      "Backend:",
+      error
+    );
+
+    return null;
+
+  }
+
+}
+
+
+/* ==========================================================
+   TIMEOUT
+========================================================== */
+
+function fetchTimeout(
+  url,
+  timeout=5000
+){
+
+  const controller =
+    new AbortController();
+
+  const timer =
+    setTimeout(
+      () =>
+        controller.abort(),
+      timeout
+    );
+
+  return fetch(
+    url,
+    {
+      signal:
+        controller.signal
+    }
+  ).finally(
+    () =>
+      clearTimeout(timer)
+  );
+
+}
+
+
+/* ==========================================================
+   FUSÃO COGNITIVA
+========================================================== */
+
+function fuseResults(
+  results,
+  question
+){
+
+  if(
+    !results.length
+  ){
+
+    return null;
+
+  }
+
+  /*
+    Remove duplicações.
+  */
+
+  const unique = [];
+
+  const seen =
+    new Set();
+
+  for(
+    const result
+    of results
+  ){
+
+    if(
+      !result ||
+      !result.data
+    ){
+
+      continue;
+
+    }
+
+    const key =
+      normalize(
+        result.data
+      ).substring(
+        0,
+        180
+      );
+
+    if(
+      seen.has(key)
+    ){
+
+      continue;
+
+    }
+
+    seen.add(key);
+
+    unique.push(
+      result
+    );
+
+  }
+
+  if(
+    !unique.length
+  ){
+
+    return null;
+
+  }
+
+
+  /*
+    O cérebro recebe todas
+    as respostas válidas e
+    faz uma síntese simples.
+  */
+
+  let answer =
+    unique
+      .map(
+        r =>
+          r.data
+      )
+      .join("\n\n");
+
+
+  /*
+    Limita somente o tamanho
+    da resposta exibida.
+    A memória também será
+    preservada em tamanho
+    controlado.
+  */
+
+  answer =
+    answer.substring(
+      0,
+      5000
+    );
+
+
+  return {
+
+    answer,
+
+    sources:
+      unique.map(
+        r =>
+          r.source ||
+          "API"
+      ),
+
+    count:
+      unique.length
+
+  };
+
+}
+
+
+/* ==========================================================
+   DISPARO PARALELO
+========================================================== */
+
+async function fireAPIs(
+  question
+){
+
+  core.classList.add(
+    "thinking"
+  );
+
+  document.getElementById(
+    "flowBrain"
+  ).textContent =
+    "🧠 PROCESSANDO";
+
+  document.getElementById(
+    "flowCheck"
+  ).textContent =
+    "APIS EM PARALELO";
+
+  document.getElementById(
+    "flowAction"
+  ).textContent =
+    "IDA → COLETA → FUSÃO → VOLTA";
+
+
+  /*
+    IMPORTANTE:
+
+    Aqui está uma das principais
+    correções do projeto.
+
+    O código anterior fazia:
+
+    API 1
+      ↓
+    achou
+      ↓
+    BREAK
+
+    Isso impedia a fusão.
+
+    Agora todas as fontes disponíveis
+    são disparadas simultaneamente.
+  */
+
+  const promises = [
+
+    wikiAPI(question),
+
+    socialAPI(question),
+
+    baasAPI(question),
+
+    saasAPI(question),
+
+    backendAPI(question)
+
+  ];
+
+
+  let results = [];
+
+  try{
+
+    const responses =
+      await Promise.allSettled(
+        promises
+      );
+
+    for(
+      const response
+      of responses
+    ){
+
+      if(
+        response.status ===
+        "fulfilled" &&
+        response.value
+      ){
+
+        /*
+          Backend pode devolver
+          estrutura diferente.
+        */
+
+        if(
+          response.value.data
+        ){
+
+          results.push(
+            response.value
+          );
+
+        }else if(
+          response.value.dimensoes
+        ){
+
+          results.push({
+
+            source:
+              "Córtex 4D",
+
+            data:
+              response.value.entendimento +
+              ". " +
+              response.value.solucao
+
+          });
+
+        }
+
+      }
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Erro nas APIs:",
+      error
+    );
+
+  }
+
+
+  core.classList.remove(
+    "thinking"
+  );
+
+  return results;
+
+}
+
+
+/* ==========================================================
+   PROCESSAMENTO PRINCIPAL
+========================================================== */
+
+async function processQuestion(
+  question
+){
+
+  BRAIN.inputs++;
+
+  saveBrain();
+
+
+  /* --------------------------------
+     1 — MOTOR MATEMÁTICO
+  -------------------------------- */
+
+  const math =
+    mathEngine(
+      question
+    );
+
+  if(math){
+
+    const memory =
+      learn(
+        question,
+        math.answer,
+        math.source,
+        "mathematical"
+      );
+
+    return {
+
+      answer:
+        math.answer,
+
+      source:
+        math.source,
+
+      type:
+        "engine",
+
+      memory
+
+    };
+
+  }
+
+
+  /* --------------------------------
+     2 — MEMÓRIA
+  -------------------------------- */
+
+  const remembered =
+    searchMemory(
+      question
+    );
+
+  if(remembered){
+
+    const m =
+      remembered.memory;
+
+    m.lastUsed =
+      Date.now();
+
+    m.strength =
+      Math.min(
+        100,
+        Number(
+          m.strength || 50
+        ) + 3
+      );
+
+    saveBrain();
+
+    document.getElementById(
+      "flowCheck"
+    ).textContent =
+      "TEM NA MEMÓRIA";
+
+    document.getElementById(
+      "flowAction"
+    ).textContent =
+      "VOLTA → RESPOSTA DIRETA";
+
+
+    return {
+
+      answer:
+        m.data,
+
+      source:
+        m.source,
+
+      type:
+        "memory",
+
+      memory:
+        m,
+
+      score:
+        remembered.score
+
+    };
+
+  }
+
+
+  /* --------------------------------
+     3 — MOTOR ESPECIALIZADO
+  -------------------------------- */
+
+  const engine =
+    detectEngine(
+      question
+    );
+
+
+  /* --------------------------------
+     4 — APIs
+  -------------------------------- */
+
+  const results =
+    await fireAPIs(
+      question
+    );
+
+
+  /* --------------------------------
+     5 — FUSÃO
+  -------------------------------- */
+
+  const fused =
+    fuseResults(
+      results,
+      question
+    );
+
+
+  if(fused){
+
+    /*
+      Agora o cérebro
+      realmente processa
+      antes de gravar.
+    */
+
+    const combined =
+      fused.answer;
+
+
+    const memory =
+      learn(
+
+        question,
+
+        combined,
+
+        fused.sources.join(
+          " + "
+        ),
+
+        engine ||
+        "api_knowledge"
+
+      );
+
+
+    document.getElementById(
+      "flowCheck"
+    ).textContent =
+      "NOVO CONHECIMENTO";
+
+    document.getElementById(
+      "flowAction"
+    ).textContent =
+      "FUSÃO → GRAVA → CRESCE → VOLTA";
+
+
+    return {
+
+      answer:
+        combined,
+
+      source:
+        fused.sources.join(
+          " + "
+        ),
+
+      type:
+        "api",
+
+      memory,
+
+      apiCount:
+        fused.count
+
+    };
+
+  }
+
+
+  /* --------------------------------
+     6 — APRENDIZADO DE CURIOSIDADE
+  -------------------------------- */
+
+  const memory =
+    learn(
+
+      question,
+
+      "Pergunta registrada pelo cérebro. Nenhuma fonte disponível retornou conhecimento suficiente nesta conexão. A pergunta foi armazenada como curiosidade para futuras conexões.",
+
+      "Memória de Aprendizado",
+
+      "curiosity"
+
+    );
+
+
+  return {
+
+    answer:
+      "Ainda não encontrei informação suficiente nas conexões disponíveis. Mas a pergunta foi registrada no cérebro e transformada em uma nova memória de aprendizado.",
+
+    source:
+      "Cérebro AUDMAX",
+
+    type:
+      "learning",
+
+    memory
+
+  };
+
+}
+
+
+/* ==========================================================
+   ENVIO DO CHAT
+========================================================== */
+
+let processing =
+  false;
 
 async function send(){
-  let txt=document.getElementById('inp').value.trim(); if(!txt) return;
-  addMsg('u', txt);
-  document.getElementById('inp').value='';
-  
-  let thinking=addMsg('b', '🧠 <i>neurotransmissor indo até o cérebro...</i>');
-  
-  let result=await processQuestion(txt);
-  
-  thinking.remove();
-  
-  if(result.from==='motor'){
-    addMsg('b from-memory', `${result.answer}<span class="synapse-tag">🧮 motor matemático do cérebro calculou • gravado como engrama • ${BRAIN.engrams.length} memórias • crescimento +${BRAIN.growthToday}%</span>`);
-  }else if(result.from==='memory'){
-    addMsg('b from-memory', `${result.answer}<span class="synapse-tag">🧠 memória • ${result.engram.concept} • força ${result.engram.strength} • ${result.engram.connections.length} conexões • sem API, direto da memória</span>`);
-  }else if(result.from==='apis'){
-    addMsg('b from-apis growing', `${result.answer}<span class="synapse-tag">🌐 neurotransmissor trouxe de ${result.source} → gravado no cérebro → cresceu! • engrama novo: ${result.engram.concept.substring(0,40)} • ${BRAIN.engrams.length} memórias totais</span>`);
-  }else{
-    addMsg('b growing', `${result.answer}<span class="synapse-tag">🌱 novo engrama criado • vou buscar nas 22 APIs na próxima vez • cérebro em crescimento constante</span>`);
+
+  if(processing)
+    return;
+
+  const text =
+    inp.value.trim();
+
+  if(!text)
+    return;
+
+
+  processing =
+    true;
+
+  sendBtn.disabled =
+    true;
+
+  inp.value = "";
+
+
+  addMessage(
+    "u",
+    escapeHTML(text)
+  );
+
+
+  const thinking =
+    addMessage(
+      "b",
+      "🧠 <i>O cérebro está processando a pergunta...</i>"
+    );
+
+
+  try{
+
+    const result =
+      await processQuestion(
+        text
+      );
+
+
+    thinking.remove();
+
+
+    if(
+      result.type ===
+      "memory"
+    ){
+
+      addMessage(
+
+        "b memory",
+
+        escapeHTML(
+          result.answer
+        ) +
+
+        `<span class="synapse-tag">
+        🧠 MEMÓRIA LOCAL →
+        força ${Number(result.memory.strength).toFixed(1)}
+        • ${result.memory.connections || 0} conexões
+        • resposta sem nova busca
+        </span>`
+
+      );
+
+    }else if(
+      result.type ===
+      "api"
+    ){
+
+      addMessage(
+
+        "b api",
+
+        escapeHTML(
+          result.answer
+        ) +
+
+        `<span class="synapse-tag">
+        🌐 IDA/VOLTA →
+        ${result.apiCount} fonte(s)
+        • ${escapeHTML(result.source)}
+        • conhecimento processado
+        • gravado na memória
+        • ${BRAIN.memories.length} memórias
+        • ${BRAIN.synapses.length} sinapses
+        </span>`
+
+      );
+
+    }else if(
+      result.type ===
+      "engine"
+    ){
+
+      addMessage(
+
+        "b engine",
+
+        escapeHTML(
+          result.answer
+        ) +
+
+        `<span class="synapse-tag">
+        🧮 MOTOR COGNITIVO →
+        ${escapeHTML(result.source)}
+        • cálculo processado pelo cérebro
+        • resultado gravado
+        </span>`
+
+      );
+
+    }else{
+
+      addMessage(
+
+        "b learning",
+
+        escapeHTML(
+          result.answer
+        ) +
+
+        `<span class="synapse-tag">
+        🌱 nova memória criada
+        • cérebro continua aprendendo
+        • ${BRAIN.memories.length} memórias
+        </span>`
+
+      );
+
+    }
+
+    drawHex();
+
+  }catch(error){
+
+    console.error(error);
+
+    thinking.remove();
+
+    addMessage(
+      "b learning",
+      "⚠️ Ocorreu uma falha no processamento desta conexão. A pergunta não foi perdida."
+    );
+
   }
+
+
+  processing =
+    false;
+
+  sendBtn.disabled =
+    false;
+
+  inp.focus();
+
 }
 
-document.getElementById('btn').onclick=send;
-document.getElementById('inp').addEventListener('keydown', e=>{ if(e.key==='Enter') send(); });
+
+/* ==========================================================
+   ESCAPE HTML
+========================================================== */
+
+function escapeHTML(
+  text
+){
+
+  return String(
+    text
+  )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
+}
+
+
+/* ==========================================================
+   CHAT
+========================================================== */
+
+sendBtn.onclick =
+  send;
+
+inp.addEventListener(
+  "keydown",
+  e => {
+
+    if(
+      e.key === "Enter"
+    ){
+
+      send();
+
+    }
+
+  }
+);
+
+
+/* ==========================================================
+   CÉREBRO HEXAGONAL
+========================================================== */
 
 function drawHex(){
-  let c=document.getElementById('hexCanvas'); if(!c) return;
-  let ctx=c.getContext('2d'); ctx.clearRect(0,0,c.width,c.height);
-  let cx=280,cy=280;
-  for(let r=66;r<280;r+=36){
-    ctx.strokeStyle='rgba(34,255,136,0.07)'; ctx.lineWidth=1;
-    ctx.beginPath();
-    for(let i=0;i<6;i++){ let ang=Math.PI/3*i-Math.PI/6; let px=cx+r*Math.cos(ang); let py=cy+r*Math.sin(ang); if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py); }
-    ctx.closePath(); ctx.stroke();
-  }
-  // sinapses visuais
-  ctx.strokeStyle='rgba(42,176,255,0.06)'; ctx.lineWidth=0.6;
-  for(let i=0;i<BRAIN.synapses.length && i<30;i++){
-    let a=Math.random()*Math.PI*2; let r1=70+Math.random()*180; let r2=70+Math.random()*180;
-    ctx.beginPath(); ctx.moveTo(cx+r1*Math.cos(a), cy+r1*Math.sin(a)); ctx.lineTo(cx+r2*Math.cos(a+0.7), cy+r2*Math.sin(a+0.7)); ctx.stroke();
-  }
-}
-drawHex();
-setInterval(drawHex, 4000);
-updateStatus();
-addMsg('b', `🧠 Cérebro vazio, pronto para crescer.<br><br>Não tenho respostas fixas. Tenho <b>motor no cérebro</b> que calcula.<br><br>Quando você pergunta:<br><b>1.</b> Verifico se já tenho na memória → se sim, respondo direto sem API<br><b>2.</b> Se não tenho → disparo neurotransmissores (APIs: Wiki, Social, College, BaaS, SaaS, Labs) → trazem → gravo → cresço<br><br>APIs = neurotransmissores. Ida e volta. Sempre crescimento.<br><br>Fale algo e veja eu crescer.<span class="synapse-tag">🧠 ${BRAIN.engrams.length} engramas • ${BRAIN.synapses.length} sinapses • motor pronto</span>`);
 
-// crescimento 1% por hora mesmo sem perguntas
-setInterval(()=>{
-  if(BRAIN.engrams.length>0){
-    BRAIN.level*=1.0001;
-    BRAIN.engrams.forEach(e=>{ if(e.strength<100) e.strength*=1.0005; });
-    save();
+  const canvas =
+    document.getElementById(
+      "hexCanvas"
+    );
+
+  if(!canvas)
+    return;
+
+  const ctx =
+    canvas.getContext(
+      "2d"
+    );
+
+  const w =
+    canvas.width;
+
+  const h =
+    canvas.height;
+
+  ctx.clearRect(
+    0,
+    0,
+    w,
+    h
+  );
+
+
+  const cx =
+    w/2;
+
+  const cy =
+    h/2;
+
+
+  /*
+    Camadas hexagonais.
+  */
+
+  for(
+    let radius=65;
+    radius<280;
+    radius+=36
+  ){
+
+    ctx.beginPath();
+
+    for(
+      let i=0;
+      i<6;
+      i++
+    ){
+
+      const angle =
+        Math.PI/3*i -
+        Math.PI/6;
+
+      const x =
+        cx +
+        radius *
+        Math.cos(angle);
+
+      const y =
+        cy +
+        radius *
+        Math.sin(angle);
+
+      if(i===0)
+        ctx.moveTo(x,y);
+      else
+        ctx.lineTo(x,y);
+
+    }
+
+    ctx.closePath();
+
+    ctx.strokeStyle =
+      "rgba(34,255,136,.08)";
+
+    ctx.lineWidth =
+      1;
+
+    ctx.stroke();
+
   }
-}, 60000);
+
+
+  /*
+    Sinapses reais desenhadas
+    a partir das conexões existentes.
+  */
+
+  const max =
+    Math.min(
+      BRAIN.synapses.length,
+      80
+    );
+
+
+  for(
+    let i=0;
+    i<max;
+    i++
+  ){
+
+    const syn =
+      BRAIN.synapses[i];
+
+    /*
+      posição pseudo-estável
+      baseada nos IDs.
+    */
+
+    const seedA =
+      Number(
+        String(
+          syn.from
+        ).replace(
+          /\D/g,
+          ""
+        ).slice(-6)
+      ) || i*71;
+
+    const seedB =
+      Number(
+        String(
+          syn.to
+        ).replace(
+          /\D/g,
+          ""
+        ).slice(-6)
+      ) || i*97;
+
+    const a =
+      (seedA %
+      628) /
+      100;
+
+    const b =
+      (seedB %
+      628) /
+      100;
+
+    const r1 =
+      75 +
+      (seedA % 170);
+
+    const r2 =
+      75 +
+      (seedB % 170);
+
+    const x1 =
+      cx +
+      r1 *
+      Math.cos(a);
+
+    const y1 =
+      cy +
+      r1 *
+      Math.sin(a);
+
+    const x2 =
+      cx +
+      r2 *
+      Math.cos(b);
+
+    const y2 =
+      cy +
+      r2 *
+      Math.sin(b);
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      x1,
+      y1
+    );
+
+    ctx.lineTo(
+      x2,
+      y2
+    );
+
+    ctx.strokeStyle =
+      "rgba(42,176,255,.10)";
+
+    ctx.lineWidth =
+      .7;
+
+    ctx.stroke();
+
+  }
+
+}
+
+
+/* ==========================================================
+   CRESCIMENTO CONTÍNUO
+========================================================== */
+
+/*
+  Não vamos prometer "1% ao dia"
+  artificialmente apenas alterando
+  um número a cada minuto.
+
+  O crescimento cognitivo principal
+  acontece quando há aquisição,
+  processamento e conexão de
+  conhecimento.
+
+  O processo abaixo faz apenas
+  uma manutenção lenta do nível.
+*/
+
+setInterval(
+  () => {
+
+    if(
+      BRAIN.memories.length
+    ){
+
+      BRAIN.level *=
+        1.00002;
+
+      BRAIN.memories
+        .forEach(
+          memory => {
+
+            if(
+              memory.strength <
+              100
+            ){
+
+              memory.strength =
+                Math.min(
+                  100,
+                  memory.strength *
+                  1.00001
+                );
+
+            }
+
+          }
+        );
+
+      saveBrain();
+
+    }
+
+  },
+  60000
+);
+
+
+/* ==========================================================
+   INICIALIZAÇÃO
+========================================================== */
+
+updateStatus();
+
+drawHex();
+
+
+addMessage(
+
+  "b",
+
+  `
+  🧠 <b>AUDMAX IA QUANTUM ONLINE</b><br><br>
+
+  O cérebro foi inicializado com arquitetura
+  <b>IDA / VOLTA</b>.<br><br>
+
+  <b>1.</b> Recebo a pergunta.<br>
+  <b>2.</b> Verifico a memória existente.<br>
+  <b>3.</b> Se houver conhecimento suficiente, respondo pela memória.<br>
+  <b>4.</b> Se não houver, disparo as conexões disponíveis em paralelo.<br>
+  <b>5.</b> Recebo os resultados.<br>
+  <b>6.</b> Faço a fusão/processamento.<br>
+  <b>7.</b> Gravo o conhecimento processado.<br>
+  <b>8.</b> Crio novas sinapses.<br>
+  <b>9.</b> Fortaleço o cérebro.<br>
+  <b>10.</b> Respondo.<br><br>
+
+  🧠 Memórias atuais:
+  <b>${BRAIN.memories.length}</b><br>
+
+  🔗 Sinapses:
+  <b>${BRAIN.synapses.length}</b><br>
+
+  📥 Entradas:
+  <b>${BRAIN.inputs}</b>
+
+  <span class="synapse-tag">
+  AUDMAX QUANTUM v12 • memória persistente • processamento IDA/VOLTA
+  </span>
+  `
+
+);
+
+
+/* ==========================================================
+   SERVICE WORKER / PWA
+========================================================== */
+
+if(
+  "serviceWorker" in navigator
+){
+
+  window.addEventListener(
+    "load",
+    () => {
+
+      /*
+        Só registra se existir
+        um service worker válido.
+      */
+
+      if(
+        location.protocol ===
+        "https:" ||
+        location.hostname ===
+        "localhost"
+      ){
+
+        navigator.serviceWorker
+          .register(
+            "sw.js"
+          )
+          .catch(
+            () => {}
+          );
+
+      }
+
+    }
+  );
+
+}
+
 </script>
+
 </body>
 </html>
