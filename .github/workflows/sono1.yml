@@ -1,0 +1,133 @@
+name: AUDMAX - Sono e Consolidação
+
+on:
+  schedule:
+    - cron: "00 09 * * *"
+  workflow_dispatch:
+
+jobs:
+
+  sono:
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Executar consolidação do sono
+        run: |
+
+          python - <<'PY'
+
+          from pathlib import Path
+          import json
+
+          base = Path(".")
+          knowledge = base / "knowledge"
+          memory = knowledge / "brain_memory.json"
+
+          data = {
+              "engrams": [],
+              "synapses": [],
+              "level": 1.959,
+              "growth": 9
+          }
+
+          if memory.exists():
+
+              try:
+
+                  data = json.loads(
+                      memory.read_text(
+                          encoding="utf-8"
+                      )
+                  )
+
+              except Exception:
+                  pass
+
+          sonhos = sorted(
+              knowledge.glob(
+                  "sonho_*.md"
+              )
+          )
+
+          for path in sonhos:
+
+              text = path.read_text(
+                  encoding="utf-8"
+              ).strip()
+
+              if not text:
+                  continue
+
+              concept = path.stem
+
+              if any(
+                  str(e.get("concept", ""))
+                  == concept
+                  for e in data["engrams"]
+              ):
+                  continue
+
+              data["engrams"].append(
+                  {
+                      "id": concept,
+                      "concept": concept,
+                      "data": text[:5000],
+                      "source": "knowledge/sono",
+                      "type": "dream_memory",
+                      "strength": 60,
+                      "connections": []
+                  }
+              )
+
+          data["synapses"] = (
+              data.get(
+                  "synapses",
+                  []
+              )[-10000:]
+          )
+
+          memory.parent.mkdir(
+              exist_ok=True
+          )
+
+          memory.write_text(
+              json.dumps(
+                  data,
+                  ensure_ascii=False,
+                  indent=2
+              ),
+              encoding="utf-8"
+          )
+
+          PY
+
+      - name: Gravar memória consolidada
+        run: |
+
+          git config user.name \
+            "AUDMAX IA QUANTUM"
+
+          git config user.email \
+            "actions@github.com"
+
+          git add \
+            knowledge/brain_memory.json
+
+          git diff --cached --quiet \
+            || git commit \
+            -m "🧠 sono: consolidar memória"
+
+          git push
