@@ -152,6 +152,15 @@
       "type": "dream_memory",
       "strength": 60,
       "connections": []
+    },
+    {
+      "id": "sonho_2026-08-20",
+      "concept": "sonho_2026-08-20",
+      "data": "# Sonho 2026-08-20 QGIS+CapCut Produto 9",
+      "source": "knowledge/sono",
+      "type": "dream_memory",
+      "strength": 60,
+      "connections": []
     }
   ],
   "synapses": [],
