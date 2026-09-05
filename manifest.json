@@ -1,8 +1,8 @@
 {
-  "name": "AUDMAX IA QUANTUM v9.1 DEPTH",
+  "name": "AUDMAX IA QUANTUM v12 — Cérebro Vivo",
   "short_name": "AUDMAX 4D",
-  "description": "Cérebro Hexagonal 4D - Frontal (assimila) + Pré-Frontal (analisa/aprende/responde) + Guarda + IDA/VOLTA 22 APIs",
-  "start_url": "/",
+  "description": "Cérebro Hexagonal 4D — Frontal + Pré-Frontal + Memória Persistente + Processamento IDA/VOLTA em 22 APIs",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#050a14",
   "theme_color": "#22ff88",
@@ -19,6 +19,11 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
     }
   ],
   "categories": [
@@ -28,4 +33,3 @@
   ],
   "lang": "pt-BR"
 }
-
