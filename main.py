@@ -12,10 +12,9 @@ from pathlib import Path
 import json
 import re
 
-
-BASE = Path(_file_).resolve().parent
+# Correção de sintaxe para o caminho base do projeto
+BASE = Path(__file__).resolve().parent
 MEMORY_FILE = BASE / "knowledge" / "brain_memory.json"
-
 
 app = FastAPI(
     title="AUDMAX IA QUANTUM v12",
@@ -23,10 +22,11 @@ app = FastAPI(
     version="12.0.0"
 )
 
-
+# Liberação completa de CORS para o PWA e chamadas do Frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -47,15 +47,13 @@ class Cortex4D:
         hits_count: int = 0,
         dias: int = 0
     ):
-
         t = pergunta.lower()
 
         altura = min(
             6,
             max(
                 1,
-                len(t.split()) / 6 +
-                (2 if hits_count > 0 else 0)
+                len(t.split()) / 6 + (2 if hits_count > 0 else 0)
             )
         )
 
@@ -127,9 +125,7 @@ cortex = Cortex4D()
 
 
 def load_memory():
-
     if not MEMORY_FILE.exists():
-
         return {
             "engrams": [],
             "synapses": [],
@@ -138,15 +134,10 @@ def load_memory():
         }
 
     try:
-
         return json.loads(
-            MEMORY_FILE.read_text(
-                encoding="utf-8"
-            )
+            MEMORY_FILE.read_text(encoding="utf-8")
         )
-
     except Exception:
-
         return {
             "engrams": [],
             "synapses": [],
@@ -156,12 +147,10 @@ def load_memory():
 
 
 def save_memory(memory):
-
     MEMORY_FILE.parent.mkdir(
         parents=True,
         exist_ok=True
     )
-
     MEMORY_FILE.write_text(
         json.dumps(
             memory,
@@ -173,7 +162,6 @@ def save_memory(memory):
 
 
 def tokens(text):
-
     return set(
         re.findall(
             r"[a-zá-ú0-9]{3,}",
@@ -183,10 +171,8 @@ def tokens(text):
 
 
 def similarity(a, b):
-
     A = tokens(a)
     B = tokens(b)
-
     return len(A & B) / max(
         len(A | B),
         1
@@ -194,77 +180,52 @@ def similarity(a, b):
 
 
 def synthesize(pergunta, fontes):
-
     valid = []
-
     for fonte in fontes:
-
         if not isinstance(fonte, dict):
             continue
 
-        data = str(
-            fonte.get("data", "")
-        ).strip()
-
+        data = str(fonte.get("data", "")).strip()
         if len(data) >= 20:
-
-            valid.append(
-                {
-                    "source": fonte.get(
-                        "source",
-                        "fonte"
-                    ),
-                    "data": data[:3000]
-                }
-            )
+            valid.append({
+                "source": fonte.get("source", "fonte"),
+                "data": data[:3000]
+            })
 
     if not valid:
-
         return (
             "Nenhuma fonte retornou conteúdo "
             "suficiente para formar conhecimento confiável."
         )
 
     blocos = []
-
     for item in valid:
-
         blocos.append(
-            f"[{item['source']}] "
-            f"{item['data']}"
+            f"[{item['source']}] {item['data']}"
         )
 
     return (
         "FUSÃO COGNITIVA\n"
-        f"Pergunta: {pergunta}\n\n"
-        +
+        f"Pergunta: {pergunta}\n\n" +
         "\n\n".join(blocos)
     )
 
 
 @app.get("/api/health")
 def health():
-
     memory = load_memory()
-
     return {
         "status": "online",
         "version": "12.0.0",
         "apis": 22,
-        "engrams": len(
-            memory["engrams"]
-        ),
-        "synapses": max(
-            6,
-            len(memory["synapses"])
-        ),
+        "engrams": len(memory["engrams"]),
+        "synapses": max(6, len(memory["synapses"])),
         "ida_volta": True
     }
 
 
 @app.post("/api/cortex4d/process")
 def process_4d(p: Pergunta):
-
     dimensions = cortex.process(
         p.pergunta,
         p.hits,
@@ -276,129 +237,70 @@ def process_4d(p: Pergunta):
         p.fontes
     )
 
+    # Adicionado integração direta de entendimento/solução compatível com o index.html
+    entendimento = f"Pergunta processada com nível cognitivo [{dimensions['cognicao']}]"
+    solucao = fused if not fused.startswith("Nenhuma fonte") else "Informação assimilada e direcionada para a memória de aprendizado."
+
     return {
         "pergunta": p.pergunta,
         "dimensoes": dimensions,
-        "fontes_processadas": len(
-            p.fontes
-        ),
+        "entendimento": entendimento,
+        "solucao": solucao,
+        "fontes_processadas": len(p.fontes),
         "conhecimento_fundido": fused,
-        "timestamp":
-            datetime.now().isoformat()
+        "timestamp": datetime.now().isoformat()
     }
 
 
 @app.post("/api/brain/learn")
 def learn(p: Pergunta):
-
     memory = load_memory()
+    fused = synthesize(p.pergunta, p.fontes)
 
-    fused = synthesize(
-        p.pergunta,
-        p.fontes
-    )
-
-    if fused.startswith(
-        "Nenhuma fonte"
-    ):
-
+    if fused.startswith("Nenhuma fonte"):
         return {
             "learned": False,
-            "reason":
-                "sem evidência suficiente"
+            "reason": "sem evidência suficiente"
         }
 
     engram = {
         "id": datetime.now().timestamp(),
-        "concept":
-            p.pergunta[:180],
-        "data":
-            fused[:5000],
-        "source":
-            "fusão ida/volta",
-        "created":
-            datetime.now().isoformat(),
+        "concept": p.pergunta[:180],
+        "data": fused[:5000],
+        "source": "fusão ida/volta",
+        "created": datetime.now().isoformat(),
         "strength": 65,
         "connections": []
     }
 
     for other in memory["engrams"]:
+        if similarity(engram["concept"], other.get("concept", "")) >= 0.25:
+            engram["connections"].append(other["id"])
+            memory["synapses"].append({
+                "from": engram["id"],
+                "to": other["id"],
+                "weight": 0.5
+            })
 
-        if similarity(
-            engram["concept"],
-            other.get(
-                "concept",
-                ""
-            )
-        ) >= 0.25:
-
-            engram[
-                "connections"
-            ].append(
-                other["id"]
-            )
-
-            memory[
-                "synapses"
-            ].append(
-                {
-                    "from":
-                        engram["id"],
-                    "to":
-                        other["id"],
-                    "weight": 0.5
-                }
-            )
-
-    memory["engrams"].append(
-        engram
-    )
-
-    memory["level"] = (
-        float(
-            memory.get(
-                "level",
-                1.959
-            )
-        ) * 1.02
-    )
-
-    memory["growth"] = min(
-        100,
-        int(
-            memory.get(
-                "growth",
-                9
-            )
-        ) + 1
-    )
-
-    memory["synapses"] = (
-        memory["synapses"][-10000:]
-    )
+    memory["engrams"].append(engram)
+    memory["level"] = float(memory.get("level", 1.959)) * 1.02
+    memory["growth"] = min(100, int(memory.get("growth", 9)) + 1)
+    memory["synapses"] = memory["synapses"][-10000:]
 
     save_memory(memory)
 
     return {
         "learned": True,
         "engram": engram,
-        "engrams":
-            len(memory["engrams"]),
-        "synapses":
-            max(
-                6,
-                len(memory["synapses"])
-            )
+        "engrams": len(memory["engrams"]),
+        "synapses": max(6, len(memory["synapses"]))
     }
 
 
 @app.get("/api/sinapses")
 def get_sinapses():
-
     path = BASE / "sinapses.json"
-
     if not path.exists():
-
         return {
             "corticais": 6,
             "entradas": 9,
@@ -406,21 +308,13 @@ def get_sinapses():
             "crescimento_hoje": 9
         }
 
-    return json.loads(
-        path.read_text(
-            encoding="utf-8"
-        )
-    )
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 @app.get("/")
 def root():
-
     return {
-        "name":
-            "AUDMAX IA QUANTUM",
-        "version":
-            "12.0.0",
-        "message":
-            "Backend online"
+        "name": "AUDMAX IA QUANTUM",
+        "version": "12.0.0",
+        "message": "Backend online e operando em modo Híbrido/Quantum"
     }
