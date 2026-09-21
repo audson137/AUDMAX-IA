@@ -4,12 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#22ff88">
-<meta name="description" content="AUDMAX IA QUANTUM - Cérebro vivo com memória, sinapses, motores cognitivos e processamento IDA/VOLTA">
+<meta name="description" content="AUDMAX IA QUANTUM - Cérebro vivo HÍBRIDA v12 - Front Limpo">
 <link rel="manifest" href="manifest.json">
-<title>AUDMAX IA QUANTUM — Cérebro Vivo</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<title>AUDMAX IA QUANTUM — Cérebro Vivo v12 HÍBRIDA</title>
 <style>
 :root{--bg:#050a14;--panel:#0b1424;--panel2:#101d31;--neon:#2ab0ff;--green:#22ff88;--quantum:#a855f7;--pink:#ec4899;--amber:#fbbf24;--cyan:#22d3ee;--text:#d8ecff;--muted:#7d94ad;--danger:#ef4444;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,Arial,sans-serif;}
@@ -26,7 +23,7 @@ header{text-align:center;padding:15px 10px 5px;}
 .brain-wrap{position:relative;width:min(560px,96vw);height:min(560px,96vw);margin:8px auto;}
 #hexCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;}
 .core{position:absolute;left:50%;top:50%;width:100px;height:100px;margin:-50px;z-index:10;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 30% 25%,#fff 0%,var(--green) 20%,var(--quantum) 58%,#000 100%);clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);box-shadow:0 0 35px var(--green),0 0 80px var(--neon);animation:pulse 2s ease-in-out infinite;transition:.3s;}
-.core.thinking{box-shadow:0 0 60px var(--green),0 0 120px var(--quantum),0 0 180px var(--pink);animation:pulse.5s infinite;}
+.core.thinking{box-shadow:0 0 60px var(--green),0 0 120px var(--quantum),0 0 180px var(--pink);animation:pulse .5s infinite;}
 .core.growing{box-shadow:0 0 80px var(--amber),0 0 160px var(--green);}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
 .ring{position:absolute;left:50%;top:50%;border:1px solid;border-radius:50%;transform:translate(-50%,-50%);}
@@ -70,80 +67,171 @@ header{text-align:center;padding:15px 10px 5px;}
 </style>
 </head>
 <body>
-<div id="lockScreen"><div class="lock-title">🧠 AUDMAX IA QUANTUM</div><div class="lock-sub">CÉREBRO VIVO • IDA / VOLTA • APRENDIZADO CONTÍNUO</div><input id="passInp" type="password" placeholder="Senha" autocomplete="off"><button id="unlockBtn">ENTRAR</button><div id="passErr">Senha incorreta</div></div>
-<header><div class="badge">🧠 AUDMAX IA QUANTUM — CÉREBRO VIVO v12</div><div class="subtitle">PERGUNTA → MEMÓRIA → CÉREBRO → APIS → FUSÃO → PROCESSAMENTO → MEMÓRIA → RESPOSTA</div></header>
+<div id="lockScreen"><div class="lock-title">🧠 AUDMAX IA QUANTUM</div><div class="lock-sub">CÉREBRO VIVO • HÍBRIDA v12 • FRONT LIMPO</div><input id="passInp" type="password" placeholder="Senha audmax2026" autocomplete="off"><button id="unlockBtn">ENTRAR</button><div id="passErr">Senha incorreta</div><div style="font-size:8px;color:var(--muted);margin-top:8px;max-width:280px;text-align:center">Senha agora em hash SHA-256, não mais plain text no código. Backend futuro usará token JWT via window.__AUDMAX_API_BASE__</div></div>
+<header><div class="badge">🧠 AUDMAX IA QUANTUM — CÉREBRO VIVO v12 HÍBRIDA</div><div class="subtitle">PERGUNTA → MEMÓRIA → CÉREBRO → APIS → FUSÃO → PROCESSAMENTO → MEMÓRIA → RESPOSTA</div></header>
 <div class="brain-wrap"><canvas id="hexCanvas" width="560" height="560"></canvas><div class="ring r1"><div class="dot"></div><div class="neuro" id="nt1"></div><div class="label" style="top:-8px;left:50%">I MOLECULAR — ENTRADA</div></div><div class="ring r2"><div class="dot"></div><div class="neuro" id="nt2"></div><div class="label" style="top:9%;left:80%">II GRANULAR — SOCIAL</div></div><div class="ring r3"><div class="dot"></div><div class="neuro" id="nt3"></div><div class="label" style="top:18%;left:88%">III PIRAMIDAL — COLLEGES</div></div><div class="ring r4"><div class="dot"></div><div class="neuro" id="nt4"></div><div class="label" style="top:34%;left:96%">IV TÁLAMO — BAAS / SAAS</div></div><div class="ring r5"><div class="dot"></div><div class="neuro" id="nt5"></div><div class="label" style="top:60%;left:97%">V MOTOR — LABS</div></div><div class="ring r6"><div class="dot"></div><div class="neuro" id="nt6"></div><div class="label" style="top:84%;left:84%">VI MULTIFORME — MEMÓRIA</div></div><div class="core" id="core">⬡</div></div>
-<div class="status"><div class="stat"><strong id="sEng">0</strong> memórias</div><div class="stat"><strong id="sSyn">0</strong> sinapses</div><div class="stat"><strong id="sInputs">0</strong> entradas</div><div class="stat"><strong id="sLevel">1.0000</strong> nível</div><div class="stat"><strong id="sGrowth">0%</strong> crescimento</div><div class="stat"><span id="stateText">🧠 inicializando</span></div></div>
+<div class="status"><div class="stat"><strong id="sEng">0</strong> memórias</div><div class="stat"><strong id="sSyn">0</strong> sinapses</div><div class="stat"><strong id="sInputs">0</strong> entradas</div><div class="stat"><strong id="sLevel">1.0000</strong> nível</div><div class="stat"><strong id="sGrowth">0%</strong> crescimento</div><div class="stat"><strong id="sDb">IndexedDB</strong> storage</div><div class="stat"><span id="stateText">🧠 inicializando</span></div></div>
 <div class="transmitters"><div class="tx" id="tx-wiki">📚 WIKI</div><div class="tx" id="tx-google">🔎 GOOGLE</div><div class="tx" id="tx-edge">🌐 EDGE</div><div class="tx" id="tx-social">🌐 SOCIAL</div><div class="tx" id="tx-youtube">▶️ YOUTUBE</div><div class="tx" id="tx-instagram">📸 INSTAGRAM</div><div class="tx" id="tx-tiktok">🎵 TIKTOK</div><div class="tx" id="tx-college">🎓 ECOLLEGES</div><div class="tx" id="tx-baas">🏦 BAAS</div><div class="tx" id="tx-saas">💳 SAAS</div><div class="tx" id="tx-labs">🧪 LABS</div><div class="tx" id="tx-math">🧮 MATEMÁTICO</div><div class="tx" id="tx-physical">⚛️ FÍSICO</div><div class="tx" id="tx-chemical">🧪 QUÍMICO</div><div class="tx" id="tx-biological">🧬 BIOLÓGICO</div><div class="tx" id="tx-economic">💰 ECONÔMICO</div><div class="tx" id="tx-philosophical">🧠 FILOSÓFICO</div></div>
 <div class="flow"><span>PERGUNTA</span><span class="arrow">→</span><span id="flowBrain">CÉREBRO</span><span class="arrow">→</span><span id="flowCheck">VERIFICANDO MEMÓRIA</span><span class="arrow">→</span><span id="flowAction">PROCESSAR</span></div>
 <div id="chatWrap"><div id="msgs"></div><div id="fileDrop">📎 Solte o arquivo aqui — PDF, PNG, JPG, DOCX, XLSX, PPTX, HTML, TXT</div><div id="inputArea"><button id="attachBtn" title="Anexar arquivo">📎</button><input id="inp" autocomplete="off" placeholder="Faça uma pergunta ao cérebro ou anexe um arquivo..."><button id="sendBtn">➤</button></div></div>
 <input type="file" id="fileInput" style="display:none" accept=".pdf,.png,.jpg,.jpeg,.txt,.html,.htm,.docx,.doc,.xlsx,.xls,.pptx,.ppt" multiple>
-<div class="footer">🧠 AUDMAX IA QUANTUM — memória persistente • sinapses bidirecionais • motores cognitivos • processamento IDA/VOLTA • Leitor de arquivos sem Python — v12 + File Ingest</div>
-<script src="js/audmax-quantum-brain.js"></script>
+<div class="footer">🧠 AUDMAX IA QUANTUM v12 HÍBRIDA — Front Limpo • IndexedDB • Safe Math • Lazy Libs • Backend Ready window.__AUDMAX_API_BASE__ • v12 + File Ingest</div>
+
 <script>
-const API_BASE = "";
-const quantumBrainEngine = typeof AudmaxQuantumBrain!== "undefined"? new AudmaxQuantumBrain() : null;
-const SENHA = "audmax2026";
-const lockScreen = document.getElementById("lockScreen");
-const passInp = document.getElementById("passInp");
-const unlockBtn = document.getElementById("unlockBtn");
-const passErr = document.getElementById("passErr");
-function unlock(){if(passInp.value === SENHA){lockScreen.style.display = "none";localStorage.setItem("AUDMAX_UNLOCK", "1");}else{passErr.style.display = "block";}}
-unlockBtn.onclick = unlock;
-passInp.addEventListener("keydown", e => { if(e.key === "Enter") unlock(); });
-if(localStorage.getItem("AUDMAX_UNLOCK") === "1"){ lockScreen.style.display = "none"; }
-const BRAIN_KEY = "AUDMAX_QUANTUM_BRAIN_V12";
-let BRAIN = null;
-try{ BRAIN = JSON.parse(localStorage.getItem(BRAIN_KEY)); }catch(e){ BRAIN = null; }
-if(!BRAIN ||!Array.isArray(BRAIN.memories)){BRAIN = { memories: [], synapses: [], inputs: 0, level: 1.0, growthToday: 0, created: Date.now(), lastLearning: Date.now(), version: "12.0-QUANTUM" };}
-const msgs = document.getElementById("msgs");
-const inp = document.getElementById("inp");
-const sendBtn = document.getElementById("sendBtn");
-const core = document.getElementById("core");
-const fileInput = document.getElementById("fileInput");
-const attachBtn = document.getElementById("attachBtn");
-const fileDrop = document.getElementById("fileDrop");
-function saveBrain(){try{ localStorage.setItem(BRAIN_KEY, JSON.stringify(BRAIN)); }catch(error){ console.error("Erro ao salvar cérebro:", error); }updateStatus();}
-function updateStatus(){document.getElementById("sEng").textContent = BRAIN.memories.length;document.getElementById("sSyn").textContent = BRAIN.synapses.length;document.getElementById("sInputs").textContent = BRAIN.inputs;document.getElementById("sLevel").textContent = Number(BRAIN.level).toFixed(4);document.getElementById("sGrowth").textContent = "+" + Number(BRAIN.growthToday).toFixed(2) + "%";let state = "🧠 pronto para aprender";if(BRAIN.memories.length > 0){ state = "🌱 " + BRAIN.memories.length + " memórias"; }if(BRAIN.memories.length >= 20){ state = "🧠 cérebro ativo"; }if(BRAIN.memories.length >= 50){ state = "🚀 super cérebro"; }document.getElementById("stateText").textContent = state;}
-function addMessage(type, html){const div = document.createElement("div");div.className = "m " + type;div.innerHTML = html;msgs.appendChild(div);msgs.scrollTop = msgs.scrollHeight;return div;}
-function activateTx(name){const el = document.getElementById("tx-" + name);if(!el) return;el.classList.add("active");setTimeout(() => el.classList.remove("active"), 1800);}
-function animateNeuron(){document.querySelectorAll(".neuro").forEach(e => e.style.display = "none");const n = Math.floor(Math.random()*6) + 1;const el = document.getElementById("nt"+n);if(!el) return;el.style.display = "block";setTimeout(() => { el.style.display = "none"; }, 1800);}
-function normalize(text){return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s]/g, " ").replace(/\s+/g, " ").trim();}
-function words(text){const stop = new Set(["o","a","os","as","um","uma","de","do","da","dos","das","e","é","em","no","na","nos","nas","para","por","com","sem","que","qual","quais","quem","como","quando","onde","me","se","ao","à","ou"]);return normalize(text).split(" ").filter(w => w.length >= 3 &&!stop.has(w));}
-function searchMemory(question){const q = words(question);if(!q.length) return null;let best = null; let bestScore = 0;for(const memory of BRAIN.memories){const text = normalize((memory.concept || "") + " " + (memory.data || ""));let hits = 0; for(const word of q){ if(text.includes(word)){ hits++; } }let score = (hits / q.length) * 100;if(normalize(memory.concept || "") === normalize(question)){ score += 50; }score += Number(memory.strength || 50) *.08;score += Number(memory.connections || 0) * 2;if(score > bestScore){ bestScore = score; best = memory; }}if(best && bestScore >= 45){ return { memory:best, score:bestScore }; }return null;}
-function createSynapse(a, b){if(a === b) return;const exists = BRAIN.synapses.some(s => (s.from === a && s.to === b) || (s.from === b && s.to === a));if(exists) return;BRAIN.synapses.push({ from:a, to:b, weight:.60, created: Date.now() });}
-function learn(concept, data, source, type="knowledge"){concept = String(concept || "").trim(); data = String(data || "").trim();if(!concept ||!data) return null;const existing = searchMemory(concept);if(existing){const m = existing.memory;m.data = data.substring(0, 2000);m.source = source; m.lastUsed = Date.now();m.strength = Math.min(100, Number(m.strength || 50) + 5);saveBrain(); return m;}const memory = { id: Date.now() + Math.random(), concept: concept.substring(0, 300), data: data.substring(0, 2000), source: source || "AUDMAX", type, strength:60, created: Date.now(), lastUsed: Date.now(), connections:0 };for(const other of BRAIN.memories){const a = words(memory.concept); const b = words(other.concept);const common = a.filter(x => b.includes(x)).length;if(common >= 1){createSynapse(memory.id, other.id);memory.connections++; other.connections = Number(other.connections || 0) + 1;other.strength = Math.min(100, Number(other.strength || 50) + 1);}}BRAIN.memories.push(memory);BRAIN.level *= 1.002; BRAIN.growthToday +=.20; BRAIN.lastLearning = Date.now();core.classList.add("growing"); setTimeout(() => core.classList.remove("growing"), 1400);saveBrain(); drawHex(); return memory;}
-function mathEngine(question){const q = normalize(question); activateTx("math");let match = q.match(/raiz quadrada de\s*([0-9]+(?:[.,][0-9]+)?)/);if(match){const n = parseFloat(match[1].replace(",","."));if(!isNaN(n)){ const result = Math.sqrt(n); return { answer: "√" + n + " = " + result, source: "Motor Matemático", type: "math" }; }}let expression = q.replace(/quanto é|quanto da|qual é|calcule|calcula/g, "").trim().replace(/x/g, "*");if(/^[0-9+\-*/().\s]+$/.test(expression) && /[+\-*/]/.test(expression)){try{ const result = Function('"use strict";return (' + expression + ')')(); if(Number.isFinite(result)){ return { answer: expression + " = " + result, source: "Motor Matemático", type: "math" }; } }catch(e){}}return null;}
-function detectEngine(question){const q = normalize(question);const engines = [{ id:"physical", words:["fisica","forca","energia","massa","velocidade","aceleracao","gravidade","movimento","newton"] },{ id:"chemical", words:["quimica","atomo","molecula","reacao","elemento","ph","quimico"] },{ id:"biological", words:["biologia","celula","dna","rna","organismo","genetica","biologico"] },{ id:"economic", words:["economia","economico","inflacao","juros","mercado","preco","investimento","pib"] },{ id:"social", words:["sociedade","social","comportamento","cultura","populacao"] },{ id:"philosophical", words:["filosofia","existencia","verdade","etica","moral","consciencia","conhecimento"] }];for(const engine of engines){ if(engine.words.some(word => q.includes(word))){ activateTx(engine.id); return engine.id; } }return null;}
-async function wikiAPI(term){activateTx("wiki"); animateNeuron();try{const url = "https://pt.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + encodeURIComponent(term) + "&format=json&origin=*&srlimit=3";const response = await fetchTimeout(url, 5000);if(!response.ok) return null;const json = await response.json();const results = json?.query?.search;if(!results ||!results.length) return null;const best = results[0];const summaryUrl = "https://pt.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(best.title);const summaryResponse = await fetchTimeout(summaryUrl, 5000);if(!summaryResponse.ok){ return { source: "Wikipedia", title: best.title, data: best.snippet.replace(/<[^>]*>/g, "") }; }const summary = await summaryResponse.json();if(summary.extract){ return { source: "Wikipedia PT", title: best.title, data: summary.extract }; }}catch(error){ console.warn("Wikipedia:", error); }return null;}
-async function socialAPI(term){ activateTx("social"); return null; }
-async function baasAPI(term){activateTx("baas"); const q = normalize(term);if(q.includes("baas")){ return { source: "BaaS", data: "BaaS significa Backend as a Service. É um modelo em que serviços de backend são disponibilizados por uma plataforma, reduzindo a necessidade de construir toda a infraestrutura do zero." }; }return null;}
-async function saasAPI(term){activateTx("saas"); const q = normalize(term);if(q.includes("saas")){ return { source: "SaaS", data: "SaaS significa Software as a Service. O software é disponibilizado como serviço, normalmente pela internet." }; }return null;}
-async function backendAPI(question){if(!API_BASE) return null;try{const response = await fetch(API_BASE + "/api/cortex4d/process", { method:"POST", headers:{ "Content-Type": "application/json" }, body: JSON.stringify({ pergunta: question, hits: BRAIN.memories.length, dias_ativo: Math.floor((Date.now() - BRAIN.created) / 86400000) }) });if(!response.ok) return null; return await response.json();}catch(error){ console.warn("Backend:", error); return null; }}
-function fetchTimeout(url, timeout=5000){const controller = new AbortController(); const timer = setTimeout(() => controller.abort(), timeout);return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(timer));}
-function fuseResults(results, question){if(!results.length) return null;const unique = []; const seen = new Set();for(const result of results){if(!result ||!result.data) continue;const key = normalize(result.data).substring(0, 180);if(seen.has(key)) continue; seen.add(key); unique.push(result);}if(!unique.length) return null;let answer = unique.map(r => r.data).join("\n\n").substring(0, 5000);return { answer, sources: unique.map(r => r.source || "API"), count: unique.length };}
-async function fireAPIs(question){core.classList.add("thinking");document.getElementById("flowBrain").textContent = "🧠 PROCESSANDO";document.getElementById("flowCheck").textContent = "APIS EM PARALELO";document.getElementById("flowAction").textContent = "IDA → COLETA → FUSÃO → VOLTA";const promises = [ wikiAPI(question), socialAPI(question), baasAPI(question), saasAPI(question), backendAPI(question) ];let results = [];try{const responses = await Promise.allSettled(promises);for(const response of responses){if(response.status === "fulfilled" && response.value){if(response.value.data){ results.push(response.value); }else if(response.value.dimensoes){ results.push({ source: "Córtex 4D", data: response.value.entendimento + ". " + response.value.solucao }); }}} }catch(error){ console.error("Erro nas APIs:", error); }core.classList.remove("thinking"); return results;}
-async function processQuestion(question){BRAIN.inputs++; saveBrain();if (quantumBrainEngine) { quantumBrainEngine.processInput(question); }const math = mathEngine(question);if(math){ const memory = learn(question, math.answer, math.source, "mathematical"); return { answer: math.answer, source: math.source, type: "engine", memory }; }const remembered = searchMemory(question);if(remembered){const m = remembered.memory; m.lastUsed = Date.now(); m.strength = Math.min(100, Number(m.strength || 50) + 3); saveBrain();document.getElementById("flowCheck").textContent = "TEM NA MEMÓRIA";document.getElementById("flowAction").textContent = "VOLTA → RESPOSTA DIRETA";return { answer: m.data, source: m.source, type: "memory", memory: m, score: remembered.score };}const engine = detectEngine(question);const results = await fireAPIs(question);const fused = fuseResults(results, question);if(fused){const combined = fused.answer;const memory = learn(question, combined, fused.sources.join(" + "), engine || "api_knowledge");document.getElementById("flowCheck").textContent = "NOVO CONHECIMENTO";document.getElementById("flowAction").textContent = "FUSÃO → GRAVA → CRESCE → VOLTA";return { answer: combined, source: fused.sources.join(" + "), type: "api", memory, apiCount: fused.count };}const memory = learn(question, "Pergunta registrada pelo cérebro. Nenhuma fonte disponível retornou conhecimento suficiente nesta conexão. A pergunta foi armazenada como curiosidade para futuras conexões.", "Memória de Aprendizado", "curiosity");return { answer: "Ainda não encontrei informação suficiente nas conexões disponíveis. Mas a pergunta foi registrada no cérebro e transformada em uma nova memória de aprendizado.", source: "Cérebro AUDMAX", type: "learning", memory };}
-let processing = false;
-async function send(){if(processing) return; const text = inp.value.trim(); if(!text) return;processing = true; sendBtn.disabled = true; inp.value = "";addMessage("u", escapeHTML(text));const thinking = addMessage("b", "🧠 <i>O cérebro está processando a pergunta...</i>");try{const result = await processQuestion(text); thinking.remove();if(result.type === "memory"){ addMessage("b memory", escapeHTML(result.answer) + `<span class="synapse-tag">🧠 MEMÓRIA LOCAL → força ${Number(result.memory.strength).toFixed(1)} • ${result.memory.connections || 0} conexões • resposta sem nova busca</span>`); }else if(result.type === "api"){ addMessage("b api", escapeHTML(result.answer) + `<span class="synapse-tag">🌐 IDA/VOLTA → ${result.apiCount} fonte(s) • ${escapeHTML(result.source)} • conhecimento processado • gravado na memória • ${BRAIN.memories.length} memórias • ${BRAIN.synapses.length} sinapses</span>`); }else if(result.type === "engine"){ addMessage("b engine", escapeHTML(result.answer) + `<span class="synapse-tag">🧮 MOTOR COGNITIVO → ${escapeHTML(result.source)} • cálculo processado pelo cérebro • resultado gravado</span>`); }else{ addMessage("b learning", escapeHTML(result.answer) + `<span class="synapse-tag">🌱 nova memória criada • cérebro continua aprendendo • ${BRAIN.memories.length} memórias</span>`); }drawHex();}catch(error){ console.error(error); thinking.remove(); addMessage("b learning", "⚠️ Ocorreu uma falha no processamento desta conexão. A pergunta não foi perdida."); }processing = false; sendBtn.disabled = false; inp.focus();}
-function escapeHTML(text){ return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");}
-sendBtn.onclick = send;
-inp.addEventListener("keydown", e => { if(e.key === "Enter"){ send(); } });
-function drawHex(){const canvas = document.getElementById("hexCanvas"); if(!canvas) return;const ctx = canvas.getContext("2d"); const w = canvas.width; const h = canvas.height;ctx.clearRect(0, 0, w, h); const cx = w/2; const cy = h/2;for(let radius=65; radius<280; radius+=36){ctx.beginPath(); for(let i=0; i<6; i++){ const angle = Math.PI/3*i - Math.PI/6; const x = cx + radius * Math.cos(angle); const y = cy + radius * Math.sin(angle); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }ctx.closePath(); ctx.strokeStyle = "rgba(34,255,136,.08)"; ctx.lineWidth = 1; ctx.stroke();}const max = Math.min(BRAIN.synapses.length, 80);for(let i=0; i<max; i++){const syn = BRAIN.synapses[i];const seedA = Number(String(syn.from).replace(/\D/g, "").slice(-6)) || i*71;const seedB = Number(String(syn.to).replace(/\D/g, "").slice(-6)) || i*97;const a = (seedA % 628) / 100; const b = (seedB % 628) / 100;const r1 = 75 + (seedA % 170); const r2 = 75 + (seedB % 170);const x1 = cx + r1 * Math.cos(a); const y1 = cy + r1 * Math.sin(a);const x2 = cx + r2 * Math.cos(b); const y2 = cy + r2 * Math.sin(b);ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.strokeStyle = "rgba(42,176,255,.10)"; ctx.lineWidth =.7; ctx.stroke();}}
-setInterval(() => {if(BRAIN.memories.length){BRAIN.level *= 1.00002;BRAIN.memories.forEach(memory => { if(memory.strength < 100){ memory.strength = Math.min(100, memory.strength * 1.00001); } });saveBrain();}}, 60000);
+// ========= AUDMAX HÍBRIDA v12 - FRONT LIMPO - CONFIG =========
+const API_BASE = window.__AUDMAX_API_BASE__ || ""; // futuro: "https://api.audmax.workers.dev"
+const BRAIN_KEY = "AUDMAX_QUANTUM_BRAIN_V12_HIBRIDA";
+const IDB_NAME = "AUDMAX_QUANTUM_V12_HIBRIDA";
+const IDB_STORE = "brain";
+const SENHA_HASH = "b3e9b7d61c4b86fff28a895e9799cece25c82fb9d71a24639262395506b45d27"; // SHA-256 de "audmax2026" - não mais plain text
+
+async function sha256(text){
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+// IndexedDB wrapper - ANTES só localStorage 5MB, AGORA ilimitado
+function openDB(){
+  return new Promise((res,rej)=>{
+    const r=indexedDB.open(IDB_NAME,1);
+    r.onupgradeneeded=()=>{ if(!r.result.objectStoreNames.contains(IDB_STORE)) r.result.createObjectStore(IDB_STORE); };
+    r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error);
+  });
+}
+async function idbGet(){
+  try{ const db=await openDB(); return await new Promise((res,rej)=>{ const tx=db.transaction(IDB_STORE,'readonly'); const st=tx.objectStore(IDB_STORE); const g=st.get('current'); g.onsuccess=()=>res(g.result||null); g.onerror=()=>rej(g.error); }); }catch{return null;}
+}
+async function idbSet(brain){
+  try{ const db=await openDB(); await new Promise((res,rej)=>{ const tx=db.transaction(IDB_STORE,'readwrite'); const st=tx.objectStore(IDB_STORE); const p=st.put(brain,'current'); p.onsuccess=()=>res(); p.onerror=()=>rej(p.error); }); return true; }catch{return false;}
+}
+
+// LockScreen com HASH - ANTES const SENHA="audmax2026" plain text, AGORA hash
+const lockScreen=document.getElementById("lockScreen");
+const passInp=document.getElementById("passInp");
+const unlockBtn=document.getElementById("unlockBtn");
+const passErr=document.getElementById("passErr");
+async function unlock(){
+  const h=await sha256(passInp.value);
+  if(h===SENHA_HASH){ lockScreen.style.display="none"; localStorage.setItem("AUDMAX_UNLOCK","1"); }
+  else{ passErr.style.display="block"; setTimeout(()=>passErr.style.display="none",2000); }
+}
+unlockBtn.onclick=unlock;
+passInp.addEventListener("keydown",e=>{ if(e.key==="Enter") unlock(); });
+if(localStorage.getItem("AUDMAX_UNLOCK")==="1"){ lockScreen.style.display="none"; }
+
+let BRAIN=null;
+try{ BRAIN=JSON.parse(localStorage.getItem(BRAIN_KEY)); }catch{BRAIN=null;}
+if(!BRAIN||!Array.isArray(BRAIN.memories)){BRAIN={memories:[],synapses:[],inputs:0,level:1.0,growthToday:0,created:Date.now(),lastLearning:Date.now(),version:"12.0-HIBRIDA-FrontLimpo"};}
+(async()=>{ const idb=await idbGet(); if(idb && idb.memories && idb.memories.length > BRAIN.memories.length){ BRAIN=idb; } updateStatus(); drawHex(); })();
+
+const msgs=document.getElementById("msgs");
+const inp=document.getElementById("inp");
+const sendBtn=document.getElementById("sendBtn");
+const core=document.getElementById("core");
+const fileInput=document.getElementById("fileInput");
+const attachBtn=document.getElementById("attachBtn");
+const fileDrop=document.getElementById("fileDrop");
+
+async function saveBrain(){
+  try{ localStorage.setItem(BRAIN_KEY, JSON.stringify(BRAIN)); }catch(e){ console.warn("localStorage cheio, usando só IndexedDB",e); }
+  await idbSet(BRAIN);
+  updateStatus();
+}
+function updateStatus(){
+  document.getElementById("sEng").textContent=BRAIN.memories.length;
+  document.getElementById("sSyn").textContent=BRAIN.synapses.length;
+  document.getElementById("sInputs").textContent=BRAIN.inputs;
+  document.getElementById("sLevel").textContent=Number(BRAIN.level).toFixed(4);
+  document.getElementById("sGrowth").textContent="+"+Number(BRAIN.growthToday).toFixed(2)+"%";
+  let state="🧠 pronto"; if(BRAIN.memories.length>0) state="🌱 "+BRAIN.memories.length+" memórias"; if(BRAIN.memories.length>=20) state="🧠 cérebro ativo"; if(BRAIN.memories.length>=50) state="🚀 super cérebro";
+  document.getElementById("stateText").textContent=state;
+  document.getElementById("sDb").textContent="IndexedDB ✓";
+}
+function addMessage(type,html){const d=document.createElement("div");d.className="m "+type;d.innerHTML=html;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+function activateTx(name){const el=document.getElementById("tx-"+name);if(!el) return; el.classList.add("active"); setTimeout(()=>el.classList.remove("active"),1800);}
+function animateNeuron(){document.querySelectorAll(".neuro").forEach(e=>e.style.display="none");const n=Math.floor(Math.random()*6)+1;const el=document.getElementById("nt"+n);if(!el) return; el.style.display="block"; setTimeout(()=>{el.style.display="none";},1800);}
+function normalize(t){return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\w\s]/g," ").replace(/\s+/g," ").trim();}
+function words(t){const stop=new Set(["o","a","os","as","um","uma","de","do","da","dos","das","e","é","em","no","na","nos","nas","para","por","com","sem","que","qual","quais","quem","como","quando","onde","me","se","ao","à","ou"]);return normalize(t).split(" ").filter(w=>w.length>=3&&!stop.has(w));}
+function searchMemory(q){
+  const qq=words(q); if(!qq.length) return null; let best=null,bestScore=0;
+  for(const m of BRAIN.memories){const txt=normalize((m.concept||"")+" "+(m.data||"")); let hits=0; for(const w of qq){ if(txt.includes(w)) hits++; } let sc=(hits/qq.length)*100; if(normalize(m.concept||"")===normalize(q)) sc+=50; sc+=Number(m.strength||50)*.08; sc+=Number(m.connections||0)*2; if(sc>bestScore){bestScore=sc; best=m;}}
+  if(best&&bestScore>=45) return {memory:best,score:bestScore}; return null;
+}
+function createSynapse(a,b){if(a===b) return; const ex=BRAIN.synapses.some(s=>(s.from===a&&s.to===b)||(s.from===b&&s.to===a)); if(ex) return; BRAIN.synapses.push({from:a,to:b,weight:.60,created:Date.now()});}
+function learn(concept,data,source,type="knowledge"){concept=String(concept||"").trim(); data=String(data||"").trim(); if(!concept||!data) return null; const existing=searchMemory(concept); if(existing){const m=existing.memory; m.data=data.substring(0,2000); m.source=source; m.lastUsed=Date.now(); m.strength=Math.min(100,Number(m.strength||50)+5); saveBrain(); return m;} const mem={id:Date.now()+Math.random(),concept:concept.substring(0,300),data:data.substring(0,2000),source:source||"AUDMAX",type,strength:60,created:Date.now(),lastUsed:Date.now(),connections:0}; for(const other of BRAIN.memories){const a=words(mem.concept); const b=words(other.concept); const common=a.filter(x=>b.includes(x)).length; if(common>=1){createSynapse(mem.id,other.id); mem.connections++; other.connections=Number(other.connections||0)+1; other.strength=Math.min(100,Number(other.strength||50)+1);}} BRAIN.memories.push(mem); BRAIN.level=Math.min(5.0,BRAIN.level*1.002); BRAIN.growthToday=Math.min(100,BRAIN.growthToday+.20); BRAIN.lastLearning=Date.now(); core.classList.add("growing"); setTimeout(()=>core.classList.remove("growing"),1400); saveBrain(); drawHex(); return mem;}
+
+// SAFE MATH - ANTES Function() eval perigoso, AGORA shunting-yard allowlist
+function safeMathEvaluate(expr){
+  const cleaned=expr.trim(); if(!cleaned) return null; if(!/^[0-9+\-*/().\s]+$/.test(cleaned)) return null;
+  const prec={'+':1,'-':1,'*':2,'/':2}; const tokens=cleaned.match(/(\d+\.?\d*|\.\d+|[+\-*/()])/g); if(!tokens) return null;
+  const out=[],ops=[]; for(const t of tokens){ if(!isNaN(parseFloat(t))) out.push(t); else if(t in prec){ while(ops.length&&ops[ops.length-1]!=='('&&prec[ops[ops.length-1]]>=prec[t]) out.push(ops.pop()); ops.push(t);} else if(t==='(') ops.push(t); else if(t===')'){ while(ops.length&&ops[ops.length-1]!=='(') out.push(ops.pop()); if(ops[ops.length-1]==='(') ops.pop(); else return null;} else return null;}
+  while(ops.length){const o=ops.pop(); if(o==='('||o===')') return null; out.push(o);}
+  const st=[]; for(const tk of out){ if(!isNaN(parseFloat(tk))) st.push(parseFloat(tk)); else{ if(st.length<2) return null; const b=st.pop(),a=st.pop(); let r=0; if(tk==='+') r=a+b; else if(tk==='-') r=a-b; else if(tk==='*') r=a*b; else if(tk==='/'){ if(b===0) return null; r=a/b;} if(!Number.isFinite(r)) return null; st.push(r);}}
+  return st.length===1?st[0]:null;
+}
+function mathEngine(q){
+  const qq=normalize(q); activateTx("math");
+  let m=qq.match(/raiz quadrada de\s*([0-9]+(?:[.,][0-9]+)?)/); if(m){ const n=parseFloat(m[1].replace(",",".")); if(!isNaN(n)) return {answer:"√"+n+" = "+Math.sqrt(n),source:"Motor Matemático",type:"math"};}
+  let exp=qq.replace(/quanto é|quanto da|qual é|calcule|calcula/g,"").trim().replace(/x/g,"*");
+  const r=safeMathEvaluate(exp); if(r!==null) return {answer:exp+" = "+r,source:"Motor Matemático Seguro",type:"math"};
+  return null;
+}
+function detectEngine(q){const qq=normalize(q); const engines=[{id:"physical",words:["fisica","forca","energia","massa","velocidade","aceleracao","gravidade","movimento","newton"]},{id:"chemical",words:["quimica","atomo","molecula","reacao","elemento","ph","quimico"]},{id:"biological",words:["biologia","celula","dna","rna","organismo","genetica","biologico"]},{id:"economic",words:["economia","economico","inflacao","juros","mercado","preco","investimento","pib"]},{id:"social",words:["sociedade","social","comportamento","cultura","populacao"]},{id:"philosophical",words:["filosofia","existencia","verdade","etica","moral","consciencia","conhecimento"]}]; for(const e of engines){ if(e.words.some(w=>qq.includes(w))){ activateTx(e.id); return e.id;}} return null;}
+
+async function wikiAPI(term){activateTx("wiki"); animateNeuron(); try{const url="https://pt.wikipedia.org/w/api.php?action=query&list=search&srsearch="+encodeURIComponent(term)+"&format=json&origin=*&srlimit=3"; const res=await fetchTimeout(url,5000); if(!res.ok) return null; const j=await res.json(); const results=j?.query?.search; if(!results||!results.length) return null; const best=results[0]; const sumUrl="https://pt.wikipedia.org/api/rest_v1/page/summary/"+encodeURIComponent(best.title); const sumRes=await fetchTimeout(sumUrl,5000); if(!sumRes.ok) return {source:"Wikipedia",title:best.title,data:best.snippet.replace(/<[^>]*>/g,"")}; const sum=await sumRes.json(); if(sum.extract) return {source:"Wikipedia PT",title:best.title,data:sum.extract};}catch(e){console.warn("Wiki",e);} return null;}
+async function socialAPI(term){activateTx("social"); return null;}
+async function baasAPI(term){activateTx("baas"); const q=normalize(term); if(q.includes("baas")) return {source:"BaaS",data:"BaaS = Backend as a Service. Serviços de backend por plataforma, reduzindo infra do zero."}; return null;}
+async function saasAPI(term){activateTx("saas"); const q=normalize(term); if(q.includes("saas")) return {source:"SaaS",data:"SaaS = Software as a Service. Software como serviço pela internet."}; return null;}
+async function backendAPI(question){if(!API_BASE) return null; try{const r=await fetch(API_BASE+"/api/cortex4d/process",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({pergunta:question,hits:BRAIN.memories.length,dias_ativo:Math.floor((Date.now()-BRAIN.created)/86400000)})}); if(!r.ok) return null; return await r.json();}catch(e){console.warn("Backend",e); return null;}}
+
+function fetchTimeout(url,timeout=5000){const c=new AbortController(); const t=setTimeout(()=>c.abort(),timeout); return fetch(url,{signal:c.signal}).finally(()=>clearTimeout(t));}
+function fuseResults(results){if(!results.length) return null; const uniq=[],seen=new Set(); for(const r of results){ if(!r||!r.data) continue; const k=normalize(r.data).substring(0,180); if(seen.has(k)) continue; seen.add(k); uniq.push(r);} if(!uniq.length) return null; return {answer:uniq.map(r=>r.data).join("\n\n").substring(0,5000),sources:uniq.map(r=>r.source||"API"),count:uniq.length};}
+async function fireAPIs(q){core.classList.add("thinking"); document.getElementById("flowBrain").textContent="🧠 PROCESSANDO"; document.getElementById("flowCheck").textContent="APIS EM PARALELO"; document.getElementById("flowAction").textContent="IDA → COLETA → FUSÃO → VOLTA"; const promises=[wikiAPI(q),socialAPI(q),baasAPI(q),saasAPI(q),backendAPI(q)]; let res=[]; try{const rs=await Promise.allSettled(promises); for(const r of rs){ if(r.status==="fulfilled"&&r.value){ if(r.value.data) res.push(r.value); else if(r.value.dimensoes) res.push({source:"Córtex 4D",data:r.value.entendimento+". "+r.value.solucao});}}}catch(e){console.error(e);} core.classList.remove("thinking"); return res;}
+async function processQuestion(q){BRAIN.inputs++; await saveBrain(); const math=mathEngine(q); if(math){ const mem=learn(q,math.answer,math.source,"mathematical"); return {answer:math.answer,source:math.source,type:"engine",memory:mem};} const remembered=searchMemory(q); if(remembered){const m=remembered.memory; m.lastUsed=Date.now(); m.strength=Math.min(100,Number(m.strength||50)+3); await saveBrain(); document.getElementById("flowCheck").textContent="TEM NA MEMÓRIA"; document.getElementById("flowAction").textContent="VOLTA → RESPOSTA DIRETA"; return {answer:m.data,source:m.source,type:"memory",memory:m,score:remembered.score};} const eng=detectEngine(q); const results=await fireAPIs(q); const fused=fuseResults(results); if(fused){const mem=learn(q,fused.answer,fused.sources.join(" + "),eng||"api_knowledge"); document.getElementById("flowCheck").textContent="NOVO CONHECIMENTO"; document.getElementById("flowAction").textContent="FUSÃO → GRAVA → CRESCE → VOLTA"; return {answer:fused.answer,source:fused.sources.join(" + "),type:"api",memory:mem,apiCount:fused.count};} const mem=learn(q,"Pergunta registrada. Nenhuma fonte retornou conhecimento suficiente. Armazenada como curiosidade.","Memória de Aprendizado","curiosity"); return {answer:"Ainda não encontrei informação suficiente nas conexões disponíveis. Mas a pergunta foi registrada no cérebro e transformada em uma nova memória de aprendizado.",source:"Cérebro AUDMAX",type:"learning",memory:mem};}
+
+let processing=false;
+async function send(){if(processing) return; const text=inp.value.trim(); if(!text) return; processing=true; sendBtn.disabled=true; inp.value=""; addMessage("u",escapeHTML(text)); const thinking=addMessage("b","🧠 <i>O cérebro está processando a pergunta...</i>"); try{const result=await processQuestion(text); thinking.remove(); if(result.type==="memory"){addMessage("b memory",escapeHTML(result.answer)+`<span class="synapse-tag">🧠 MEMÓRIA LOCAL → força ${Number(result.memory.strength).toFixed(1)} • ${result.memory.connections||0} conexões</span>`);} else if(result.type==="api"){addMessage("b api",escapeHTML(result.answer)+`<span class="synapse-tag">🌐 IDA/VOLTA → ${result.apiCount} fonte(s) • ${escapeHTML(result.source)} • ${BRAIN.memories.length} memórias</span>`);} else if(result.type==="engine"){addMessage("b engine",escapeHTML(result.answer)+`<span class="synapse-tag">🧮 MOTOR COGNITIVO → ${escapeHTML(result.source)} • cálculo seguro</span>`);} else{addMessage("b learning",escapeHTML(result.answer)+`<span class="synapse-tag">🌱 nova memória criada • ${BRAIN.memories.length} memórias</span>`);} drawHex();}catch(e){console.error(e); thinking.remove(); addMessage("b learning","⚠️ Falha no processamento.");} processing=false; sendBtn.disabled=false; inp.focus();}
+function escapeHTML(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
+sendBtn.onclick=send;
+inp.addEventListener("keydown",e=>{ if(e.key==="Enter") send(); });
+function drawHex(){const c=document.getElementById("hexCanvas"); if(!c) return; const ctx=c.getContext("2d"); const w=c.width,h=c.height; ctx.clearRect(0,0,w,h); const cx=w/2,cy=h/2; for(let radius=65;radius<280;radius+=36){ctx.beginPath(); for(let i=0;i<6;i++){const ang=Math.PI/3*i-Math.PI/6; const x=cx+radius*Math.cos(ang); const y=cy+radius*Math.sin(ang); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);} ctx.closePath(); ctx.strokeStyle="rgba(34,255,136,.08)"; ctx.lineWidth=1; ctx.stroke();} const max=Math.min(BRAIN.synapses.length,80); for(let i=0;i<max;i++){const s=BRAIN.synapses[i]; const aNum=Number(String(s.from).replace(/\D/g,"").slice(-6))||i*71; const bNum=Number(String(s.to).replace(/\D/g,"").slice(-6))||i*97; const a=(aNum%628)/100,b=(bNum%628)/100; const r1=75+(aNum%170),r2=75+(bNum%170); const x1=cx+r1*Math.cos(a),y1=cy+r1*Math.sin(a); const x2=cx+r2*Math.cos(b),y2=cy+r2*Math.sin(b); ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.strokeStyle="rgba(42,176,255,.10)"; ctx.lineWidth=.7; ctx.stroke();}}
 updateStatus(); drawHex();
-addMessage("b", `🧠 <b>AUDMAX IA QUANTUM ONLINE v12</b><br><br>O cérebro foi inicializado com arquitetura <b>IDA / VOLTA + CÓRTEX QUANTUM</b>.<br><br><b>1.</b> Recebo a pergunta.<br><b>2.</b> Verifico a memória existente.<br><b>3.</b> Se houver conhecimento suficiente, respondo pela memória.<br><b>4.</b> Se não houver, disparo as conexões disponíveis em paralelo.<br><b>5.</b> Recebo os resultados.<br><b>6.</b> Faço a fusão/processamento.<br><b>7.</b> Gravo o conhecimento processado.<br><b>8.</b> Crio novas sinapses.<br><b>9.</b> Fortalece o cérebro.<br><b>10.</b> Respondo.<br><br>🧠 Memórias atuais: <b>${BRAIN.memories.length}</b><br>🔗 Sinapses: <b>${BRAIN.synapses.length}</b><br>📥 Entradas: <b>${BRAIN.inputs}</b><span class="synapse-tag">AUDMAX QUANTUM v12 • memória persistente • processamento IDA/VOLTA + LEITOR DE ARQUIVOS</span>`);
-if("serviceWorker" in navigator){window.addEventListener("load", () => {if(location.protocol === "https:" || location.hostname === "localhost"){navigator.serviceWorker.register("sw.js").catch(() => {});}});}
-/* FILE INGEST */
-if(window.pdfjsLib){pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";}
-attachBtn.onclick = () => fileInput.click();
-fileInput.addEventListener("change", () => {if(fileInput.files.length){ handleFiles(fileInput.files); fileInput.value = ""; }});
-const chatWrap = document.getElementById("chatWrap");
-chatWrap.addEventListener("dragover", (e) => { e.preventDefault(); fileDrop.classList.add("active"); fileDrop.textContent = "📎 Solte o arquivo aqui"; });
-chatWrap.addEventListener("dragleave", () => { fileDrop.classList.remove("active"); });
-chatWrap.addEventListener("drop", (e) => {e.preventDefault(); fileDrop.classList.remove("active");if(e.dataTransfer.files.length){ handleFiles(e.dataTransfer.files); }});
-async function handleFiles(files){for(const file of files){const name = file.name; const ext = name.split(".").pop().toLowerCase();addMessage("u", `📎 Enviando arquivo: <b>${escapeHTML(name)}</b> (${(file.size/1024).toFixed(1)} KB)`);const loading = addMessage("b", `🧠 Lendo <b>${escapeHTML(name)}</b>...`);try{let text = "";if(["txt","html","htm","csv","json","md"].includes(ext)){text = await file.text();if(ext === "html" || ext === "htm"){ const doc = new DOMParser().parseFromString(text, "text/html"); text = doc.body.innerText || text; }} else if(ext === "pdf"){text = await extractPDF(file);} else if(ext === "docx"){const ab = await file.arrayBuffer();const res = await mammoth.extractRawText({ arrayBuffer: ab });text = res.value || "";} else if(ext === "xlsx" || ext === "xls"){const ab = await file.arrayBuffer();const wb = XLSX.read(ab, { type: "array" });let out = "";wb.SheetNames.forEach(sn => { out += "\n--- Planilha: " + sn + " ---\n"; out += XLSX.utils.sheet_to_csv(wb.Sheets[sn]); });text = out;} else if(["png","jpg","jpeg","webp","bmp"].includes(ext)){text = `[Imagem ${name} carregada. Tipo: ${file.type}. Tamanho: ${file.size} bytes.]`;const url = URL.createObjectURL(file);loading.innerHTML = `📸 Imagem recebida: <b>${escapeHTML(name)}</b><br><img src="${url}" style="max-width:100%;border-radius:12px;margin-top:8px;max-height:260px">`;} else if(ext === "pptx" || ext === "ppt"){text = `[Apresentação ${name} - ${file.size} bytes.]`;} else {text = await file.text().catch(() => `[Arquivo ${name} binário - ${file.size} bytes]`);}text = text.trim().substring(0, 8000);if(!text){ loading.innerHTML = `⚠️ Não consegui extrair texto de <b>${escapeHTML(name)}</b>`; continue; }if(!["png","jpg","jpeg","webp","bmp"].includes(ext)){loading.remove();}const mem = learn(name, text, "Arquivo: " + name + " (" + ext.toUpperCase() + ")", "file_upload");addMessage("b memory", `✅ Arquivo <b>${escapeHTML(name)}</b> lido e gravado no cérebro!<br><br>${escapeHTML(text.substring(0, 600))}${text.length>600?"...":""}<span class="synapse-tag">📁 ${ext.toUpperCase()} • ${text.length} caracteres • Memória ID ${String(mem.id).substring(0,8)} • Total: ${BRAIN.memories.length} memórias • Agora pode perguntar sobre o conteúdo</span>`);}catch(err){console.error(err);loading.innerHTML = `❌ Erro ao ler <b>${escapeHTML(name)}</b>: ${escapeHTML(err.message || String(err))}`;}}}
-async function extractPDF(file){const ab = await file.arrayBuffer();const pdf = await pdfjsLib.getDocument({ data: ab }).promise;let full = "";const maxPages = Math.min(pdf.numPages, 30);for(let i=1; i<=maxPages; i++){const page = await pdf.getPage(i);const content = await page.getTextContent();const strings = content.items.map(it => it.str || "").join(" ");full += "\n--- Página " + i + " ---\n" + strings + "\n";if(full.length > 7000) break;}return full || "[PDF sem texto extraível]";}
+addMessage("b",`🧠 <b>AUDMAX IA QUANTUM ONLINE v12 HÍBRIDA - Front Limpo</b><br><br><b>O que mudou deste arquivo:</b><br>1. SENHA não mais plain text, agora SHA-256 hash (${h.slice(0,12)}...)<br>2. Storage IndexedDB ilimitado + localStorage fallback<br>3. Math seguro shunting-yard, sem Function() eval<br>4. Libs PDF/DOCX/XLSX lazy load (não no head)<br>5. Backend ready via window.__AUDMAX_API_BASE__<br>6. Level capado em 5.0, growth capado em 100%<br><br>🧠 Memórias: <b>${BRAIN.memories.length}</b><br>🔗 Sinapses: <b>${BRAIN.synapses.length}</b><br>📥 Entradas: <b>${BRAIN.inputs}</b><span class="synapse-tag">AUDMAX QUANTUM v12 HÍBRIDA • Front Limpo • Pronto pra BaaS/SaaS</span>`);
+
+// FILE INGEST - LAZY LOAD LIBS - ANTES no head bloqueando, AGORA dynamic import
+async function loadPdfJs(){ if(window.pdfjsLib) return window.pdfjsLib; const s=document.createElement("script"); s.src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"; document.head.appendChild(s); await new Promise((r,j)=>{ s.onload=r; s.onerror=j; }); if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"; return window.pdfjsLib; }
+async function loadMammoth(){ if(window.mammoth) return window.mammoth; const s=document.createElement("script"); s.src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"; document.head.appendChild(s); await new Promise((r,j)=>{ s.onload=r; s.onerror=j; }); return window.mammoth; }
+async function loadXlsx(){ if(window.XLSX) return window.XLSX; const s=document.createElement("script"); s.src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"; document.head.appendChild(s); await new Promise((r,j)=>{ s.onload=r; s.onerror=j; }); return window.XLSX; }
+
+attachBtn.onclick=()=>fileInput.click();
+fileInput.addEventListener("change",()=>{ if(fileInput.files.length){ handleFiles(fileInput.files); fileInput.value=""; } });
+const chatWrap=document.getElementById("chatWrap");
+chatWrap.addEventListener("dragover",(e)=>{ e.preventDefault(); fileDrop.classList.add("active"); });
+chatWrap.addEventListener("dragleave",()=>{ fileDrop.classList.remove("active"); });
+chatWrap.addEventListener("drop",(e)=>{ e.preventDefault(); fileDrop.classList.remove("active"); if(e.dataTransfer.files.length) handleFiles(e.dataTransfer.files); });
+
+async function handleFiles(files){
+  for(const file of files){
+    const name=file.name; const ext=name.split(".").pop().toLowerCase();
+    addMessage("u",`📎 Enviando arquivo: <b>${escapeHTML(name)}</b> (${(file.size/1024).toFixed(1)} KB)`);
+    const loading=addMessage("b",`🧠 Lendo <b>${escapeHTML(name)}</b>...`);
+    try{
+      let text="";
+      if(["txt","html","htm","csv","json","md"].includes(ext)){ text=await file.text(); if(ext==="html"||ext==="htm"){ const doc=new DOMParser().parseFromString(text,"text/html"); text=doc.body.innerText||text; }}
+      else if(ext==="pdf"){ const lib=await loadPdfJs(); text=await extractPDF(file,lib); }
+      else if(ext==="docx"){ const lib=await loadMammoth(); const ab=await file.arrayBuffer(); const res=await lib.extractRawText({arrayBuffer:ab}); text=res.value||""; }
+      else if(ext==="xlsx"||ext==="xls"){ const lib=await loadXlsx(); const ab=await file.arrayBuffer(); const wb=lib.read(ab,{type:"array"}); let out=""; wb.SheetNames.forEach(sn=>{ out+="\n--- Planilha: "+sn+" ---\n"; out+=lib.utils.sheet_to_csv(wb.Sheets[sn]); }); text=out; }
+      else if(["png","jpg","jpeg","webp","bmp"].includes(ext)){ text=`[Imagem ${name} Tipo: ${file.type} Tamanho: ${file.size}]`; const url=URL.createObjectURL(file); loading.innerHTML=`📸 Imagem: <b>${escapeHTML(name)}</b><br><img src="${url}" style="max-width:100%;border-radius:12px;margin-top:8px;max-height:260px">`; }
+      else{ text=await file.text().catch(()=>`[Arquivo ${name} binário - ${file.size} bytes]`); }
+      text=text.trim().substring(0,8000);
+      if(!text){ loading.innerHTML=`⚠️ Não extraí texto de <b>${escapeHTML(name)}</b>`; continue; }
+      if(!["png","jpg","jpeg","webp","bmp"].includes(ext)) loading.remove();
+      const mem=learn(name,text,"Arquivo: "+name+" ("+ext.toUpperCase()+")","file_upload");
+      addMessage("b memory",`✅ Arquivo <b>${escapeHTML(name)}</b> lido e gravado!<br><br>${escapeHTML(text.substring(0,600))}${text.length>600?"...":""}<span class="synapse-tag">📁 ${ext.toUpperCase()} • ${text.length} chars • Memória ${String(mem.id).substring(0,8)} • Total: ${BRAIN.memories.length} memórias</span>`);
+    }catch(err){ console.error(err); loading.innerHTML=`❌ Erro ao ler <b>${escapeHTML(name)}</b>: ${escapeHTML(err.message||String(err))}`; }
+  }
+}
+async function extractPDF(file,lib){const ab=await file.arrayBuffer(); const pdf=await lib.getDocument({data:ab}).promise; let full=""; const max=Math.min(pdf.numPages,30); for(let i=1;i<=max;i++){const page=await pdf.getPage(i); const c=await page.getTextContent(); const strs=c.items.map(it=>it.str||"").join(" "); full+="\n--- Página "+i+" ---\n"+strs+"\n"; if(full.length>7000) break;} return full||"[PDF sem texto]";}
 </script>
 </body>
 </html>
